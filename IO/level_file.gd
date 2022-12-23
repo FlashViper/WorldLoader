@@ -25,7 +25,22 @@ static func loadFromFile(path: StringName) -> LevelFile:
 	if FileAccess.file_exists(path):
 		return LevelFile.new()
 	
+	var f := FileAccess.open(path, FileAccess.READ)
 	var l := LevelFile.new()
+	
+	f.get_line() # should be version, but I'm too lazy to check so far
+	l.name = f.get_line()
+	
+	while f.get_position() < f.get_length():
+		var id := f.get_8() # pull one byte from the file to tell us what to parse next
+		match id:
+			ID_TILEDATA:
+				var length := f.get_32()
+				l.tileData = PackedByteArray()
+				
+				for i in length:
+					l.tileData.append(i)
+	
 	return l
 
 func saveToFile(path: StringName) -> void:
