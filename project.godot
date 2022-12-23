@@ -38,6 +38,7 @@ ProjectManager="*res://IO/project_manager.gd"
 
 window/size/viewport_width=2048
 window/size/viewport_height=1152
+window/subwindows/embed_subwindows=false
 
 [rendering]
 
