@@ -1,13 +1,16 @@
 class_name WorldFile extends Resource
 
 var name : StringName
-var devNotes : String
+#var devNotes : String
 
 var levels : Array[LevelData]
 
 class LevelData:
-	var filePath : StringName
-	var position : Vector2i
+	var filePath : StringName = &""
+	
+	var position : Vector2i = Vector2i.ZERO
+	var size : Vector2i = Vector2i.ONE * 2
+	
 	var connections : PackedInt64Array
 
 static func loadFromFile(path: StringName) -> WorldFile:
