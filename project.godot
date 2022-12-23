@@ -27,6 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="World Loader"
+run/main_scene="res://Basic/world_editor.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
 
