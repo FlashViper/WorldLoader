@@ -16,7 +16,40 @@ static func loadFromFile(path: StringName) -> WorldFile:
 	if !FileAccess.file_exists(path):
 		return WorldFile.new()
 	
+	var f := FileAccess.open(path, FileAccess.READ)
 	var w := WorldFile.new()
+	
+	var r_property := RegEx.create_from_string(&"(.*):[\t ]*(.*)")
+	var r_level := RegEx.create_from_string(&"Level[ \t]*(\\d*)")
+	
+	f.get_line() # TODO: Check against header to verify the correct file type
+	f.get_line() # TODO: Check against version number and warn if different
+	
+	# Parse initial values
+	while f.get_position() < f.get_length():
+		var newLine := f.get_line()
+		
+		if r_level.search(newLine):
+			break
+		
+		var p := r_property.search(newLine)
+		if p:
+			w.set(p.get_string(1), str_to_var(p.get_string(2)))
+	
+	w.levels = []
+	var levelCount := 0
+	
+	while f.get_position() < f.get_length():
+		var newLine := f.get_line()
+		if newLine.begins_with("\t"):
+			var p := r_property.search(newLine)
+			if p:
+				w.levels[levelCount - 1].set(p.get_string(1), str_to_var(p.get_string(2)))
+		else:
+			if r_level.search(newLine):
+				w.levels.append(LevelData.new())
+				levelCount += 1
+	
 	return w
 
 func saveToFile(path: StringName) -> void:
