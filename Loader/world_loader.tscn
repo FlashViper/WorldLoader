@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmhta06wtb6qc"]
+[gd_scene load_steps=5 format=3 uid="uid://d4426bs8pvp3"]
 
 [ext_resource type="Script" path="res://Loader/Loader_World.gd" id="1_5plwq"]
 [ext_resource type="Script" path="res://Loader/Loader_Level.gd" id="2_ent2y"]
 [ext_resource type="Script" path="res://Loader/CollisionMap.gd" id="3_k7yua"]
-[ext_resource type="PackedScene" uid="uid://uw2kxkq75lgn" path="res://Testing/TestCharacter.tscn" id="4_66xwb"]
+[ext_resource type="PackedScene" uid="uid://uw2kxkq75lgn" path="res://Testing/test_character.tscn" id="4_66xwb"]
 
 [node name="WorldLoader" type="Node"]
 script = ExtResource("1_5plwq")
