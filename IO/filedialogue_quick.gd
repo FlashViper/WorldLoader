@@ -15,6 +15,9 @@ func request_file() -> void:
 	%Input_File.grab_focus()
 
 func submit(text: String) -> void:
+	if %Input_CreateFolders.button_pressed:
+		DirAccess.make_dir_recursive_absolute(base_dir.get_base_dir())
+	
 	file_submitted.emit(base_dir % text)
 	just_submitted = true
 	hide()
