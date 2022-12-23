@@ -16,10 +16,11 @@ func request_file() -> void:
 
 func submit(text: String) -> void:
 	file_submitted.emit(base_dir % text)
+	just_submitted = true
 	hide()
 
 func rejected() -> void:
 	if !just_submitted:
 		file_submitted.emit("")
 	
-	just_submitted = null
+	just_submitted = false

@@ -58,6 +58,11 @@ func saveToFile(path: StringName) -> void:
 	const LEVEL_TAG := &"Level %02d"
 	
 	var f := FileAccess.open(path, FileAccess.WRITE)
+	
+	if !f:
+		printerr("File '%s' could not be opened" % path)
+		return
+		
 	f.store_line(VERSION_TAG % VERSION)
 	
 	var properties := [
