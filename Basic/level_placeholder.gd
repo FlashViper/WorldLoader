@@ -44,4 +44,5 @@ func updateTransform() -> void:
 	t.tween_property(self, "size", Vector2(rect.size * tile_size), 0.1).set_trans(Tween.TRANS_CUBIC)
 
 func editRect() -> void:
+	# TODO
 	pass
