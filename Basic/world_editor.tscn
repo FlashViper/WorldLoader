@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx8kmxa5h4pr"]
+[gd_scene load_steps=4 format=3 uid="uid://bx8kmxa5h4pr"]
 
 [ext_resource type="Script" path="res://Basic/WorldEditor.gd" id="1_lpii7"]
 [ext_resource type="PackedScene" uid="uid://cn4bio8mwouug" path="res://Basic/level_placeholder.tscn" id="2_g3fsj"]
+[ext_resource type="PackedScene" uid="uid://bi8gpnhl80s4a" path="res://IO/quick_save.tscn" id="3_ganl3"]
 
 [node name="WorldEditor" type="Node"]
 script = ExtResource("1_lpii7")
@@ -20,3 +21,6 @@ offset_bottom = 40.0
 border_color = Color(0.588235, 0.588235, 0.588235, 1)
 border_width = 5.0
 editor_only = false
+
+[node name="QuickSave" parent="." instance=ExtResource("3_ganl3")]
+visible = false
