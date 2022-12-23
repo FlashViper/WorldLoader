@@ -1,6 +1,5 @@
 class_name LevelFile extends Resource
 
-const HEADER := &"LevelFile v%s"
 const VERSION := &"0.1 development"
 
 enum {
@@ -28,7 +27,9 @@ static func loadFromFile(path: StringName) -> LevelFile:
 	var f := FileAccess.open(path, FileAccess.READ)
 	var l := LevelFile.new()
 	
+	f.get_line() # should be header to designate Level File, but I'm too lazy to check so far
 	f.get_line() # should be version, but I'm too lazy to check so far
+	# TODO: Throw warning when level is of a different version
 	l.name = f.get_line()
 	
 	while f.get_position() < f.get_length():
@@ -44,6 +45,8 @@ static func loadFromFile(path: StringName) -> LevelFile:
 	return l
 
 func saveToFile(path: StringName) -> void:
+	const HEADER := &"FlashViper LevelFile\nVersion %s"
+	
 	var f := FileAccess.open(path, FileAccess.WRITE)
 	
 	f.store_line(HEADER % VERSION)
