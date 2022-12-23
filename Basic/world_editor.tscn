@@ -1,15 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://bx8kmxa5h4pr"]
+[gd_scene load_steps=3 format=3 uid="uid://bx8kmxa5h4pr"]
 
 [ext_resource type="Script" path="res://Basic/WorldEditor.gd" id="1_lpii7"]
+[ext_resource type="PackedScene" uid="uid://cn4bio8mwouug" path="res://Basic/level_placeholder.tscn" id="2_g3fsj"]
 
 [node name="WorldEditor" type="Node"]
 script = ExtResource("1_lpii7")
+tile_size = Vector2i(25, 25)
+levelPlaceholder = ExtResource("2_g3fsj")
+metadata/_edit_pinned_properties_ = [&"tile_size"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(983, 579)
 zoom = Vector2(0.5, 0.5)
 
 [node name="LevelSizePreview" type="ReferenceRect" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 border_color = Color(0.588235, 0.588235, 0.588235, 1)
