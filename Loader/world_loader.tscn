@@ -1,12 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmhta06wtb6qc"]
+[gd_scene load_steps=5 format=3 uid="uid://cmhta06wtb6qc"]
 
 [ext_resource type="Script" path="res://Loader/Loader_World.gd" id="1_5plwq"]
 [ext_resource type="Script" path="res://Loader/Loader_Level.gd" id="2_ent2y"]
 [ext_resource type="Script" path="res://Loader/CollisionMap.gd" id="3_k7yua"]
-[ext_resource type="Texture2D" uid="uid://yi3v1fj1g7ul" path="res://icon.svg" id="4_imig2"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_umk0p"]
-size = Vector2(114, 118)
+[ext_resource type="PackedScene" uid="uid://uw2kxkq75lgn" path="res://Testing/TestCharacter.tscn" id="4_66xwb"]
 
 [node name="WorldLoader" type="Node"]
 script = ExtResource("1_5plwq")
@@ -18,11 +15,5 @@ script = ExtResource("2_ent2y")
 [node name="CollisionMap" type="Node2D" parent="."]
 script = ExtResource("3_k7yua")
 
-[node name="Test Dummy" type="RigidBody2D" parent="."]
-position = Vector2(903, 227)
-
-[node name="Icon" type="Sprite2D" parent="Test Dummy"]
-texture = ExtResource("4_imig2")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Test Dummy"]
-shape = SubResource("RectangleShape2D_umk0p")
+[node name="TestCharacter" parent="." instance=ExtResource("4_66xwb")]
+position = Vector2(855, 472)
