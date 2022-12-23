@@ -34,15 +34,17 @@ func _input(event: InputEvent) -> void:
 			preview.position = grid_to_world(previewRect.position)
 			preview.size = grid_to_world(previewRect.size)
 
-
 func create_level(pos1: Vector2i, pos2: Vector2i) -> void:
 	var originalRect := Rect2i(pos1, Vector2()).expand(pos2)
 	var newRect := originalRect
 	
 	if originalRect.size < ProjectManager.minimum_screen_size:
+		if originalRect.get_area() < 2:
+			return
+		
 		var diff : Vector2i = max(ProjectManager.minimum_screen_size - originalRect.size, Vector2i())
 		newRect = originalRect.expand(originalRect.get_center() + Vector2i(0.5 * (originalRect.size + diff)) * (pos1 - pos2).sign())
-		pass
+
 	
 	var r := levelPlaceholder.instantiate()
 	add_child(r)
