@@ -10,6 +10,8 @@ extends Node
 var dragRoot : Vector2
 var isDragging : bool
 
+var levels : Array[Control] = []
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
@@ -76,6 +78,18 @@ func collideRect(target: Rect2i, collision: Rect2i, original : Rect2i) -> Rect2i
 		final.position -= dir * intersection.size
 	
 	return final
+
+func saveToDisk(path: StringName) -> void:
+	var worldFile := WorldFile.new()
+	worldFile.levels = []
+	
+	for l in levels:
+		var data := WorldFile.LevelData.new()
+		data.position = l.rect.position
+		data.size = l.rect.size
+		worldFile.levels.append(data)
+	
+	worldFile.saveToFile(path)
 
 func world_to_grid(world: Vector2) -> Vector2i:
 	return Vector2i(world) / tile_size
