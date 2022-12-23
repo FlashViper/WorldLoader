@@ -1,6 +1,5 @@
 extends Node
 
-
 @export var tile_size := Vector2i(7,7)
 @export var levelPlaceholder : PackedScene
 
@@ -13,6 +12,12 @@ var isDragging : bool
 var levels : Array[Control] = []
 
 func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.ctrl_pressed and event.is_pressed() and event.keycode == KEY_S:
+			$QuickSave.request_file()
+			var filename = await $QuickSave.file_submitted
+			if filename != "":
+				saveToDisk(filename)
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			isDragging = event.is_pressed()
