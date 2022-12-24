@@ -64,6 +64,7 @@ func saveToFile(path: StringName) -> void:
 		return
 		
 	f.store_line(VERSION_TAG % VERSION)
+	f.store_line("")
 	
 	var properties := [
 		["name", name],
@@ -73,20 +74,18 @@ func saveToFile(path: StringName) -> void:
 	for p in properties:
 		f.store_line(PROPERTY_TAG % p)
 	
-	properties = []
 	for i in levels.size():
+		f.store_line("")
+		
 		var l := levels[i]
 		f.store_line(LEVEL_TAG % [i])
 		
-		properties.append_array([
+		properties = [
 			["filePath", l.filePath],
 			["position", l.position],
 			["size", l.size],
 			["connections", l.connections],
-		])
+		]
 		
 		for p in properties:
 			f.store_line("\t" + (PROPERTY_TAG % p))
-		
-		if i < levels.size() - 1:
-			f.store_line(&"")
