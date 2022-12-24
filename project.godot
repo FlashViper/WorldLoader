@@ -41,6 +41,10 @@ window/size/viewport_width=2048
 window/size/viewport_height=1152
 window/subwindows/embed_subwindows=false
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/importer_worldfile/plugin.cfg")
+
 [rendering]
 
 renderer/rendering_method="mobile"
