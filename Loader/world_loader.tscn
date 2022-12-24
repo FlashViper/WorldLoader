@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4426bs8pvp3"]
+[gd_scene load_steps=6 format=3 uid="uid://d4426bs8pvp3"]
 
 [ext_resource type="Script" path="res://Loader/Loader_World.gd" id="1_5plwq"]
 [ext_resource type="Script" path="res://Loader/Loader_Level.gd" id="2_ent2y"]
 [ext_resource type="Script" path="res://Loader/CollisionMap.gd" id="3_k7yua"]
 [ext_resource type="PackedScene" uid="uid://uw2kxkq75lgn" path="res://Testing/test_character.tscn" id="4_66xwb"]
+[ext_resource type="PackedScene" uid="uid://bi8gpnhl80s4a" path="res://IO/quick_save.tscn" id="5_1cprr"]
 
 [node name="WorldLoader" type="Node"]
 script = ExtResource("1_5plwq")
@@ -17,3 +18,31 @@ script = ExtResource("3_k7yua")
 
 [node name="TestCharacter" parent="." instance=ExtResource("4_66xwb")]
 position = Vector2(855, 472)
+
+[node name="open_dialogue" parent="." instance=ExtResource("5_1cprr")]
+visible = false
+
+[node name="MarginContainer" parent="open_dialogue/Panel" index="0"]
+layout_mode = 2
+
+[node name="VBoxContainer" parent="open_dialogue/Panel/MarginContainer" index="0"]
+layout_mode = 2
+
+[node name="HBoxContainer" parent="open_dialogue/Panel/MarginContainer/VBoxContainer" index="0"]
+layout_mode = 2
+
+[node name="Label" parent="open_dialogue/Panel/MarginContainer/VBoxContainer/HBoxContainer" index="0"]
+layout_mode = 2
+
+[node name="Input_File" parent="open_dialogue/Panel/MarginContainer/VBoxContainer/HBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="Input_Submit" parent="open_dialogue/Panel/MarginContainer/VBoxContainer/HBoxContainer" index="2"]
+layout_mode = 2
+
+[node name="Input_CreateFolders" parent="open_dialogue/Panel/MarginContainer/VBoxContainer" index="1"]
+visible = false
+layout_mode = 2
+button_pressed = false
+
+[editable path="open_dialogue"]
