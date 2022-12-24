@@ -24,3 +24,4 @@ editor_only = false
 
 [node name="QuickSave" parent="." instance=ExtResource("3_ganl3")]
 visible = false
+base_dir = &"res://Testing/Worlds/%s.wrld"

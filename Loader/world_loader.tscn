@@ -21,6 +21,7 @@ position = Vector2(855, 472)
 
 [node name="open_dialogue" parent="." instance=ExtResource("5_1cprr")]
 visible = false
+base_dir = &"res://Testing/Worlds/%s.wrld"
 
 [node name="MarginContainer" parent="open_dialogue/Panel" index="0"]
 layout_mode = 2
