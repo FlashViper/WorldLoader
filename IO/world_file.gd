@@ -4,6 +4,7 @@ class_name WorldFile extends Resource
 const VERSION := &"0.1 pre"
 
 var name : StringName
+@export var name : StringName
 var levels : Array[LevelData]
 
 class LevelData:
