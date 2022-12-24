@@ -3,7 +3,6 @@ class_name WorldFile extends Resource
 
 const VERSION := &"0.1 pre"
 
-var name : StringName
 @export var name : StringName
 var levels : Array[LevelData]
 
@@ -28,9 +27,9 @@ static func loadFromFile(path: StringName) -> WorldFile:
 	f.get_line() # TODO: Check against version number and warn if different
 	
 	# Parse initial values
+	var newLine : String
 	while f.get_position() < f.get_length():
-		var newLine := f.get_line()
-		
+		newLine = f.get_line()
 		if r_level.search(newLine):
 			break
 		
@@ -42,7 +41,6 @@ static func loadFromFile(path: StringName) -> WorldFile:
 	var levelCount := 0
 	
 	while f.get_position() < f.get_length():
-		var newLine := f.get_line()
 		if newLine.begins_with("\t"):
 			var p := r_property.search(newLine)
 			if p:
@@ -51,13 +49,14 @@ static func loadFromFile(path: StringName) -> WorldFile:
 			if r_level.search(newLine):
 				w.levels.append(LevelData.new())
 				levelCount += 1
+		newLine = f.get_line()
 	
 	return w
 
 func saveToFile(path: StringName) -> void:
 	const VERSION_TAG := &"FlashViper WorldFile\nVersion %s"
 	const PROPERTY_TAG := &"%s: %s"
-	const LEVEL_TAG := &"Level %02d"
+	const LEVEL_TAG := &"Level %02d:"
 	
 	var f := FileAccess.open(path, FileAccess.WRITE)
 	
