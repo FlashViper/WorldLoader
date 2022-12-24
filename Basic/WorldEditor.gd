@@ -51,10 +51,10 @@ func create_level(pos1: Vector2i, pos2: Vector2i) -> void:
 		
 		var diff : Vector2i = max(ProjectManager.minimum_screen_size - originalRect.size, Vector2i())
 		newRect = originalRect.expand(originalRect.get_center() + Vector2i(0.5 * (originalRect.size + diff)) * (pos1 - pos2).sign())
-
 	
 	var r := levelPlaceholder.instantiate()
 	add_child(r)
+	levels.append(r)
 	
 	r.tile_size = tile_size
 	r.initialize(newRect, originalRect)
