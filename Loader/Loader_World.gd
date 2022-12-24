@@ -10,8 +10,7 @@ func _input(event: InputEvent) -> void:
 			$open_dialogue.request_file()
 			var filepath : String = await $open_dialogue.file_submitted
 			if FileAccess.file_exists(filepath):
-#				var f := load(filepath + ".tres")
-				var f := WorldFile.loadFromFile(filepath)
+				var f := load(filepath)
 				if f is WorldFile:
 					loadWorld(f)
 

@@ -17,7 +17,7 @@ func _get_recognized_extensions() -> PackedStringArray:
 	return PackedStringArray(["world", "wrld"])
 
 func _get_save_extension() -> String:
-	return "tres"
+	return "res"
 
 func _get_resource_type() -> String:
 	return "Resource"
