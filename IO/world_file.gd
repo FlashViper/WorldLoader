@@ -1,3 +1,4 @@
+@tool
 class_name WorldFile extends Resource
 
 const VERSION := &"0.1 pre"
