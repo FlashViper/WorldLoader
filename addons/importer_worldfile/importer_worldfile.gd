@@ -4,6 +4,9 @@ extends EditorImportPlugin
 func _get_priority() -> float:
 	return 1.0
 
+func _get_import_order() -> int:
+	return 0
+
 func _get_importer_name() -> String:
 	return "flashviper.worldeditor.importer_world"
 
@@ -14,7 +17,7 @@ func _get_recognized_extensions() -> PackedStringArray:
 	return PackedStringArray(["world", "wrld"])
 
 func _get_save_extension() -> String:
-	return "res"
+	return "tres"
 
 func _get_resource_type() -> String:
 	return "Resource"
@@ -42,5 +45,5 @@ func _import(source_file, save_path, options, platform_variants, gen_files) -> i
 	
 	if err != OK:
 		printerr("Error code %04d while importing file %s: %s" % [err, source_file, error_string(err)])
-		
+	print(world.levels)
 	return err

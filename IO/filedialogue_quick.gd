@@ -7,7 +7,7 @@ var just_submitted : bool
 
 func _ready() -> void:
 	%Input_File.text_submitted.connect(self.submit)
-	%Input_Submit.pressed.connect(self.submit)
+	%Input_Submit.pressed.connect(func(): self.submit(%Input_File.text))
 	popup_hide.connect(self.rejected)
 
 func request_file() -> void:

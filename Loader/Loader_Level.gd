@@ -9,5 +9,6 @@ func loadLevel(id: String, level : LevelFile, position : Vector2i) -> void:
 		"level": level,
 	}
 
+@warning_ignore(unused_parameter)
 func unloadLevel(id: String) -> void:
 	collisionMap.clear_rect()
