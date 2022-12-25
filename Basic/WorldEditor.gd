@@ -89,13 +89,12 @@ func saveToDisk(path: StringName) -> void:
 	worldFile.levels = []
 	
 	for l in levels:
-		var data := WorldFile.LevelData.new()
+		var data := LevelData.new()
 		data.position = l.rect.position
 		data.size = l.rect.size
 		worldFile.levels.append(data)
 	
-	print(error_string(ResourceSaver.save(worldFile, path + ".tres")))
-#	worldFile.saveToFile(path)
+	worldFile.saveToFile(path)
 
 func world_to_grid(world: Vector2) -> Vector2i:
 	return Vector2i(world) / tile_size

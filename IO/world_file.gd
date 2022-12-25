@@ -6,12 +6,6 @@ const VERSION := &"0.1 pre"
 @export var name : StringName
 @export var levels : Array[LevelData]
 
-class LevelData extends Resource:
-	var filePath : StringName = &""
-	
-	var position : Vector2i = Vector2i.ZERO
-	var size : Vector2i = Vector2i.ONE * 2
-	var connections : PackedInt64Array
 
 static func loadFromFile(path: StringName) -> WorldFile:
 	if !FileAccess.file_exists(path):
