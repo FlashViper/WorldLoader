@@ -10,6 +10,11 @@ config_version=5
 
 _global_script_classes=[{
 "base": "Resource",
+"class": &"LevelData",
+"language": &"GDScript",
+"path": "res://IO/LevelData.gd"
+}, {
+"base": "Resource",
 "class": &"LevelFile",
 "language": &"GDScript",
 "path": "res://IO/level_file.gd"
@@ -20,6 +25,7 @@ _global_script_classes=[{
 "path": "res://IO/world_file.gd"
 }]
 _global_script_class_icons={
+"LevelData": "",
 "LevelFile": "",
 "WorldFile": ""
 }
