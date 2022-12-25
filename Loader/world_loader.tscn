@@ -22,28 +22,4 @@ position = Vector2(855, 472)
 [node name="open_dialogue" parent="." instance=ExtResource("5_1cprr")]
 visible = false
 base_dir = &"res://Testing/Worlds/%s.wrld"
-
-[node name="MarginContainer" parent="open_dialogue/Panel" index="0"]
-layout_mode = 2
-
-[node name="VBoxContainer" parent="open_dialogue/Panel/MarginContainer" index="0"]
-layout_mode = 2
-
-[node name="HBoxContainer" parent="open_dialogue/Panel/MarginContainer/VBoxContainer" index="0"]
-layout_mode = 2
-
-[node name="Label" parent="open_dialogue/Panel/MarginContainer/VBoxContainer/HBoxContainer" index="0"]
-layout_mode = 2
-
-[node name="Input_File" parent="open_dialogue/Panel/MarginContainer/VBoxContainer/HBoxContainer" index="1"]
-layout_mode = 2
-
-[node name="Input_Submit" parent="open_dialogue/Panel/MarginContainer/VBoxContainer/HBoxContainer" index="2"]
-layout_mode = 2
-
-[node name="Input_CreateFolders" parent="open_dialogue/Panel/MarginContainer/VBoxContainer" index="1"]
-visible = false
-layout_mode = 2
-button_pressed = false
-
-[editable path="open_dialogue"]
+allow_option_create_folders = false
