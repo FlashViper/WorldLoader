@@ -14,7 +14,7 @@ static func loadFromFile(path: StringName) -> WorldFile:
 	var f := FileAccess.open(path, FileAccess.READ)
 	var w := WorldFile.new()
 	
-	var r_property := RegEx.create_from_string(&"(.*):[\t ]*(.*)")
+	var r_property := RegEx.create_from_string(&"\t*(.*):[\t ]*(.*)")
 	var r_level := RegEx.create_from_string(&"Level[ \t]*(\\d*)")
 	
 	f.get_line() # TODO: Check against header to verify the correct file type
@@ -32,17 +32,26 @@ static func loadFromFile(path: StringName) -> WorldFile:
 			w.set(p.get_string(1), str_to_var(p.get_string(2)))
 	
 	w.levels = []
-	var levelCount := 0
+	var levelCount := -1
+	var currentLevel : LevelData
 	
 	while f.get_position() < f.get_length():
 		if newLine.begins_with("\t"):
 			var p := r_property.search(newLine)
 			if p:
-				w.levels[levelCount - 1].set(p.get_string(1), str_to_var(p.get_string(2)))
+				var propertyValue := p.get_string(1)
+				var strValue := p.get_string(2)
+				
+				var potentialValue = str_to_var(strValue)
+				
+				
+				currentLevel.set(propertyValue, potentialValue)
 		else:
 			if r_level.search(newLine):
-				w.levels.append(LevelData.new())
 				levelCount += 1
+				if currentLevel:
+					w.levels.append(currentLevel)
+				currentLevel = LevelData.new()
 		newLine = f.get_line()
 	
 	return w
@@ -83,4 +92,4 @@ func saveToFile(path: StringName) -> void:
 		]
 		
 		for p in properties:
-			f.store_line("\t" + (PROPERTY_TAG % p))
+			f.store_line("\t" + (PROPERTY_TAG % [p[0], var_to_str(p[1])]))
