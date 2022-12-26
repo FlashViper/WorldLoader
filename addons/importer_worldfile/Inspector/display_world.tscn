@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4g6fh8oqfdjp"]
+
+[ext_resource type="Script" path="res://addons/importer_worldfile/Inspector/display_world.gd" id="1_bujif"]
+[ext_resource type="Script" path="res://addons/importer_worldfile/Inspector/WorldLayoutView.gd" id="2_4d8u6"]
+
+[node name="WorldInspector" type="PanelContainer"]
+offset_right = 310.0
+offset_bottom = 399.0
+size_flags_horizontal = 3
+script = ExtResource("1_bujif")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="WorldName" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "[NAME]"
+
+[node name="Separator" type="ColorRect" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+color = Color(0.266667, 0.266667, 0.266667, 1)
+
+[node name="LayoutView" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_4d8u6")
+min_size_y = 300
+
+[node name="Display" type="Control" parent="MarginContainer/VBoxContainer/LayoutView"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ResizeBar" type="ColorRect" parent="MarginContainer/VBoxContainer/LayoutView"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+mouse_default_cursor_shape = 9
+color = Color(0.333333, 0.333333, 0.333333, 1)
+
+[node name="LevelFilter" type="LineEdit" parent="MarginContainer/VBoxContainer/LayoutView"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Filter Levels"
+
+[node name="LevelRoot" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="LevelInspector" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
