@@ -10,15 +10,3 @@ border_color = Color(1, 1, 1, 1)
 border_width = 5.0
 editor_only = false
 script = ExtResource("1_yot7k")
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
-grow_horizontal = 0
