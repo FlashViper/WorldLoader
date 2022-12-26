@@ -60,7 +60,7 @@ func create_level(pos1: Vector2i, pos2: Vector2i) -> void:
 			maxi(ProjectManager.minimum_screen_size.y, newRect.size.y)
 		) # clamp rect's size to min screen size
 		
-		newRect.position -= diff * max(pos2 - pos1, Vector2i.ZERO).sign()
+		newRect.position -= diff * max((pos2 - pos1).sign(), Vector2i.ZERO)
 	
 	var r := levelPlaceholder.instantiate()
 	r.rect_changed.connect(onRectChanged.bind(levels.size()))
