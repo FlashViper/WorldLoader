@@ -23,3 +23,4 @@ position = Vector2(855, 472)
 visible = false
 base_dir = &"res://Testing/Worlds/%s.wrld"
 allow_option_create_folders = false
+default_value_create_folders = false
