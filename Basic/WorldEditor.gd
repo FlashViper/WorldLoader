@@ -53,10 +53,14 @@ func create_level(pos1: Vector2i, pos2: Vector2i) -> void:
 		if originalRect.get_area() < 2:
 			return
 		
-#		var diff := ProjectManager.minimum_screen_size - originalRect.size
-#		newRect.size = max(ProjectManager.minimum_screen_size, newRect.size)
-#		newRect.position -= diff * (pos2 - pos1).sign()
-#		newRect = originalRect.expand(originalRect.get_center() + Vector2i(0.5 * (originalRect.size + diff)) * (pos1 - pos2).sign())
+		var diff := ProjectManager.minimum_screen_size - originalRect.size
+		
+		newRect.size = Vector2i(
+			maxi(ProjectManager.minimum_screen_size.x, newRect.size.x),
+			maxi(ProjectManager.minimum_screen_size.y, newRect.size.y)
+		) # clamp rect's size to min screen size
+		
+		newRect.position -= diff * max(pos2 - pos1, Vector2i.ZERO).sign()
 	
 	var r := levelPlaceholder.instantiate()
 	r.rect_changed.connect(onRectChanged.bind(levels.size()))
@@ -71,7 +75,10 @@ func onRectChanged(new: Rect2i, index: int) -> void:
 	
 	# Validate Rect
 	var corrected := new
-	corrected.size = max(ProjectManager.minimum_screen_size, new.size) # clamp rect's size to min screen size
+	corrected.size = Vector2i(
+		max(ProjectManager.minimum_screen_size.x, new.size.x),
+		max(ProjectManager.minimum_screen_size.y, new.size.y)
+	) # clamp rect's size to min screen size
 	
 	obj.rect = corrected
 	obj.updateTransform()
