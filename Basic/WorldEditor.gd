@@ -90,6 +90,15 @@ func onRectChanged(new: Rect2i, old: Rect2i, index: int) -> void:
 		max(ProjectManager.minimum_screen_size.y, new.size.y)
 	) # clamp rect's size to min screen size
 	
+	for i in levels.size():
+		if i == index:
+			continue
+		
+		var l := levels[i]
+		if corrected.intersects(l.rect):
+			l.modulate = Color.RED
+			corrected = collideRect(corrected, l.rect, old)
+	
 	obj.rect = corrected
 	obj.updateTransform()
 
@@ -104,23 +113,16 @@ func collideRect(target: Rect2i, collision: Rect2i, original : Rect2i) -> Rect2i
 	
 	var final := target
 	
-	var intersection := target.intersection(collision)
-	var isSizeChanged := target.size != original.size
-	var isPositionChanged := target.position != original.position
-	
-	if isSizeChanged:
-		var dir := intersection.size - target.size
-		final = final.grow_individual(
-			-abs(dir.x if dir.x < 0 else 0),
-			-abs(dir.x if dir.x > 0 else 0),
-			-abs(dir.y if dir.y < 0 else 0),
-			-abs(dir.y if dir.y > 0 else 0)
-		)
-	
-	if isPositionChanged:
-		var dir := (intersection.position - target.position).sign()
-		final.position -= dir * intersection.size
-	
+	var overlap = final.intersection(collision)
+	var s := (collision.position - final.position).sign()
+	if (final.position - original.position).length_squared() > 0:
+		if !collision.encloses(final):
+			if overlap.size.x > overlap.size.y: 
+				final.position.y -= overlap.size.y * s.y
+			else: final.position.x -= overlap.size.x * s.x
+
+	if final.intersects(collision):
+		prints("FAILURE:", "Area =", final.has_point(collision.get_center()))
 	return final
 
 func saveToDisk(path: StringName) -> void:
