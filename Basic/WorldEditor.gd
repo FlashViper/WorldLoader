@@ -11,7 +11,7 @@ var isDragging : bool
 
 var levels : Array[Control] = []
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.ctrl_pressed and event.is_pressed() and event.keycode == KEY_S:
 			$QuickSave.request_file()

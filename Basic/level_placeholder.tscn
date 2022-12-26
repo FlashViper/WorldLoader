@@ -5,6 +5,7 @@
 [node name="LevelPlaceholder" type="ReferenceRect"]
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 1
 border_color = Color(1, 1, 1, 1)
 border_width = 5.0
 editor_only = false

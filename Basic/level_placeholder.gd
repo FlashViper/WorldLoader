@@ -11,17 +11,22 @@ var rect : Rect2i :
 		if new.size < Vector2i.ONE:
 			pass
 var editedRect : Rect2
+var isDragging : bool
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
+			isDragging = event.is_pressed()
+			
 			if event.is_pressed():
 				pass
 			else:
 				editedRect = Rect2(rect.position * tile_size, rect.size * tile_size)
+			
+			accept_event()
 	
 	if event is InputEventMouseMotion:
-		if (event.button_mask & MOUSE_BUTTON_MASK_LEFT) > 0:
+		if isDragging:
 			editedRect.position += event.relative
 			rect = Rect2i(
 				Vector2i(editedRect.position) / tile_size,
@@ -29,6 +34,7 @@ func _gui_input(event: InputEvent) -> void:
 			)
 			
 			updateTransform()
+			accept_event()
 
 func initialize(newSize: Rect2i, uncorrectedSize: Rect2i) -> void:
 	rect = newSize
