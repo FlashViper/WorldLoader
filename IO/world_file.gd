@@ -89,6 +89,7 @@ func saveToFile(path: StringName) -> void:
 		f.store_line(LEVEL_TAG % [i])
 		
 		properties = [
+			["name", l.name],
 			["filePath", l.filePath],
 			["position", l.position],
 			["size", l.size],

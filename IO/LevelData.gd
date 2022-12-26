@@ -1,5 +1,6 @@
 class_name LevelData extends Resource
 
+@export var name : StringName = &""
 @export var filePath : StringName = &""
 
 @export var position : Vector2i = Vector2i.ZERO
