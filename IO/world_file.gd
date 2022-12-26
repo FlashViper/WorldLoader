@@ -2,6 +2,7 @@
 class_name WorldFile extends Resource
 
 const VERSION := &"0.1 pre"
+const StringParser := preload("./StringParser.gd")
 
 @export var name : StringName
 @export var levels : Array[LevelData]
@@ -13,6 +14,7 @@ static func loadFromFile(path: StringName) -> WorldFile:
 	
 	var f := FileAccess.open(path, FileAccess.READ)
 	var w := WorldFile.new()
+	var parser := StringParser.new()
 	
 	var r_property := RegEx.create_from_string(&"\t*(.*):[\t ]*(.*)")
 	var r_level := RegEx.create_from_string(&"Level[ \t]*(\\d*)")
@@ -44,6 +46,8 @@ static func loadFromFile(path: StringName) -> WorldFile:
 				
 				var potentialValue = str_to_var(strValue)
 				
+				if potentialValue == null:
+					potentialValue = parser.attemptParse(strValue)
 				
 				currentLevel.set(propertyValue, potentialValue)
 		else:
