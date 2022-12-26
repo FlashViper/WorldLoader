@@ -25,6 +25,9 @@ signal file_submitted(filename: String)
 var just_submitted : bool
 
 func _ready() -> void:
+	input_create_folders.button_pressed = default_value_create_folders
+	input_create_folders.visible = allow_option_create_folders
+	
 	if Engine.is_editor_hint():
 		return
 	
