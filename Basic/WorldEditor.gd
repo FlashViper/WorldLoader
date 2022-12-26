@@ -11,6 +11,10 @@ var isDragging : bool
 
 var levels : Array[Control] = []
 
+func _ready() -> void:
+	$Grid.sizeX = tile_size.x
+	$Grid.sizeY = tile_size.y
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.ctrl_pressed and event.is_pressed() and event.keycode == KEY_S:
