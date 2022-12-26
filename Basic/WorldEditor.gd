@@ -10,6 +10,7 @@ var dragRoot : Vector2
 var isDragging : bool
 
 var levels : Array[Control] = []
+var selected := -1
 
 func _ready() -> void:
 	$Grid.sizeX = tile_size.x
@@ -22,6 +23,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			var filename = await $QuickSave.file_submitted
 			if filename != "":
 				saveToDisk(filename)
+		
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			isDragging = event.is_pressed()
@@ -31,6 +33,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				preview.position = dragRoot
 				preview.size = Vector2()
 			else:
+				select(-1)
 				create_level(world_to_grid(dragRoot), world_to_grid(camera.get_global_mouse_position()))
 			
 			preview.visible = isDragging
@@ -63,15 +66,22 @@ func create_level(pos1: Vector2i, pos2: Vector2i) -> void:
 		newRect.position -= diff * max((pos2 - pos1).sign(), Vector2i.ZERO)
 	
 	var r := levelPlaceholder.instantiate()
+	
 	r.rect_changed.connect(onRectChanged.bind(levels.size()))
+	r.clicked.connect(onRectClicked.bind(levels.size()))
+	
 	add_child(r)
 	levels.append(r)
 	
 	r.tile_size = tile_size
 	r.initialize(newRect, originalRect)
 
-func onRectChanged(new: Rect2i, index: int) -> void:
+func onRectClicked(index: int) -> void:
+	select(index)
+
+func onRectChanged(new: Rect2i, old: Rect2i, index: int) -> void:
 	var obj := levels[index]
+	select(index)
 	
 	# Validate Rect
 	var corrected := new
@@ -82,6 +92,11 @@ func onRectChanged(new: Rect2i, index: int) -> void:
 	
 	obj.rect = corrected
 	obj.updateTransform()
+
+func select(index: int) -> void:
+	selected = index
+	for i in levels.size():
+		levels[i].modulate = Color.GREEN if selected == i else Color.WHITE
 
 func collideRect(target: Rect2i, collision: Rect2i, original : Rect2i) -> Rect2i:
 	if !target.intersects(collision):

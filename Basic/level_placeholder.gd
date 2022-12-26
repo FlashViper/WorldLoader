@@ -1,7 +1,8 @@
 # TODO: Create grid math helper class with macros like <convert_grid_to_tile>
 extends ReferenceRect
 
-signal rect_changed(new: Rect2i)
+signal rect_changed(new: Rect2i, old: Rect2i)
+signal clicked
 
 const WorldEditor := preload("./WorldEditor.gd")
 enum {MOVE_RECT, CHANGE_SIZE, CURSOR}
@@ -87,6 +88,10 @@ func onHandleInput(event: InputEvent, index: int) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			dragIndex = (index if event.is_pressed() else -1)
+			
+			if event.is_pressed():
+				clicked.emit()
+			
 			handleObjects[index].accept_event()
 	
 	if event is InputEventMouseMotion:
@@ -116,7 +121,9 @@ func updateTransform(interpolate := false) -> void:
 		size = new.size
 
 func submitRect(edited: Rect2) -> void:
+	var old := rect
+	
 	rect.position = Vector2i(edited.position) / tile_size
 	rect.size = Vector2i(edited.size) / tile_size
 	
-	rect_changed.emit(rect)
+	rect_changed.emit(rect, old)
