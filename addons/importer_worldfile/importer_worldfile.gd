@@ -45,5 +45,5 @@ func _import(source_file, save_path, options, platform_variants, gen_files) -> i
 	
 	if err != OK:
 		printerr("Error code %04d while importing file %s: %s" % [err, source_file, error_string(err)])
-	print(world.levels)
+	
 	return err
