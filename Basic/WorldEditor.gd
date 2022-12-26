@@ -53,15 +53,28 @@ func create_level(pos1: Vector2i, pos2: Vector2i) -> void:
 		if originalRect.get_area() < 2:
 			return
 		
-		var diff : Vector2i = max(ProjectManager.minimum_screen_size - originalRect.size, Vector2i())
-		newRect = originalRect.expand(originalRect.get_center() + Vector2i(0.5 * (originalRect.size + diff)) * (pos1 - pos2).sign())
+#		var diff := ProjectManager.minimum_screen_size - originalRect.size
+#		newRect.size = max(ProjectManager.minimum_screen_size, newRect.size)
+#		newRect.position -= diff * (pos2 - pos1).sign()
+#		newRect = originalRect.expand(originalRect.get_center() + Vector2i(0.5 * (originalRect.size + diff)) * (pos1 - pos2).sign())
 	
 	var r := levelPlaceholder.instantiate()
+	r.rect_changed.connect(onRectChanged.bind(levels.size()))
 	add_child(r)
 	levels.append(r)
 	
 	r.tile_size = tile_size
 	r.initialize(newRect, originalRect)
+
+func onRectChanged(new: Rect2i, index: int) -> void:
+	var obj := levels[index]
+	
+	# Validate Rect
+	var corrected := new
+	corrected.size = max(ProjectManager.minimum_screen_size, new.size) # clamp rect's size to min screen size
+	
+	obj.rect = corrected
+	obj.updateTransform()
 
 func collideRect(target: Rect2i, collision: Rect2i, original : Rect2i) -> Rect2i:
 	if !target.intersects(collision):
