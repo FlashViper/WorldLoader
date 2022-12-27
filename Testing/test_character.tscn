@@ -5,7 +5,7 @@
 [sub_resource type="GDScript" id="GDScript_cw57q"]
 script/source = "extends CharacterBody2D
 
-const SPEED = 800.0
+const SPEED = 300.0
 
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_vector(\"ui_left\", \"ui_right\", \"ui_up\", \"ui_down\")
@@ -31,5 +31,4 @@ shape = SubResource("CircleShape2D_vy031")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2(0.265, 0.265)
 position_smoothing_enabled = true
