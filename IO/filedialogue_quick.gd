@@ -3,7 +3,18 @@ extends Popup
 
 signal file_submitted(filename: String)
 
-@export var base_dir := &"res://Worlds/%s.wrld"
+@export var base_dir := &"res://Worlds/%s.wrld" :
+	set(new):
+		base_dir = new
+		if input_text:
+			input_text.placeholder_text = base_dir % "<FILE_NAME>"
+
+@export var input_default_line := "" :
+	set(new):
+		input_default_line = new
+		if input_text:
+			input_text.text = input_default_line
+
 
 @export_group("Create Folders")
 @export var allow_option_create_folders := true :
@@ -25,6 +36,8 @@ signal file_submitted(filename: String)
 var just_submitted : bool
 
 func _ready() -> void:
+	input_text.text = input_default_line
+	input_text.placeholder_text = base_dir % "<FILE_NAME>"
 	input_create_folders.button_pressed = default_value_create_folders
 	input_create_folders.visible = allow_option_create_folders
 	

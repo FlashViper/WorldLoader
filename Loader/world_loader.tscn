@@ -22,5 +22,6 @@ position = Vector2(855, 472)
 [node name="open_dialogue" parent="." instance=ExtResource("5_1cprr")]
 visible = false
 base_dir = &"res://Testing/Worlds/%s.wrld"
+input_default_line = "connectivity_test"
 allow_option_create_folders = false
 default_value_create_folders = false
