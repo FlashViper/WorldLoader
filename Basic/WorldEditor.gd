@@ -1,3 +1,7 @@
+# Stats:
+# Max Levels (Saving): ~1,000    --> O(n^2)
+# Max Levels (Loading): LOTS     --> O(n)
+# Max Levels (Collision): LOTS   --> O(n) [somehow]
 extends Node
 
 @export var tile_size := Vector2i(7,7)
@@ -17,8 +21,8 @@ func _ready() -> void:
 	$Grid.sizeY = tile_size.y
 
 # Stress test
-#	const AMOUNT := 1000
-#	var BOUNDS := Rect2i(-Vector2i.ONE * 2_000, Vector2i.ONE * 4_000)
+#	const AMOUNT := 5_000
+#	var BOUNDS := Rect2i(-Vector2i.ONE * 5_000, Vector2i.ONE * 10_000)
 #	var SIZE_MIN := ProjectManager.minimum_screen_size
 #	var SIZE_MAX := SIZE_MIN * 6
 #
