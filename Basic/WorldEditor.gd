@@ -16,6 +16,17 @@ func _ready() -> void:
 	$Grid.sizeX = tile_size.x
 	$Grid.sizeY = tile_size.y
 
+# Stress test
+#	const AMOUNT := 1000
+#	var BOUNDS := Rect2i(-Vector2i.ONE * 2_000, Vector2i.ONE * 4_000)
+#	var SIZE_MIN := ProjectManager.minimum_screen_size
+#	var SIZE_MAX := SIZE_MIN * 6
+#
+#	randomize()
+#	for i in AMOUNT:
+#		var rootPos := Vector2i(randi_range(BOUNDS.position.x, BOUNDS.end.x), randi_range(BOUNDS.position.y, BOUNDS.end.y))
+#		create_level(rootPos, rootPos + Vector2i(randi_range(SIZE_MIN.x, SIZE_MAX.x), randi_range(SIZE_MIN.y, SIZE_MAX.y)))
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.ctrl_pressed and event.is_pressed() and event.keycode == KEY_S:
