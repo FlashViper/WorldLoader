@@ -11,6 +11,7 @@ const TILE_INVALID := 0
 	set(new):
 		debug_display_ids = new
 		queue_redraw()
+var debug_colors := {}
 
 # {Vector2i --> byte}
 var tile_data : Dictionary
@@ -18,15 +19,19 @@ var tile_data : Dictionary
 func _draw() -> void:
 	for tile in tile_data:
 		var tileRect := Rect2(tile * tile_size, Vector2.ONE * tile_size)
+		var tile_id := tile_data[tile] as int
 		draw_rect(tileRect, tile_color)
 		
-		if debug_display_ids and tile_data[tile] != TILE_INVALID:
-			draw_rect(tileRect, Color(Color.RED, 0.8))
-			draw_rect(tileRect, Color.RED, false, 10)
+		if debug_display_ids and tile_id != TILE_INVALID:
+			if !debug_colors.has(tile_id):
+				debug_colors[tile_id] = Color.from_hsv(randf(), 1.0, 1.0)
+			
+			draw_rect(tileRect, Color(debug_colors[tile_id], 0.8))
+			draw_rect(tileRect, debug_colors[tile_id], false, 10)
 			draw_string(
 				DEBUG_FONT, 
 				tileRect.get_center() - Vector2(1, -1) * tile_size * 0.2, 
-				str(tile_data[tile]),
+				str(tile_id),
 				HORIZONTAL_ALIGNMENT_CENTER, 
 				-1,
 				tile_size * 0.8,
