@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cn4bio8mwouug"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://Basic/level_placeholder.gd" id="1_yot7k"]
+[ext_resource type="Script" path="res://WorldEditor/level_placeholder.gd" id="1_yot7k"]
 
 [node name="LevelPlaceholder" type="ReferenceRect"]
 offset_right = 165.0
