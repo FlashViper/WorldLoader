@@ -113,16 +113,19 @@ func collideRect(target: Rect2i, collision: Rect2i, original : Rect2i) -> Rect2i
 	
 	var final := target
 	
-	var overlap = final.intersection(collision)
-	var s := (collision.position - final.position).sign()
-	if (final.position - original.position).length_squared() > 0:
-		if !collision.encloses(final):
-			if overlap.size.x > overlap.size.y: 
-				final.position.y -= overlap.size.y * s.y
-			else: final.position.x -= overlap.size.x * s.x
-
+	var deltaPos := target.get_center() - collision.get_center()
+	var targetDisplacement := (Vector2i((collision.size * 0.5).floor()) + Vector2i((target.size * 0.5).floor())) * deltaPos.sign() - deltaPos
+	targetDisplacement[deltaPos.abs().min_axis_index()] = 0
+#	deltaPos[deltaPos.min_axis_index()] = 0
+	final.position += targetDisplacement
+	
+	# As a last ditch effort, if they still collide, just inch them away from each other until they're separate
 	if final.intersects(collision):
-		prints("FAILURE:", "Area =", final.has_point(collision.get_center()))
+		for i in final.size[deltaPos.abs().min_axis_index()]:
+			final.position += deltaPos.sign()
+			if !final.intersects(collision):
+				break
+	
 	return final
 
 func saveToDisk(path: StringName) -> void:
