@@ -23,6 +23,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			var filename = await $QuickSave.file_submitted
 			if filename != "":
 				saveToDisk(filename)
+		elif event.keycode == KEY_BACKSPACE or event.keycode == KEY_DELETE:
+			if !event.is_pressed():
+				deleteLevel(selected)
 		
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
@@ -106,6 +109,20 @@ func select(index: int) -> void:
 	selected = index
 	for i in levels.size():
 		levels[i].modulate = Color.GREEN if selected == i else Color.WHITE
+
+func deleteLevel(index: int) -> void:
+	if index < 0 or index >= levels.size():
+		return
+	
+	levels[index].queue_free()
+	levels.remove_at(index)
+	
+	for i in range(index, levels.size()):
+		levels[i].rect_changed.disconnect(onRectChanged)
+		levels[i].clicked.disconnect(onRectClicked)
+		
+		levels[i].rect_changed.connect(onRectChanged.bind(i))
+		levels[i].clicked.connect(onRectClicked.bind(i))
 
 func collideRect(target: Rect2i, collision: Rect2i, original : Rect2i) -> Rect2i:
 	if !target.intersects(collision):
