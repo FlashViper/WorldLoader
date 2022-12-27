@@ -3,7 +3,24 @@ extends Node
 const LevelLoader := preload("./Loader_Level.gd")
 
 @onready var levelLoader : LevelLoader = %LevelLoader
-@onready var player : Node2D = $TestCharacter
+@onready var player : CharacterBody2D = $TestCharacter
+
+var world : WorldFile
+var currentLevel := -1
+var loaded : Dictionary
+var levelObjs : Array[Node]
+
+func _physics_process(delta: float) -> void:
+	if !world or is_zero_approx(player.velocity.length()):
+		return
+	
+	for l in loaded:
+		if l == currentLevel:
+			continue
+		
+		if loaded.has(l):
+			if (loaded[l] as Rect2).has_point(player.position):
+				loadScreen(l)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
