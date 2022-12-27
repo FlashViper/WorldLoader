@@ -14,7 +14,7 @@ const TILE_INVALID := 0
 var debug_colors := {}
 
 # {Vector2i --> byte}
-var tile_data : Dictionary
+var tile_data := {}
 
 func _draw() -> void:
 	for tile in tile_data:
@@ -38,9 +38,6 @@ func _draw() -> void:
 				Color.GRAY
 			)
 
-func _ready() -> void:
-	tile_data = {}
-
 func place_tile(pos: Vector2i, id: int) -> void:
 	if id == TILE_INVALID:
 		tile_data.erase(pos)
@@ -51,16 +48,31 @@ func place_tile(pos: Vector2i, id: int) -> void:
 
 func get_data_in_rect(rect: Rect2i) -> PackedByteArray:
 	var data := PackedByteArray()
-	data.resize(rect.get_area())
+	data.resize(rect.size.x * rect.size.y)
 	
 	var index := 0
 	
-	for y in range(rect.position.y, rect.end.y + 1):
-		for x in range(rect.position.x, rect.end.x + 1):
+	for y in range(rect.position.y, rect.end.y):
+		for x in range(rect.position.x, rect.end.x):
 			data[index] = tile_data.get(Vector2i(x,y), TILE_INVALID)
 			index += 1 # much easier than some function of x and y
 	
 	return data
+
+func set_data_in_rect(rect: Rect2i, data: PackedByteArray) -> void:
+	var index := 0
+	
+	for y in range(rect.position.y, rect.end.y):
+		for x in range(rect.position.x, rect.end.x):
+			if index >= data.size():
+				return
+			
+			if data[index] != TILE_INVALID:
+				tile_data[Vector2i(x,y)] = data[index]
+			
+			index += 1 # much easier than some function of x and y
+	
+	queue_redraw()
 
 func tile_to_world(tile: Vector2i) -> Vector2:
 	return global_transform * Vector2(tile * tile_size)

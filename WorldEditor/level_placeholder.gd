@@ -26,7 +26,13 @@ const HANDLES : Array[Dictionary] = [
 @export var anchorSize := 20
 @export var anchorPadding := 10
 @export var tile_size := Vector2i(7, 7)
-# Spawn
+
+@export_group("Handles")
+@export var handles_single_axis := true
+@export var handles_multi_axis := true
+@export var handle_drag_rect := true
+
+@export_group("")
 @export var debugShapes := false
 
 var rect : Rect2i
@@ -37,9 +43,24 @@ var isDragging : bool
 var handleObjects : Array[Control]
 
 func _ready() -> void:
+	var exclude : Array[int] = []
+	
+	if !handle_drag_rect:
+		exclude.append(0)
+	
+	if !handles_single_axis:
+		exclude.append_array(range(1,5))
+	
+	if !handles_multi_axis:
+		exclude.append_array(range(5, 9))
+	
+	
 	handleObjects = []
 	
 	for i in HANDLES.size():
+		if exclude.has(i):
+			continue
+		
 		var handle := ColorRect.new()
 		handle.position = get_rect().get_center()
 		handle.size = Vector2.ONE * 32

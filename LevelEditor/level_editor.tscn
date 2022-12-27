@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1lqit10myvas"]
+
+[ext_resource type="Script" path="res://LevelEditor/level_editor.gd" id="1_rftmc"]
+[ext_resource type="Script" path="res://LevelEditor/bitmap_display.gd" id="2_rn0j1"]
+[ext_resource type="PackedScene" uid="uid://bi8gpnhl80s4a" path="res://IO/quick_save.tscn" id="3_kpfif"]
+
+[node name="LevelEditor" type="Node"]
+script = ExtResource("1_rftmc")
+
+[node name="TileMap" type="Node2D" parent="."]
+script = ExtResource("2_rn0j1")
+
+[node name="LevelBounds" type="ReferenceRect" parent="TileMap"]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+border_color = Color(1, 1, 1, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="QuickSave" parent="." instance=ExtResource("3_kpfif")]
+visible = false
+base_dir = &"res://Testing/Levels/%s.lvl"

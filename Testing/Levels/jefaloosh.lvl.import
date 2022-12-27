@@ -1,0 +1,15 @@
+[remap]
+
+importer="flashviper.worldeditor.importer_level"
+type="Resource"
+uid="uid://ve7c1dpmrhjc"
+path="res://.godot/imported/jefaloosh.lvl-3bb9f7dc863fc0accc086ec9fae12a4f.res"
+
+[deps]
+
+source_file="res://Testing/Levels/jefaloosh.lvl"
+dest_files=["res://.godot/imported/jefaloosh.lvl-3bb9f7dc863fc0accc086ec9fae12a4f.res"]
+
+[params]
+
+my_option=false

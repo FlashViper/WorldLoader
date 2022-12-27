@@ -149,7 +149,11 @@ func collideRect(target: Rect2i, collision: Rect2i, original : Rect2i) -> Rect2i
 	var final := target
 	
 	var deltaPos := target.get_center() - collision.get_center()
-	var targetDisplacement := (Vector2i((collision.size * 0.5).floor()) + Vector2i((target.size * 0.5).floor())) * deltaPos.sign() - deltaPos
+	
+	var targetDisplacement := (
+		Vector2i((collision.size * 0.5).floor()) + Vector2i((target.size * 0.5).floor())
+	) * deltaPos.sign() - deltaPos
+	
 	targetDisplacement[deltaPos.abs().min_axis_index()] = 0
 #	deltaPos[deltaPos.min_axis_index()] = 0
 	final.position += targetDisplacement
