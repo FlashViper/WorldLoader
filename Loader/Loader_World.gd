@@ -14,15 +14,18 @@ func _input(event: InputEvent) -> void:
 			if f != null and f is WorldFile:
 				loadWorld(f)
 
-func loadWorld(w: WorldFile) -> void:
+func loadWorld(w: WorldFile, level := 0) -> void:
 	for l in w.levels:
-		var r := ReferenceRect.new()
-		
-		r.border_color = Color.WHITE
-		r.border_width = 5
-		r.editor_only = false
-		
-		r.position = l.position * ProjectManager.tileSize
-		r.size = l.size * ProjectManager.tileSize
-		
-		add_child(r)
+		createLevelRect(l)
+	
+func createLevelRect(l: LevelData) -> void:
+	var r := ReferenceRect.new()
+	
+	r.border_color = Color.WHITE
+	r.border_width = 5
+	r.editor_only = false
+	
+	r.position = l.position * ProjectManager.tileSize
+	r.size = l.size * ProjectManager.tileSize
+	
+	add_child(r)
