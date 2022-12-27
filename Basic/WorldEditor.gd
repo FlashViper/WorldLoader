@@ -55,7 +55,10 @@ func create_level(pos1: Vector2i, pos2: Vector2i) -> void:
 	var originalRect := Rect2i(pos1, Vector2()).expand(pos2)
 	var newRect := originalRect
 	
-	if originalRect.size < ProjectManager.minimum_screen_size:
+	if (
+			originalRect.size.x < ProjectManager.minimum_screen_size.x or
+			originalRect.size.y < ProjectManager.minimum_screen_size.y
+		):
 		if originalRect.get_area() < 2:
 			return
 		
