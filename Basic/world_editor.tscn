@@ -7,7 +7,7 @@
 
 [node name="WorldEditor" type="Node"]
 script = ExtResource("1_lpii7")
-tile_size = Vector2i(25, 25)
+tile_size = Vector2i(7, 7)
 levelPlaceholder = ExtResource("2_g3fsj")
 metadata/_edit_pinned_properties_ = [&"tile_size"]
 
