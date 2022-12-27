@@ -163,14 +163,28 @@ func collideRect(target: Rect2i, collision: Rect2i, original : Rect2i) -> Rect2i
 	
 	return final
 
+func areLevelRectsTouching(a: Rect2i, b: Rect2i, margin := 1) -> bool:
+	var expanded := a.grow(margin)
+	return expanded.intersects(b)
+
 func saveToDisk(path: StringName) -> void:
 	var worldFile := WorldFile.new()
 	worldFile.levels = []
 	
 	for l in levels:
 		var data := LevelData.new()
+		
 		data.position = l.rect.position
 		data.size = l.rect.size
+		data.connections = PackedInt64Array()
+		
+		for ii in levels.size():
+			if levels[ii] == l:
+				continue
+			
+			if areLevelRectsTouching(l.rect, levels[ii].rect):
+				data.connections.append(ii)
+		
 		worldFile.levels.append(data)
 	
 	worldFile.saveToFile(path)
