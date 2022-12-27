@@ -3,6 +3,7 @@ extends Node
 const LevelLoader := preload("./Loader_Level.gd")
 
 @onready var levelLoader : LevelLoader = %LevelLoader
+@onready var player : Node2D = $TestCharacter
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
