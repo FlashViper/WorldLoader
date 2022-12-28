@@ -1,14 +1,17 @@
 extends Node
 
-var collisionMap
+@onready var collisionMap := $CollisionMap
 var currentLevels : Dictionary
 
-func loadLevel(id: String, level : LevelFile, position : Vector2i) -> void:
-	collisionMap.load_collision_at_position(level.tileData, position)
-	currentLevels[id] = {
-		"level": level,
-	}
+
+func _ready() -> void:
+	collisionMap.tileSize = Vector2i.ONE * ProjectManager.tileSize
+	var l := preload("res://Testing/Levels/jefaloosh.lvl")
+	loadLevel(l)
+
+func loadLevel(level : LevelFile, position := Vector2i.ZERO) -> void:
+	collisionMap.load_collision_at_position(level, position)
 
 @warning_ignore(unused_parameter)
-func unloadLevel(id: String) -> void:
+func unloadLevel(level: LevelFile) -> void:
 	collisionMap.clear_rect()

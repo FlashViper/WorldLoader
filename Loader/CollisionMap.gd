@@ -1,7 +1,7 @@
 # TODO: Chunk system if performance requires
 extends Node2D
 
-const ID_INVALID := -1
+const ID_INVALID := 0
 
 @export var tileSize := Vector2(64, 64)
 @export var color := Color8(0,0,0)
@@ -21,6 +21,19 @@ func _ready() -> void:
 func _draw() -> void:
 	for t in tiles:
 		draw_rect(Rect2(Vector2(t) * tileSize, tileSize), color)
+
+func load_collision_at_position(level: LevelFile, pos: Vector2i) -> void:
+	var index := 0
+	
+	for y in level.size.y:
+		for x in level.size.x:
+			printraw(level.tileData[index])
+			
+			if level.tileData[index] != ID_INVALID:
+				add_tile(x, y, level.tileData[index])
+			
+			index += 1
+		printraw("\n")
 
 func add_tile(x: int, y: int, id: int) -> void:
 	var pos := Vector2i(x, y)
