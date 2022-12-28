@@ -4,7 +4,7 @@
 # Max Levels (Collision): LOTS   --> O(n) [somehow]
 extends Node
 
-@export var tile_size := Vector2i(7,7)
+@export var tile_size := 7
 @export var levelPlaceholder : PackedScene
 
 @onready var preview := $LevelSizePreview
@@ -17,9 +17,8 @@ var levels : Array[Control] = []
 var selected := -1
 
 func _ready() -> void:
-	$Grid.sizeX = tile_size.x
-	$Grid.sizeY = tile_size.y
-
+	$Grid.sizeX = tile_size
+	$Grid.sizeY = tile_size
 # Stress test
 #	const AMOUNT := 5_000
 #	var BOUNDS := Rect2i(-Vector2i.ONE * 5_000, Vector2i.ONE * 10_000)
@@ -94,7 +93,7 @@ func create_level(pos1: Vector2i, pos2: Vector2i) -> void:
 	add_child(r)
 	levels.append(r)
 	
-	r.tile_size = tile_size
+	r.tile_size = Vector2i.ONE * tile_size
 	r.initialize(newRect, originalRect)
 
 func onRectClicked(index: int) -> void:
