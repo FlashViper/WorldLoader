@@ -36,6 +36,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			var tilePos = tilemap.world_to_tile(tilemap.get_global_mouse_position())
+			
 			for mask in map_id:
 				if event.button_mask & mask > 0:
 					place_tile(tilePos, map_id[mask])
