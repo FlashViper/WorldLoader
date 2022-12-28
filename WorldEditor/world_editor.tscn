@@ -1,19 +1,16 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://2hlopmp8u5mf"]
 
 [ext_resource type="Script" path="res://WorldEditor/WorldEditor.gd" id="1_lpii7"]
 [ext_resource type="PackedScene" path="res://WorldEditor/level_placeholder.tscn" id="2_g3fsj"]
 [ext_resource type="PackedScene" uid="uid://bi8gpnhl80s4a" path="res://IO/quick_save.tscn" id="3_ganl3"]
 [ext_resource type="Script" path="res://Testing/grid_draw.gd" id="4_56qgu"]
+[ext_resource type="Script" path="res://drag_camera.gd" id="5_smjoq"]
 
 [node name="WorldEditor" type="Node"]
 script = ExtResource("1_lpii7")
-tile_size = Vector2i(7, 7)
+tile_size = 18
 levelPlaceholder = ExtResource("2_g3fsj")
 metadata/_edit_pinned_properties_ = [&"tile_size"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(983, 579)
-zoom = Vector2(0.5, 0.5)
 
 [node name="LevelSizePreview" type="ReferenceRect" parent="."]
 visible = false
@@ -31,3 +28,8 @@ base_dir = &"res://Testing/Worlds/%s.wrld"
 [node name="Grid" type="Node2D" parent="."]
 script = ExtResource("4_56qgu")
 lineColor = Color(1, 1, 1, 0.109804)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2(0.5, 0.5)
+script = ExtResource("5_smjoq")
