@@ -24,6 +24,11 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://IO/level_file.gd"
 }, {
+"base": "Node",
+"class": &"Tool",
+"language": &"GDScript",
+"path": "res://Core/Tool.gd"
+}, {
 "base": "Resource",
 "class": &"WorldFile",
 "language": &"GDScript",
@@ -33,6 +38,7 @@ _global_script_class_icons={
 "ConfigurableCanvas": "",
 "LevelData": "",
 "LevelFile": "",
+"Tool": "",
 "WorldFile": ""
 }
 
