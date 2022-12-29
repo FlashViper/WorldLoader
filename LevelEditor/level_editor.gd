@@ -1,73 +1,97 @@
 extends Node
 
-@onready var tilemap := $TileMap
-@onready var save_dialog := $QuickSave
-@onready var level_bounds : Control = %LevelBounds
+@onready var save_dialogue := $SaveLevel
+@onready var canvas : ConfigurableCanvas = $GUI
 
-var map_id := {
-	MOUSE_BUTTON_MASK_LEFT: 1,
-	MOUSE_BUTTON_MASK_RIGHT: 0, # INVALID TILE
-}
+var shortcuts := []
 
-var editedRoot : Vector2
-var level_size : Vector2i
+var current_filepath := ""
+var tools : Array
+var currentTool : int
+
+var toolbar : Control
+#var level_inspector [TODO]
 
 func _ready() -> void:
-	level_size = ProjectManager.minimum_screen_size
+	var save_input := InputEventKey.new()
+	save_input.keycode = KEY_S
+	save_input.ctrl_pressed = true
+	add_shortcut(save_input, save_current_level)
 	
-	tilemap.position = editedRoot
-	tilemap.tile_size = ProjectManager.tileSize
-	
-	level_bounds.size = level_size * ProjectManager.tileSize
-	
-	loadFromDisk("res://Testing/Levels/jefaloosh.lvl")
+	tools.append($Tools/Tilemap)
+	tools.append($Tools/Tool)
+	create_toolbar()
+	create_new_level()
+	select_tool(0)
+	show_gui()
 
-func onLevelResized(new: Rect2i, old: Rect2i) -> void:
-	level_bounds.updateTransform()
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.ctrl_pressed and event.is_pressed() and event.keycode == KEY_S:
-			$QuickSave.request_file()
-			var filename = await $QuickSave.file_submitted
-			if filename != "":
-				saveToDisk(filename)
+func create_toolbar() -> void:
+	if toolbar:
+		toolbar.queue_free()
 	
-	if event is InputEventMouseButton:
-		if event.is_pressed():
-			var tilePos = tilemap.world_to_tile(tilemap.get_global_mouse_position())
-			
-			for mask in map_id:
-				if event.button_mask & mask > 0:
-					place_tile(tilePos, map_id[mask])
+	toolbar = preload("res://LevelEditor/GUI/tool_selector.tscn").instantiate()
+	toolbar.save_pressed.connect(save_current_level)
+	toolbar.tool_button_pressed.connect(select_tool)
+	canvas.add_control(toolbar, Control.PRESET_LEFT_WIDE)
 	
-	if event is InputEventMouseMotion:
-		var tilePos : Vector2 = tilemap.world_to_tile(tilemap.get_global_mouse_position())
-		var rootPos : Vector2 = tilemap.world_to_tile(tilemap.get_global_mouse_position() - event.relative)
-		var relative := tilePos - rootPos
-		var dir := relative.normalized()
-		
-		for i in ceili(relative.length()):
-			for mask in map_id:
-				if event.button_mask & mask > 0:
-					place_tile(Vector2i(tilePos + i * dir), map_id[mask])
+	for i in tools.size():
+		toolbar.add_tool(tools[i].get_icon(), i)
 
-func place_tile(position: Vector2i, id: int) -> void:
-	position = position.clamp(Vector2i.ZERO, level_size - Vector2i(1,1))# + Vector2i.ONE)
-	tilemap.place_tile(position, id)
+func show_gui() -> void:
+	pass
 
-func loadFromDisk(path: StringName) -> void:
+func create_new_level() -> void:
+	current_filepath = ""
+	for t in tools:
+		t.initialize()
+
+func add_shortcut(input: InputEvent, event: Callable) -> void:
+	var s := Shortcut.new()
+	s.events.append(input)
+	shortcuts.append({
+		"shortcut": s,
+		"action": event
+	})
+
+func _shortcut_input(event: InputEvent) -> void:
+	for s in shortcuts:
+		if s.shortcut.matches_event(event):
+			s.action.call()
+			get_tree().root.set_input_as_handled()
+
+func select_tool(index: int) -> void:
+	if index == currentTool:
+		return
+	
+	if index >= 0:
+		tools[index].enable_tool()
+	if currentTool >= 0:
+		tools[currentTool].disable_tool()
+	
+	currentTool = index
+
+func save_current_level() -> void:
+	if current_filepath != "":
+		save_to_disk(current_filepath)
+	else:
+		save_dialogue.request_file()
+		var filepath = await save_dialogue.file_submitted
+		if filepath != "" and filepath != null:
+			save_to_disk(filepath)
+
+func load_from_disk(path: StringName) -> void:
 	if !FileAccess.file_exists(path):
 		printerr("Nonexistant level at path %s" % path)
 		return
 	
-	var l := LevelFile.loadFromFile(&"res://Testing/Levels/jefaloosh.lvl")
-	level_size = l.size
-	tilemap.set_data_in_rect(Rect2i(Vector2(), level_size), l.tileData)
-	level_bounds.size = level_size * ProjectManager.tileSize
+	current_filepath = path
+	
+	var level := LevelFile.loadFromFile(path)
+	for t in tools:
+		t.load_data(level)
 
-func saveToDisk(path: StringName) -> void:
+func save_to_disk(path: StringName) -> void:
 	var level := LevelFile.new()
-	level.size = level_size
-	level.tileData = tilemap.get_data_in_rect(Rect2i(Vector2(), level_size))
+	for t in tools:
+		t.save_data(level)
 	level.saveToFile(path)
