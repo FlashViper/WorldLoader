@@ -1,0 +1,53 @@
+--- MAIN SCENE PSEUDOCODE ---
+
+var project_manager
+
+var world_editor
+var level_editor
+
+READY:
+	if command line has "--project-path":
+		open project (<project-path-arg>)
+	else:
+		show project manager
+
+SWITCH EDITORS (editor):
+	disable process mode, input, etc for each editor
+	enable process mode, input, etc for selected editor
+	
+	call hide editor methods on the current unfocused editor
+	call show editor methods on the current focused editor
+
+# bound to a signal that the worldmanager emits when it wants to edit
+# a level, for example, when the user double clicks a level
+ON WORLDMANAGER EDIT LEVEL:
+	SWITCH EDITORS (level_editor)
+
+ON LEVELMANAGER EXIT LEVEL:
+	SWITCH EDITORS (world_editor)
+
+
+--- LEVEL EDITOR PSEUDOCODE ---
+
+var current_level_path := &""
+Array[Tool] tools
+
+SHOW GUI:
+	pass
+
+HIDE GUI:
+	pass 
+
+SAVE CURRENT LEVEL:
+	if current_level_path != "":
+		SAVE LEVEL (current_level_path)
+	else:
+		PROMPT FOR LEVEL PATH()
+
+SAVE LEVEL (path):
+	same as built in function
+	maybe refactor to work with project filesystem
+
+LOAD LEVEL(path):
+	same as built in function
+	maybe refactor to work with project filesystem
