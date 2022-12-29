@@ -7,6 +7,10 @@ const StringParser := preload("./StringParser.gd")
 @export var name : StringName
 @export var levels : Array[LevelData]
 
+func _init() -> void:
+	name = &""
+	levels = []
+
 
 static func loadFromFile(path: StringName) -> WorldFile:
 	if !FileAccess.file_exists(path):
