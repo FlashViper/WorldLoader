@@ -1,0 +1,12 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://qxb46ajc6sd"]
+
+[ext_resource type="Texture2D" uid="uid://c5xtymuonedyd" path="res://GUI/Icons/icon_theme_panel.tres" id="1_ijl7i"]
+
+[resource]
+texture = ExtResource("1_ijl7i")
+margin_left = 12.0
+margin_top = 12.0
+margin_right = 12.0
+margin_bottom = 12.0
+region_rect = Rect2(0, 0, 128, 128)
+modulate_color = Color(0.168627, 0.0901961, 0.156863, 1)
