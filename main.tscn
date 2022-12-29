@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b767soygfkkid"]
+
+[node name="Main" type="Node"]
+
+[node name="Editors" type="Node" parent="."]
+
+[node name="WorldEditor" type="Node" parent="Editors"]
+
+[node name="LevelEditor" type="Node" parent="Editors"]
+
+[node name="ProjectSelection" type="CanvasLayer" parent="."]
+layer = 20
