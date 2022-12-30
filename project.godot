@@ -17,12 +17,12 @@ _global_script_classes=[{
 "base": "Resource",
 "class": &"LevelData",
 "language": &"GDScript",
-"path": "res://IO/LevelData.gd"
+"path": "res://addons/flashviper_worldfile/Files/level_data.gd"
 }, {
 "base": "Resource",
 "class": &"LevelFile",
 "language": &"GDScript",
-"path": "res://IO/level_file.gd"
+"path": "res://addons/flashviper_worldfile/Files/level_file.gd"
 }, {
 "base": "Node",
 "class": &"Tool",
@@ -32,7 +32,7 @@ _global_script_classes=[{
 "base": "Resource",
 "class": &"WorldFile",
 "language": &"GDScript",
-"path": "res://IO/world_file.gd"
+"path": "res://addons/flashviper_worldfile/Files/world_file.gd"
 }]
 _global_script_class_icons={
 "ConfigurableCanvas": "",
