@@ -1,8 +1,8 @@
-@tool
 class_name WorldFile extends Resource
+@icon("../Icons/icon_worldfile.tres")
 
 const VERSION := &"0.1 pre"
-const StringParser := preload("./StringParser.gd")
+const StringParser := preload("../StringParser.gd")
 
 @export var name : StringName
 @export var levels : Array[LevelData]

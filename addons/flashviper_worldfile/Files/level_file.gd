@@ -1,4 +1,5 @@
 class_name LevelFile extends Resource
+@icon("../Icons/icon_levelfile.tres")
 
 const VERSION := &"0.1 development"
 
@@ -30,7 +31,7 @@ static func loadFromFile(path: StringName) -> LevelFile:
 	var f := FileAccess.open(path, FileAccess.READ)
 	var l := LevelFile.new()
 	
-	var parser := preload("./StringParser.gd").new()
+	var parser := preload("../StringParser.gd").new()
 	var r_property := RegEx.create_from_string(&"\t*(.*):[\t ]*(.*)") # [name]: [thing]
 	var r_datablock := RegEx.create_from_string(&"^\\[(.*)\\]")
 	

@@ -36,10 +36,10 @@ _global_script_classes=[{
 }]
 _global_script_class_icons={
 "ConfigurableCanvas": "",
-"LevelData": "",
-"LevelFile": "",
+"LevelData": "res://addons/flashviper_worldfile/Icons/icon_leveldata.tres",
+"LevelFile": "res://addons/flashviper_worldfile/Icons/icon_levelfile.tres",
 "Tool": "",
-"WorldFile": ""
+"WorldFile": "res://addons/flashviper_worldfile/Icons/icon_worldfile.tres"
 }
 
 [application]

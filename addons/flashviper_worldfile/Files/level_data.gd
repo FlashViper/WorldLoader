@@ -1,4 +1,5 @@
 class_name LevelData extends Resource
+@icon("../Icons/icon_leveldata.tres")
 
 @export var name : StringName = &""
 @export var filePath : StringName = &""
