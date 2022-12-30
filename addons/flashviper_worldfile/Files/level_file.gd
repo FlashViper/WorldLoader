@@ -21,7 +21,7 @@ var entities
 var decoration
 
 func _init() -> void:
-	if ProjectManager:
+	if !Engine.is_editor_hint():
 		size = ProjectManager.minimum_screen_size
 
 static func loadFromFile(path: StringName) -> LevelFile:
