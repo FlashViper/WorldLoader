@@ -1,7 +1,7 @@
 @tool
 extends PanelContainer
 
-const LEVEL_DATA_DISPLAY := preload("res://addons/importer_worldfile/Inspector/display_level_data.tscn")
+const LEVEL_DATA_DISPLAY := preload("./display_level_data.tscn")
 
 @onready var levelSearch : LineEdit = %LevelFilter
 

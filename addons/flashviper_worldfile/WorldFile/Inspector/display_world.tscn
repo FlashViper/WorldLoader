@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4g6fh8oqfdjp"]
+[gd_scene load_steps=3 format=3 uid="uid://bwuwudse5k7nr"]
 
-[ext_resource type="Script" path="res://addons/importer_worldfile/Inspector/display_world.gd" id="1_bujif"]
-[ext_resource type="Script" path="res://addons/importer_worldfile/Inspector/WorldLayoutView.gd" id="2_4d8u6"]
+[ext_resource type="Script" path="res://addons/flashviper_worldfile/WorldFile/Inspector/display_world.gd" id="1_bujif"]
+[ext_resource type="Script" path="res://addons/flashviper_worldfile/WorldFile/Inspector/WorldLayoutView.gd" id="2_4d8u6"]
 
 [node name="WorldInspector" type="PanelContainer"]
 offset_right = 310.0

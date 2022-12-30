@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://m1a83o4gpn1g"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://addons/importer_levelfile/Inspector/display_levelfile.gd" id="1_5117f"]
+[ext_resource type="Script" path="res://addons/flashviper_worldfile/LevelFile/Inspector/display_levelfile.gd" id="1_5117f"]
 
 [node name="Inspector" type="PanelContainer"]
 offset_right = 127.0

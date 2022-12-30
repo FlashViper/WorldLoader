@@ -67,7 +67,7 @@ window/subwindows/embed_subwindows=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/importer_levelfile/plugin.cfg", "res://addons/importer_worldfile/plugin.cfg")
+enabled=PackedStringArray("res://addons/flashviper_worldfile/plugin.cfg")
 
 [rendering]
 

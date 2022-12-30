@@ -1,9 +1,9 @@
 extends EditorExportPlugin
 
-const SUPPORTED_EXTENSIONS := ["wrld", "world"]
+const SUPPORTED_EXTENSIONS := ["lvl", "level", "wrld", "world"]
 
 func _get_name() -> String:
-	return "force_export_worldfile"
+	return "force_export_levelfile"
 
 func _export_begin(features: PackedStringArray, is_debug: bool, p: String, flags: int) -> void:
 	var results := PackedStringArray()
@@ -16,7 +16,7 @@ func _export_begin(features: PackedStringArray, is_debug: bool, p: String, flags
 		if dir:
 			dir.list_dir_begin()
 			var file_name := dir.get_next()
-			print_rich("[color=mediumslateblue]WorldExporter: Scanning file %s[/color]" % (path + file_name))
+			print_rich("[color=mediumslateblue]LevelExporter: Scanning file %s[/color]" % (path + file_name))
 			while file_name != "":
 				if dir.current_is_dir():
 					toSearch.append(path + file_name + "/")
