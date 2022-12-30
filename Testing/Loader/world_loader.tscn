@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://d4426bs8pvp3"]
+[gd_scene load_steps=6 format=3]
 
-[ext_resource type="Script" path="res://Loader/Loader_World.gd" id="1_5plwq"]
-[ext_resource type="Script" path="res://Loader/Loader_Level.gd" id="2_ent2y"]
-[ext_resource type="Script" path="res://Loader/CollisionMap.gd" id="3_k7yua"]
+[ext_resource type="Script" path="res://Testing/Loader/Loader_World.gd" id="1_5plwq"]
+[ext_resource type="Script" path="res://Testing/Loader/Loader_Level.gd" id="2_ent2y"]
+[ext_resource type="Script" path="res://Testing/Loader/CollisionMap.gd" id="3_k7yua"]
 [ext_resource type="PackedScene" uid="uid://uw2kxkq75lgn" path="res://Testing/test_character.tscn" id="4_66xwb"]
-[ext_resource type="PackedScene" uid="uid://bi8gpnhl80s4a" path="res://IO/quick_save.tscn" id="5_1cprr"]
+[ext_resource type="PackedScene" path="res://Core/quick_save.tscn" id="5_1cprr"]
 
 [node name="WorldLoader" type="Node"]
 script = ExtResource("1_5plwq")

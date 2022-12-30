@@ -51,7 +51,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-ProjectManager="*res://IO/project_manager.gd"
+ProjectManager="*res://Core/project_manager.gd"
 
 [debug]
 
@@ -72,3 +72,4 @@ enabled=PackedStringArray("res://addons/flashviper_worldfile/plugin.cfg")
 [rendering]
 
 renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

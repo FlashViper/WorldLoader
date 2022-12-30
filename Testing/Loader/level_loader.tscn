@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2kmlr6artcde"]
+[gd_scene load_steps=4 format=3]
 
-[ext_resource type="Script" path="res://Loader/Loader_Level.gd" id="1_g67o1"]
-[ext_resource type="Script" path="res://Loader/CollisionMap.gd" id="2_vvefv"]
+[ext_resource type="Script" path="res://Testing/Loader/Loader_Level.gd" id="1_g67o1"]
+[ext_resource type="Script" path="res://Testing/Loader/CollisionMap.gd" id="2_vvefv"]
 [ext_resource type="PackedScene" uid="uid://uw2kxkq75lgn" path="res://Testing/test_character.tscn" id="3_38hi4"]
 
 [node name="LevelLoader" type="Node"]
