@@ -11,6 +11,9 @@ var current_filepath := ""
 
 func _ready() -> void:
 	tools.append($Tools/LevelArranger)
+	
+	for t in tools:
+		t.initialize()
 	tools[0].enable_tool()
 
 func save_current_world() -> void:
