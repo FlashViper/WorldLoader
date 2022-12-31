@@ -65,6 +65,10 @@ window/size/viewport_width=2048
 window/size/viewport_height=1152
 window/subwindows/embed_subwindows=false
 
+[editor]
+
+script/templates_search_path="res://Core/script_templates"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/flashviper_worldfile/plugin.cfg")
