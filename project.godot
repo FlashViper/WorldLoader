@@ -46,6 +46,8 @@ _global_script_class_icons={
 
 config/name="World Loader"
 run/main_scene="res://WorldEditor/world_editor.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="FlashViper/WorldEditor"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
 
