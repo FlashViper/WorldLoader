@@ -1,5 +1,7 @@
 extends Node
 
+const PROJECT_LIST := "user://project_list.txt"
+
 var projectName : StringName
 var notes : StringName
 
