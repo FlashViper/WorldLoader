@@ -45,7 +45,7 @@ _global_script_class_icons={
 [application]
 
 config/name="World Loader"
-run/main_scene="res://WorldEditor/world_editor.tscn"
+run/main_scene="res://Core/ProjectManager/project_manager.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="FlashViper/WorldEditor"
 config/features=PackedStringArray("4.0", "Mobile")
