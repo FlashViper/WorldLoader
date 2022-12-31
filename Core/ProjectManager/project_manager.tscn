@@ -1,0 +1,86 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0unfi1mfhc4s"]
+
+[ext_resource type="Script" path="res://Core/ProjectManager/project_manager_dialogue.gd" id="1_x1byi"]
+[ext_resource type="Texture2D" uid="uid://cw6bldsxho0qg" path="res://GUI/Icons/ProjectManager/icon_projectmanager_create.tres" id="3_34u6l"]
+[ext_resource type="Texture2D" uid="uid://btr7bub1f28v4" path="res://GUI/Icons/ProjectManager/icon_projectmanager_open.tres" id="4_0ss7s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkosa"]
+bg_color = Color(0.14, 0.14, 0.14, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="ProjectManager" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x1byi")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Header" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Choose wisely :)"
+theme_override_font_sizes/font_size = 50
+text = "Choose a Project"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="ProjectList" type="ScrollContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_gkosa")
+horizontal_scroll_mode = 0
+
+[node name="ThumbnailRoot" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ProjectList"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Create" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 60
+text = "Create Project"
+icon = ExtResource("3_34u6l")
+text_overrun_behavior = 2
+
+[node name="Load" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 60
+text = "Load Project"
+icon = ExtResource("4_0ss7s")
+clip_text = true
+text_overrun_behavior = 2
