@@ -12,7 +12,7 @@ _global_script_classes=[{
 "base": "CanvasLayer",
 "class": &"ConfigurableCanvas",
 "language": &"GDScript",
-"path": "res://Core/configurable_canvas.gd"
+"path": "res://Core/Utility/configurable_canvas.gd"
 }, {
 "base": "Resource",
 "class": &"LevelData",
@@ -45,7 +45,7 @@ _global_script_class_icons={
 [application]
 
 config/name="World Loader"
-run/main_scene="res://Core/ProjectManager/project_manager.tscn"
+run/main_scene="res://Core/Initializer.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="FlashViper/WorldEditor"
 config/features=PackedStringArray("4.0", "Mobile")
@@ -69,13 +69,19 @@ window/subwindows/embed_subwindows=false
 
 [editor]
 
+run/main_run_args="-- -p"
 script/templates_search_path="res://Core/script_templates"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/flashviper_worldfile/plugin.cfg")
 
+[gui]
+
+theme/default_theme_scale=2.0
+
 [rendering]
 
 renderer/rendering_method="mobile"
+shader_compiler/shader_cache/enabled=false
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
