@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbpi4khgjd3hn"]
+
+[ext_resource type="Texture2D" uid="uid://yi3v1fj1g7ul" path="res://icon.svg" id="1_srk8v"]
+
+[node name="ProjectThumbnail" type="MarginContainer"]
+offset_right = 1332.0
+offset_bottom = 148.0
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_srk8v")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 39
+text = "PROJECT_NAME"
+
+[node name="Description" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.486275, 0.486275, 0.486275, 1)
+theme_override_font_sizes/font_size = 25
+text = "PROJECT_DESCRIPTION"
