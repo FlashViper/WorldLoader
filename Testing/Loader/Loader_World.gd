@@ -66,10 +66,10 @@ func loadScreen(level: int) -> void:
 		createLevelRect(world.levels[c])
 	
 	# load the player in at the default position
-	player.position = world.levels[level].getRect().get_center() * ProjectManager.tileSize
+	player.position = world.levels[level].getRect().get_center() * ProjectManager.tile_size
 
 func rectToWorld(a: Rect2i) -> Rect2:
-	return Rect2(a.position * ProjectManager.tileSize, a.size * ProjectManager.tileSize)
+	return Rect2(a.position * ProjectManager.tile_size, a.size * ProjectManager.tile_size)
 
 func createLevelRect(l: LevelData) -> void:
 	var r := ReferenceRect.new()
@@ -78,8 +78,8 @@ func createLevelRect(l: LevelData) -> void:
 	r.border_width = 5
 	r.editor_only = false
 	
-	r.position = l.position * ProjectManager.tileSize
-	r.size = l.size * ProjectManager.tileSize
+	r.position = l.position * ProjectManager.tile_size
+	r.size = l.size * ProjectManager.tile_size
 	
 	levelObjs.append(r)
 	add_child(r)

@@ -5,7 +5,7 @@ var currentLevels : Dictionary
 
 
 func _ready() -> void:
-	collisionMap.tileSize = Vector2i.ONE * ProjectManager.tileSize
+	collisionMap.tileSize = Vector2i.ONE * ProjectManager.tile_size
 	var l := preload("res://Testing/Levels/jefaloosh.lvl")
 	loadLevel(l)
 

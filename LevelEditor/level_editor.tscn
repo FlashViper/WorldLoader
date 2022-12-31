@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxfkrw2jxsh28"]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://LevelEditor/level_editor.gd" id="1_rftmc"]
 [ext_resource type="Script" path="res://LevelEditor/bitmap_display.gd" id="2_rn0j1"]
-[ext_resource type="Script" path="res://Core/configurable_canvas.gd" id="3_1mnsm"]
-[ext_resource type="PackedScene" path="res://Core/quick_save.tscn" id="3_kpfif"]
+[ext_resource type="Script" path="res://Core/Utility/configurable_canvas.gd" id="3_1mnsm"]
+[ext_resource type="PackedScene" path="res://Core/Utility/quick_save.tscn" id="3_kpfif"]
 [ext_resource type="Script" path="res://LevelEditor/Tools/tool_tilemap.gd" id="4_sw583"]
 
 [sub_resource type="Gradient" id="Gradient_6ke3r"]

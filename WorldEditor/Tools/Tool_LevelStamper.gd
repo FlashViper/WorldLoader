@@ -21,14 +21,14 @@ func _shortcut_input(event: InputEvent) -> void:
 
 func load_file(filename: String) -> void:
 	var level := LevelFile.loadFromFile(filename)
-	preview.size = level.size * ProjectManager.tileSize
+	preview.size = level.size * ProjectManager.tile_size
 	preview.show()
 
 func _process(delta: float) -> void:
 	var targetPos := preview.get_global_mouse_position()
 	targetPos -= preview.size * 0.5
-	targetPos = (targetPos / ProjectManager.tileSize).floor()
-	targetPos *= ProjectManager.tileSize
+	targetPos = (targetPos / ProjectManager.tile_size).floor()
+	targetPos *= ProjectManager.tile_size
 	
 	preview.position = preview.position.lerp(
 		targetPos, 0.5

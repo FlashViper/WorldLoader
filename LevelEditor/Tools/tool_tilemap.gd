@@ -7,7 +7,7 @@ const TileMapSimple := preload("../bitmap_display.gd")
 
 var edited_root : Vector2i :
 	set(new):
-		tilemap.position = new * ProjectManager.tileSize
+		tilemap.position = new * ProjectManager.tile_size
 var level_size : Vector2i
 var canvas : ConfigurableCanvas
 
@@ -17,8 +17,8 @@ var map_id := {
 }
 
 func _ready() -> void:
-	tilemap.tile_size = ProjectManager.tileSize
-	cursor.size = Vector2.ONE * ProjectManager.tileSize
+	tilemap.tile_size = ProjectManager.tile_size
+	cursor.size = Vector2.ONE * ProjectManager.tile_size
 
 func initialize() -> void:
 	level_size = ProjectManager.minimum_screen_size

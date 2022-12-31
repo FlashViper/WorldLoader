@@ -5,7 +5,7 @@ extends Tool
 @export var levelPlaceholder := preload("../level_placeholder.tscn")
 
 var tile_size : int :
-	get: return ProjectManager.tileSize
+	get: return ProjectManager.tile_size
 
 var levelPreviews : Array[Control]
 var selected := -1
@@ -83,7 +83,7 @@ func create_level(pos1: Vector2i, pos2: Vector2i) -> void:
 	add_child(r)
 	levelPreviews.append(r)
 	
-	r.tile_size = Vector2i.ONE * ProjectManager.tileSize
+	r.tile_size = Vector2i.ONE * ProjectManager.tile_size
 	r.initialize(newRect, originalRect)
 
 
