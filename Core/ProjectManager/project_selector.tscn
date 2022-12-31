@@ -1,15 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0unfi1mfhc4s"]
+[gd_scene load_steps=8 format=3 uid="uid://b0unfi1mfhc4s"]
 
-[ext_resource type="Script" path="res://Core/ProjectManager/project_manager_dialogue.gd" id="1_x1byi"]
-[ext_resource type="Texture2D" uid="uid://cw6bldsxho0qg" path="res://GUI/Icons/ProjectManager/icon_projectmanager_create.tres" id="3_34u6l"]
-[ext_resource type="Texture2D" uid="uid://btr7bub1f28v4" path="res://GUI/Icons/ProjectManager/icon_projectmanager_open.tres" id="4_0ss7s"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkosa"]
-bg_color = Color(0.14, 0.14, 0.14, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
+[ext_resource type="Theme" uid="uid://ci874hda4ea6f" path="res://GUI/Theme/theme_project_manager.tres" id="1_uo4c1"]
+[ext_resource type="Script" path="res://Core/ProjectManager/project_manager_dialogue.gd" id="2_ixfda"]
+[ext_resource type="PackedScene" uid="uid://burb3n617rf07" path="res://Core/ProjectManager/project_view.tscn" id="3_813cv"]
+[ext_resource type="PackedScene" uid="uid://bbpi4khgjd3hn" path="res://Core/ProjectManager/project_thumbnail.tscn" id="3_yfiex"]
+[ext_resource type="PackedScene" uid="uid://cia71w1crsalg" path="res://Core/ProjectManager/new_project_dialogue.tscn" id="4_grj2d"]
+[ext_resource type="Texture2D" uid="uid://cw6bldsxho0qg" path="res://GUI/Icons/ProjectManager/icon_projectmanager_create.tres" id="5_svxub"]
+[ext_resource type="Texture2D" uid="uid://btr7bub1f28v4" path="res://GUI/Icons/ProjectManager/icon_projectmanager_open.tres" id="6_og2bc"]
 
 [node name="ProjectManager" type="PanelContainer"]
 anchors_preset = 15
@@ -17,7 +14,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_x1byi")
+theme = ExtResource("1_uo4c1")
+script = ExtResource("2_ixfda")
+project_viewer = ExtResource("3_813cv")
+thumbnail_scene = ExtResource("3_yfiex")
+create_dialogue_scene = ExtResource("4_grj2d")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -32,7 +33,6 @@ layout_mode = 2
 [node name="Header" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 tooltip_text = "Choose wisely :)"
-theme_override_font_sizes/font_size = 50
 text = "Choose a Project"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -52,7 +52,6 @@ theme_override_constants/separation = 25
 [node name="ProjectList" type="ScrollContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_gkosa")
 horizontal_scroll_mode = 0
 
 [node name="ThumbnailRoot" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ProjectList"]
@@ -70,17 +69,15 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 60
 text = "Create Project"
-icon = ExtResource("3_34u6l")
+icon = ExtResource("5_svxub")
 text_overrun_behavior = 2
 
 [node name="Load" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 60
 text = "Load Project"
-icon = ExtResource("4_0ss7s")
+icon = ExtResource("6_og2bc")
 clip_text = true
 text_overrun_behavior = 2

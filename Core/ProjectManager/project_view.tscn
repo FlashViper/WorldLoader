@@ -1,0 +1,106 @@
+[gd_scene load_steps=3 format=3 uid="uid://burb3n617rf07"]
+
+[ext_resource type="Theme" uid="uid://ci874hda4ea6f" path="res://GUI/Theme/theme_project_manager.tres" id="1_cigpv"]
+[ext_resource type="Script" path="res://Core/ProjectManager/project_view.gd" id="2_dnh3d"]
+
+[node name="ProjectView" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_cigpv")
+script = ExtResource("2_dnh3d")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 2048.0
+offset_bottom = 1152.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 2028.0
+offset_bottom = 1132.0
+
+[node name="ProjectName" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+offset_right = 2008.0
+offset_bottom = 89.0
+text = "[PROJECT_NAME]"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+offset_top = 97.0
+offset_right = 2008.0
+offset_bottom = 768.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 1988.0
+offset_bottom = 651.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer"]
+offset_right = 1968.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+
+[node name="Root" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 1948.0
+offset_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+offset_top = 776.0
+offset_right = 2008.0
+offset_bottom = 1112.0
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 1988.0
+offset_bottom = 316.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+offset_right = 450.0
+offset_bottom = 296.0
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+offset_right = 450.0
+offset_bottom = 89.0
+text = "[WORLD NAME]"
+
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+offset_top = 97.0
+offset_right = 450.0
+offset_bottom = 172.0
+theme_type_variation = &"Description"
+theme_override_colors/font_color = Color(0.517647, 0.517647, 0.517647, 1)
+theme_override_font_sizes/font_size = 50
+text = "[WORLD NAME]"
+
+[node name="Data" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+offset_top = 180.0
+offset_right = 450.0
+offset_bottom = 255.0
+theme_type_variation = &"Description"
+theme_override_colors/font_color = Color(0.517647, 0.517647, 0.517647, 1)
+theme_override_font_sizes/font_size = 50
+text = "[WORLD DATA]"
+
+[node name="WorldPreview" type="Control" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = 475.0
+offset_right = 1968.0
+offset_bottom = 296.0
+size_flags_horizontal = 3
