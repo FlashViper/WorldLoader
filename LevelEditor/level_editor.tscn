@@ -1,10 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1lqit10myvas"]
+[gd_scene load_steps=8 format=3 uid="uid://dxfkrw2jxsh28"]
 
 [ext_resource type="Script" path="res://LevelEditor/level_editor.gd" id="1_rftmc"]
 [ext_resource type="Script" path="res://LevelEditor/bitmap_display.gd" id="2_rn0j1"]
 [ext_resource type="Script" path="res://Core/configurable_canvas.gd" id="3_1mnsm"]
-[ext_resource type="PackedScene" uid="uid://bi8gpnhl80s4a" path="res://IO/quick_save.tscn" id="3_kpfif"]
+[ext_resource type="PackedScene" path="res://Core/quick_save.tscn" id="3_kpfif"]
 [ext_resource type="Script" path="res://LevelEditor/Tools/tool_tilemap.gd" id="4_sw583"]
+
+[sub_resource type="Gradient" id="Gradient_6ke3r"]
+colors = PackedColorArray(1, 1, 1, 0.419608, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_us502"]
+gradient = SubResource("Gradient_6ke3r")
+width = 16
+height = 16
+fill_from = Vector2(0, 0.926829)
 
 [node name="LevelEditor" type="Node"]
 script = ExtResource("1_rftmc")
@@ -22,6 +31,24 @@ mouse_filter = 2
 border_color = Color(0.780392, 0.780392, 0.780392, 1)
 border_width = 5.0
 editor_only = false
+
+[node name="LevelSize" type="ReferenceRect" parent="Tools/Tilemap"]
+visible = false
+offset_right = 500.0
+offset_bottom = 351.0
+border_color = Color(1, 1, 1, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="TextureRect" type="TextureRect" parent="Tools/Tilemap/LevelSize"]
+modulate = Color(1, 1, 1, 0.596078)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_us502")
 
 [node name="SaveLevel" parent="." instance=ExtResource("3_kpfif")]
 visible = false

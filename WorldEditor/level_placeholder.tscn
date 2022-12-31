@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://dbwod2wv7tyqo"]
 
 [ext_resource type="Script" path="res://WorldEditor/level_placeholder.gd" id="1_yot7k"]
 
@@ -10,3 +10,4 @@ border_color = Color(1, 1, 1, 1)
 border_width = 5.0
 editor_only = false
 script = ExtResource("1_yot7k")
+padding = 50

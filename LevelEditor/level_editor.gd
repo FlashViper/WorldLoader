@@ -19,7 +19,6 @@ func _ready() -> void:
 	add_shortcut(save_input, save_current_level)
 	
 	tools.append($Tools/Tilemap)
-	tools.append($Tools/Tool)
 	create_toolbar()
 	create_new_level()
 	select_tool(0)
