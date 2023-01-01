@@ -105,6 +105,8 @@ func onHandleInput(event: InputEvent, index: int) -> void:
 			
 			if event.is_pressed():
 				clicked.emit()
+			else:
+				editedRect = snapRect(rect)
 			
 			handleObjects[index].accept_event()
 	
