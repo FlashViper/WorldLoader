@@ -61,7 +61,15 @@ func create_thumbnail(project_path: String) -> void:
 	var thumbnail := thumbnail_scene.instantiate()
 	thumbnail.get_node("%Name").text = data.get("project_name", "Untitled Project")
 	thumbnail.get_node("%Description").text = data.get("description", "No Description")
+	thumbnail.gui_input.connect(on_thumbnail_input.bind(project_path))
 	%ThumbnailRoot.add_child(thumbnail)
+
+
+func on_thumbnail_input(event: InputEvent, path: String) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.double_click:
+				on_file_recieved(path)
 
 
 func open_create_dialogue() -> void:
