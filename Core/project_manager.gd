@@ -16,7 +16,7 @@ var tile_size := 64
 	ProjectSettings.get_setting("display/window/size/viewport_height")
 )
 
-@onready var minimum_screen_size = screen_size_px / tile_size
+@onready var minimum_screen_size : Vector2i = screen_size_px / tile_size
 
 func initialize() -> void:
 	project_path = ""
