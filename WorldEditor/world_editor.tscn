@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3]
 
-[ext_resource type="Script" path="res://WorldEditor/WorldEditor.gd" id="1_lpii7"]
+[ext_resource type="Script" path="res://WorldEditor/world_editor.gd" id="1_6wi7m"]
 [ext_resource type="Script" path="res://WorldEditor/Tools/Tool_LevelArranger.gd" id="3_65jfo"]
 [ext_resource type="Script" path="res://WorldEditor/Tools/Tool_LevelStamper.gd" id="3_dxg5v"]
 [ext_resource type="PackedScene" path="res://Core/Utility/quick_save.tscn" id="3_ganl3"]
