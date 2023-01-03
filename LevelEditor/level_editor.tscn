@@ -1,3 +1,4 @@
+[gd_scene load_steps=8 format=3 uid="uid://be6p2b4dpcsqv"]
 
 [ext_resource type="Script" path="res://LevelEditor/level_editor.gd" id="1_rftmc"]
 [ext_resource type="Script" path="res://LevelEditor/bitmap_display.gd" id="2_rn0j1"]
@@ -52,5 +53,21 @@ texture = SubResource("GradientTexture2D_us502")
 visible = false
 base_dir = &"res://Testing/Levels/%s.lvl"
 
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -100
+
+[node name="BackgroundColor" type="ColorRect" parent="Background"]
+unique_name_in_owner = true
+z_index = -100
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.423529, 0.423529, 0.423529, 1)
+
 [node name="GUI" type="CanvasLayer" parent="."]
+layer = 10
 script = ExtResource("3_1mnsm")
