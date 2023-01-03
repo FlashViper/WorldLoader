@@ -30,4 +30,5 @@ func on_double_click() -> void:
 		create_world()
 
 func create_world() -> void:
+	DisplayServer.window_set_size(ProjectManager.screen_size_px)
 	get_tree().change_scene_to_packed(editor_scene)
