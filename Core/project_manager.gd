@@ -46,3 +46,9 @@ func save_to_file() -> void:
 
 func get_current_project_path() -> String:
 	return project_path.get_base_dir()
+
+func has_world(path: String) -> bool:
+	return world_files.has(path)
+
+func add_world_path(path: String) -> void:
+	world_files.append(path)
