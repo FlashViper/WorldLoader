@@ -24,6 +24,26 @@ func _ready() -> void:
 	select_tool(0)
 	show_gui()
 
+func enable() -> void:
+	canvas.visible = true
+	if currentTool >= 0 and currentTool < tools.size():
+		tools[currentTool].enable_tool()
+	
+	create_tween().tween_property(
+		%BackgroundColor, "modulate:a", 0, 0.15
+	)
+
+
+func disable() -> void:
+	canvas.visible = false
+	if currentTool >= 0 and currentTool < tools.size():
+		tools[currentTool].disable_tool()
+	
+	create_tween().tween_property(
+		%BackgroundColor, "modulate:a", 0, 0.15
+	)
+
+
 func create_toolbar() -> void:
 	if toolbar:
 		toolbar.queue_free()
@@ -36,8 +56,10 @@ func create_toolbar() -> void:
 	for i in tools.size():
 		toolbar.add_tool(tools[i].get_icon(), i)
 
+
 func show_gui() -> void:
 	pass
+
 
 func create_new_level() -> void:
 	current_filepath = ""
