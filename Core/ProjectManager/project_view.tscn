@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://ci874hda4ea6f" path="res://GUI/Theme/theme_project_manager.tres" id="1_cigpv"]
 [ext_resource type="Script" path="res://Core/ProjectManager/project_view.gd" id="2_dnh3d"]
-[ext_resource type="PackedScene" path="res://WorldEditor/world_editor.tscn" id="3_iipsv"]
+[ext_resource type="PackedScene" uid="uid://b767soygfkkid" path="res://main.tscn" id="3_5qrm0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w08ri"]
 
@@ -14,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_cigpv")
 script = ExtResource("2_dnh3d")
-editor_scene = ExtResource("3_iipsv")
+editor_scene = ExtResource("3_5qrm0")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
