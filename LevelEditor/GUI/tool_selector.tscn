@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://daykvwcmpcyvw"]
+[gd_scene load_steps=7 format=3 uid="uid://daykvwcmpcyvw"]
 
 [ext_resource type="Texture2D" uid="uid://c3jggn4e1x3yo" path="res://GUI/Icons/Main/icon_main_home.tres" id="1_1hfsx"]
 [ext_resource type="Script" path="res://LevelEditor/GUI/toolbar_level.gd" id="1_minox"]
 [ext_resource type="Script" path="res://GUI/button_texture.gd" id="2_p4f1i"]
 [ext_resource type="Texture2D" uid="uid://dm2yjpbyo5sit" path="res://GUI/Icons/Main/icon_main_save.tres" id="2_r6634"]
 [ext_resource type="Texture2D" uid="uid://dy8dx18nb8qgj" path="res://GUI/Icons/Main/icon_main_back.tres" id="3_h83u8"]
+[ext_resource type="Texture2D" uid="uid://saiaqh7a72cr" path="res://GUI/Icons/Main/icon_main_settings.tres" id="5_xmut6"]
 
 [node name="ToolBar" type="PanelContainer"]
 anchors_preset = 9
@@ -13,41 +14,63 @@ grow_vertical = 2
 script = ExtResource("1_minox")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
+offset_right = 74.0
+offset_bottom = 1152.0
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 69.0
+offset_bottom = 1147.0
 
 [node name="Home" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 2
+offset_right = 64.0
+offset_bottom = 64.0
 texture = ExtResource("1_1hfsx")
 stretch_mode = 5
 script = ExtResource("2_p4f1i")
 
 [node name="Save" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 2
+offset_top = 72.0
+offset_right = 64.0
+offset_bottom = 136.0
 texture = ExtResource("2_r6634")
+stretch_mode = 5
+script = ExtResource("2_p4f1i")
+
+[node name="Settings" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+offset_top = 144.0
+offset_right = 64.0
+offset_bottom = 208.0
+texture = ExtResource("5_xmut6")
 stretch_mode = 5
 script = ExtResource("2_p4f1i")
 
 [node name="Back" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 2
+offset_top = 216.0
+offset_right = 64.0
+offset_bottom = 280.0
 texture = ExtResource("3_h83u8")
 stretch_mode = 5
 script = ExtResource("2_p4f1i")
 
 [node name="Spacer" type="ColorRect" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
+offset_top = 288.0
+offset_right = 64.0
+offset_bottom = 293.0
 color = Color(0.32549, 0.32549, 0.32549, 1)
 
 [node name="Tools" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 2
+offset_top = 301.0
+offset_right = 64.0
+offset_bottom = 301.0

@@ -4,7 +4,7 @@ extends ReferenceRect
 signal rect_changed(new: Rect2i, old: Rect2i)
 signal clicked
 
-const WorldEditor := preload("./WorldEditor.gd")
+const WorldEditor := preload("./world_editor.gd")
 enum {MOVE_RECT, CHANGE_SIZE, CURSOR}
 
 const HANDLES : Array[Dictionary] = [

@@ -4,6 +4,7 @@ const Button_Texture := preload("res://GUI/button_texture.gd")
 
 signal home_pressed
 signal save_pressed
+signal settings_pressed
 signal back_pressed
 
 signal tool_button_pressed(index: int)
@@ -13,6 +14,7 @@ signal tool_button_pressed(index: int)
 func _ready() -> void:
 	%Home.pressed.connect(func(): home_pressed.emit())
 	%Save.pressed.connect(func(): save_pressed.emit())
+	%Settings.pressed.connect(func(): settings_pressed.emit())
 	%Back.pressed.connect(func(): back_pressed.emit())
 
 func add_tool(icon: Texture, index: int) -> void:
