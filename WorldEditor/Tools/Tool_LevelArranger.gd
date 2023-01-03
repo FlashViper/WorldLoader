@@ -34,7 +34,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			isDragging = event.is_pressed()
 			
 			if isDragging:
-				
 				dragRoot = get_global_mouse_position()
 				preview.position = dragRoot
 				preview.size = Vector2()
@@ -44,6 +43,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 			preview.visible = isDragging
 	elif event is InputEventMouseMotion:
+		if event.button_mask & MOUSE_BUTTON_MASK_LEFT == 0:
+			dragRoot = get_global_mouse_position()
+		
 		if isDragging:
 			var previewRect := Rect2i(
 					world_to_grid(dragRoot), 
