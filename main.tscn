@@ -1,15 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://b767soygfkkid"]
+[gd_scene load_steps=4 format=3 uid="uid://b767soygfkkid"]
 
-[ext_resource type="PackedScene" uid="uid://cvscf7ru2y0pg" path="res://WorldEditor/world_editor.tscn" id="1_w0u1a"]
-[ext_resource type="PackedScene" uid="uid://dxfkrw2jxsh28" path="res://LevelEditor/level_editor.tscn" id="2_l4u6a"]
+[ext_resource type="Script" path="res://main.gd" id="1_df1hq"]
+[ext_resource type="PackedScene" uid="uid://b6xdu6fvixbt1" path="res://WorldEditor/world_editor.tscn" id="1_w0u1a"]
+[ext_resource type="PackedScene" uid="uid://be6p2b4dpcsqv" path="res://LevelEditor/level_editor.tscn" id="2_l4u6a"]
 
 [node name="Main" type="Node"]
+script = ExtResource("1_df1hq")
 
 [node name="Editors" type="Node" parent="."]
 
 [node name="WorldEditor" parent="Editors" instance=ExtResource("1_w0u1a")]
 
 [node name="LevelEditor" parent="Editors" instance=ExtResource("2_l4u6a")]
-
-[node name="ProjectSelection" type="CanvasLayer" parent="."]
-layer = 20
