@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://be6p2b4dpcsqv"]
+[gd_scene load_steps=9 format=3 uid="uid://be6p2b4dpcsqv"]
 
 [ext_resource type="Script" path="res://LevelEditor/level_editor.gd" id="1_rftmc"]
 [ext_resource type="Script" path="res://LevelEditor/bitmap_display.gd" id="2_rn0j1"]
 [ext_resource type="Script" path="res://Core/Utility/configurable_canvas.gd" id="3_1mnsm"]
 [ext_resource type="PackedScene" path="res://Core/Utility/quick_save.tscn" id="3_kpfif"]
+[ext_resource type="Script" path="res://LevelEditor/Tools/tool_decoration.gd" id="4_jexmw"]
 [ext_resource type="Script" path="res://LevelEditor/Tools/tool_tilemap.gd" id="4_sw583"]
 
 [sub_resource type="Gradient" id="Gradient_6ke3r"]
@@ -42,12 +43,16 @@ editor_only = false
 
 [node name="TextureRect" type="TextureRect" parent="Tools/Tilemap/LevelSize"]
 modulate = Color(1, 1, 1, 0.596078)
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_us502")
+
+[node name="Decoration" type="Node" parent="Tools"]
+script = ExtResource("4_jexmw")
 
 [node name="SaveLevel" parent="." instance=ExtResource("3_kpfif")]
 visible = false
@@ -60,7 +65,6 @@ layer = -100
 unique_name_in_owner = true
 z_index = -100
 z_as_relative = false
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
