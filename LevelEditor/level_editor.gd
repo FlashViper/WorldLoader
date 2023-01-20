@@ -13,6 +13,8 @@ var toolbar : Control
 #var level_inspector [TODO]
 
 func _ready() -> void:
+	CameraManager.activate()
+
 	var save_input := InputEventKey.new()
 	save_input.keycode = KEY_S
 	save_input.ctrl_pressed = true
