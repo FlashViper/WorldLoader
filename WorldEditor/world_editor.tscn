@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdoiqvnr6ud8h"]
+[gd_scene load_steps=8 format=3 uid="uid://bdoiqvnr6ud8h"]
 
 [ext_resource type="Script" path="res://WorldEditor/world_editor.gd" id="1_6wi7m"]
 [ext_resource type="PackedScene" uid="uid://daykvwcmpcyvw" path="res://LevelEditor/GUI/tool_selector.tscn" id="2_cvst2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://WorldEditor/Tools/Tool_LevelStamper.gd" id="3_dxg5v"]
 [ext_resource type="PackedScene" path="res://Core/Utility/quick_save.tscn" id="3_ganl3"]
 [ext_resource type="Script" path="res://Core/Utility/configurable_canvas.gd" id="6_odpr0"]
+[ext_resource type="Script" path="res://Core/Camera/drag_camera.gd" id="7_gcq6n"]
 
 [node name="WorldEditor" type="Node"]
 script = ExtResource("1_6wi7m")
@@ -47,3 +48,8 @@ base_dir = &"proj://%s.wrld"
 
 [node name="Canvas" type="CanvasLayer" parent="."]
 script = ExtResource("6_odpr0")
+
+[node name="Camera" type="Node2D" parent="."]
+process_priority = -1
+script = ExtResource("7_gcq6n")
+currentZoom = 2.0

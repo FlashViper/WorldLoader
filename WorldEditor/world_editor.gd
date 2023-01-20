@@ -17,6 +17,7 @@ var toolbar
 var settings_popup : Control
 
 func _ready() -> void:
+	CameraManager.activate()
 	tools.append($Tools/LevelArranger)
 	
 	for t in tools:

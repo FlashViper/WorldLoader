@@ -54,6 +54,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 ProjectManager="*res://Core/project_manager.gd"
+CameraManager="*res://Core/Camera/camera_manager.gd"
 
 [debug]
 

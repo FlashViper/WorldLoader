@@ -12,6 +12,7 @@ func _ready() -> void:
 	for e in editors:
 		e.disable()
 	
+	CameraManager.activate()
 	switch_editors(0)
 
 func switch_editors(new: int) -> void:
