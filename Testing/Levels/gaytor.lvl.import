@@ -1,0 +1,15 @@
+[remap]
+
+importer="flashviper.worldeditor.importer_level"
+type="Resource"
+uid="uid://c1iqbsfo0x8cd"
+path="res://.godot/imported/gaytor.lvl-2399b7a876a8f71a1627ee2dca863379.res"
+
+[deps]
+
+source_file="res://Testing/Levels/gaytor.lvl"
+dest_files=["res://.godot/imported/gaytor.lvl-2399b7a876a8f71a1627ee2dca863379.res"]
+
+[params]
+
+my_option=false
