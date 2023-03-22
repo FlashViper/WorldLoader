@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://saiaqh7a72cr" path="res://GUI/Icons/Main/icon_main_settings.tres" id="5_xmut6"]
 
 [node name="ToolBar" type="PanelContainer"]
+anchors_preset = 9
 anchor_bottom = 1.0
 grow_vertical = 2
 script = ExtResource("1_minox")

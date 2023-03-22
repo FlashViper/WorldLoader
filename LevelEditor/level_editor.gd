@@ -5,6 +5,7 @@ extends Node
 
 var shortcuts := []
 
+var current_level : LevelFile
 var current_filepath := ""
 var tools : Array
 var currentTool : int
@@ -13,18 +14,20 @@ var toolbar : Control
 #var level_inspector [TODO]
 
 func _ready() -> void:
-	CameraManager.activate()
-
+#	CameraManager.activate()
+#	current_level = LevelFile.new()
 	var save_input := InputEventKey.new()
 	save_input.keycode = KEY_S
 	save_input.ctrl_pressed = true
 	add_shortcut(save_input, save_current_level)
 	
 	tools.append($Tools/Tilemap)
+	tools.append($Tools/Decoration)
 	create_toolbar()
 	create_new_level()
 	select_tool(0)
 	show_gui()
+
 
 func enable() -> void:
 	canvas.visible = true
@@ -114,7 +117,6 @@ func load_from_disk(path: StringName) -> void:
 		t.load_data(level)
 
 func save_to_disk(path: StringName) -> void:
-	var level := LevelFile.new()
 	for t in tools:
-		t.save_data(level)
-	level.saveToFile(path)
+		t.save_data(current_level)
+	current_level.saveToFile(path)

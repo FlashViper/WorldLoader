@@ -65,6 +65,7 @@ layer = -100
 unique_name_in_owner = true
 z_index = -100
 z_as_relative = false
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2

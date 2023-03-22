@@ -11,7 +11,7 @@ func _init() -> void:
 
 func _process(delta: float) -> void:
 	if currentTarget < 0 or currentTarget >= targets.size():
-		set_process_mode(false)
+		set_process_mode(PROCESS_MODE_PAUSABLE)
 		return
 	
 	position = targets[currentTarget].position
@@ -19,11 +19,11 @@ func _process(delta: float) -> void:
 
 
 func activate() -> void:
-	current = true
+	enabled = true
 
 
 func deactivate() -> void:
-	current = false
+	enabled = false
 
 
 func register_target(t: CameraTarget) -> void:

@@ -8,40 +8,6 @@
 
 config_version=5
 
-_global_script_classes=[{
-"base": "CanvasLayer",
-"class": &"ConfigurableCanvas",
-"language": &"GDScript",
-"path": "res://Core/Utility/configurable_canvas.gd"
-}, {
-"base": "Resource",
-"class": &"LevelData",
-"language": &"GDScript",
-"path": "res://addons/flashviper_worldfile/Files/level_data.gd"
-}, {
-"base": "Resource",
-"class": &"LevelFile",
-"language": &"GDScript",
-"path": "res://addons/flashviper_worldfile/Files/level_file.gd"
-}, {
-"base": "Node",
-"class": &"Tool",
-"language": &"GDScript",
-"path": "res://Core/Tool.gd"
-}, {
-"base": "Resource",
-"class": &"WorldFile",
-"language": &"GDScript",
-"path": "res://addons/flashviper_worldfile/Files/world_file.gd"
-}]
-_global_script_class_icons={
-"ConfigurableCanvas": "",
-"LevelData": "res://addons/flashviper_worldfile/Icons/icon_leveldata.tres",
-"LevelFile": "res://addons/flashviper_worldfile/Icons/icon_levelfile.tres",
-"Tool": "",
-"WorldFile": "res://addons/flashviper_worldfile/Icons/icon_worldfile.tres"
-}
-
 [application]
 
 config/name="World Loader"
@@ -49,7 +15,7 @@ run/main_scene="res://Core/Initializer.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="FlashViper/WorldEditor"
 config/features=PackedStringArray("4.0", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://GUI/project_icon.svg"
 
 [autoload]
 
@@ -85,4 +51,4 @@ theme/default_theme_scale=2.0
 
 renderer/rendering_method="mobile"
 shader_compiler/shader_cache/enabled=false
-environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+environment/defaults/default_clear_color=Color(0.223529, 0.223529, 0.223529, 1)

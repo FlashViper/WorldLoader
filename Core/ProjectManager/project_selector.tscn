@@ -79,5 +79,5 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Load Project"
 icon = ExtResource("6_og2bc")
-clip_text = true
 text_overrun_behavior = 2
+clip_text = true

@@ -1,5 +1,5 @@
-class_name WorldFile extends Resource
 @icon("../Icons/icon_worldfile.tres")
+class_name WorldFile extends Resource
 
 const VERSION := &"0.1 pre"
 const StringParser := preload("../StringParser.gd")

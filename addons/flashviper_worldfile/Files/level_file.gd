@@ -1,5 +1,5 @@
-class_name LevelFile extends Resource
 @icon("../Icons/icon_levelfile.tres")
+class_name LevelFile extends Resource
 
 const VERSION := &"0.1 development"
 
