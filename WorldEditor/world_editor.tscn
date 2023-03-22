@@ -1,18 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://2hlopmp8u5mf"]
+[gd_scene load_steps=8 format=3 uid="uid://bdoiqvnr6ud8h"]
 
-[ext_resource type="Script" path="res://WorldEditor/WorldEditor.gd" id="1_lpii7"]
-[ext_resource type="PackedScene" path="res://WorldEditor/level_placeholder.tscn" id="2_g3fsj"]
-[ext_resource type="PackedScene" uid="uid://bi8gpnhl80s4a" path="res://IO/quick_save.tscn" id="3_ganl3"]
-[ext_resource type="Script" path="res://Testing/grid_draw.gd" id="4_56qgu"]
-[ext_resource type="Script" path="res://drag_camera.gd" id="5_smjoq"]
+[ext_resource type="Script" path="res://WorldEditor/world_editor.gd" id="1_6wi7m"]
+[ext_resource type="PackedScene" uid="uid://daykvwcmpcyvw" path="res://LevelEditor/GUI/tool_selector.tscn" id="2_cvst2"]
+[ext_resource type="Script" path="res://WorldEditor/Tools/Tool_LevelArranger.gd" id="3_65jfo"]
+[ext_resource type="Script" path="res://WorldEditor/Tools/Tool_LevelStamper.gd" id="3_dxg5v"]
+[ext_resource type="PackedScene" path="res://Core/Utility/quick_save.tscn" id="3_ganl3"]
+[ext_resource type="Script" path="res://Core/Utility/configurable_canvas.gd" id="6_odpr0"]
+[ext_resource type="Script" path="res://Core/Camera/drag_camera.gd" id="7_gcq6n"]
 
 [node name="WorldEditor" type="Node"]
-script = ExtResource("1_lpii7")
-tile_size = 18
-levelPlaceholder = ExtResource("2_g3fsj")
-metadata/_edit_pinned_properties_ = [&"tile_size"]
+script = ExtResource("1_6wi7m")
+toolbar_scene = ExtResource("2_cvst2")
 
-[node name="LevelSizePreview" type="ReferenceRect" parent="."]
+[node name="Tools" type="Node" parent="."]
+
+[node name="LevelArranger" type="Node" parent="Tools"]
+script = ExtResource("3_65jfo")
+
+[node name="LevelSizePreview" type="ReferenceRect" parent="Tools/LevelArranger"]
 visible = false
 offset_right = 40.0
 offset_bottom = 40.0
@@ -21,15 +26,30 @@ border_color = Color(0.588235, 0.588235, 0.588235, 1)
 border_width = 5.0
 editor_only = false
 
-[node name="QuickSave" parent="." instance=ExtResource("3_ganl3")]
+[node name="LevelStamper" type="Node" parent="Tools"]
+script = ExtResource("3_dxg5v")
+
+[node name="OpenLevel" parent="Tools/LevelStamper" instance=ExtResource("3_ganl3")]
 visible = false
-base_dir = &"res://Testing/Worlds/%s.wrld"
+base_dir = &"res://Testing/Levels/%s.lvl"
 
-[node name="Grid" type="Node2D" parent="."]
-script = ExtResource("4_56qgu")
-lineColor = Color(1, 1, 1, 0.109804)
+[node name="Preview" type="ReferenceRect" parent="Tools/LevelStamper"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+border_color = Color(0.556863, 0.556863, 0.556863, 1)
+border_width = 5.0
+editor_only = false
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-zoom = Vector2(0.5, 0.5)
-script = ExtResource("5_smjoq")
+[node name="Dialogue_World" parent="." instance=ExtResource("3_ganl3")]
+visible = false
+base_dir = &"proj://%s.wrld"
+
+[node name="Canvas" type="CanvasLayer" parent="."]
+script = ExtResource("6_odpr0")
+
+[node name="Camera" type="Node2D" parent="."]
+process_priority = -1
+script = ExtResource("7_gcq6n")
+currentZoom = 2.0

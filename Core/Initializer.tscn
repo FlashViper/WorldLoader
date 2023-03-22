@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://ok6bpdyfca8k"]
+
+[ext_resource type="Script" path="res://Core/Initializer.gd" id="1_8dn32"]
+[ext_resource type="PackedScene" uid="uid://b0unfi1mfhc4s" path="res://Core/ProjectManager/project_selector.tscn" id="2_s4imx"]
+
+[node name="Initializer" type="Node"]
+script = ExtResource("1_8dn32")
+project_selector = ExtResource("2_s4imx")

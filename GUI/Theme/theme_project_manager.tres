@@ -1,0 +1,25 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://ci874hda4ea6f"]
+
+[ext_resource type="StyleBox" uid="uid://dmw8x0iff3wkl" path="res://GUI/Theme/stylebox_scroll_container.tres" id="1_id5py"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_245mx"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kben"]
+bg_color = Color(0.027451, 0.027451, 0.027451, 1)
+
+[resource]
+Button/font_sizes/font_size = 60
+HBoxContainer/constants/separation = 25
+Label/font_sizes/font_size = 60
+MarginContainer/constants/margin_bottom = 20
+MarginContainer/constants/margin_left = 20
+MarginContainer/constants/margin_right = 20
+MarginContainer/constants/margin_top = 20
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_245mx")
+ScrollContainer/styles/panel = ExtResource("1_id5py")
+Window/styles/embedded_border = SubResource("StyleBoxFlat_0kben")

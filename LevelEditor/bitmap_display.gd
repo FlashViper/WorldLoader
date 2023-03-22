@@ -38,6 +38,10 @@ func _draw() -> void:
 				Color.GRAY
 			)
 
+func clear() -> void:
+	tile_data.clear()
+	queue_redraw()
+
 func place_tile(pos: Vector2i, id: int) -> void:
 	if id == TILE_INVALID:
 		tile_data.erase(pos)
@@ -73,6 +77,9 @@ func set_data_in_rect(rect: Rect2i, data: PackedByteArray) -> void:
 			index += 1 # much easier than some function of x and y
 	
 	queue_redraw()
+
+func snap_to_grid(world: Vector2) -> Vector2:
+	return tile_to_world(world_to_tile(world))
 
 func tile_to_world(tile: Vector2i) -> Vector2:
 	return global_transform * Vector2(tile * tile_size)

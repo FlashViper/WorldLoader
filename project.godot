@@ -8,38 +8,25 @@
 
 config_version=5
 
-_global_script_classes=[{
-"base": "Resource",
-"class": &"LevelData",
-"language": &"GDScript",
-"path": "res://IO/LevelData.gd"
-}, {
-"base": "Resource",
-"class": &"LevelFile",
-"language": &"GDScript",
-"path": "res://IO/level_file.gd"
-}, {
-"base": "Resource",
-"class": &"WorldFile",
-"language": &"GDScript",
-"path": "res://IO/world_file.gd"
-}]
-_global_script_class_icons={
-"LevelData": "",
-"LevelFile": "",
-"WorldFile": ""
-}
-
 [application]
 
 config/name="World Loader"
-run/main_scene="res://Loader/world_loader.tscn"
+run/main_scene="res://Core/Initializer.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="FlashViper/WorldEditor"
 config/features=PackedStringArray("4.0", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://GUI/project_icon.svg"
 
 [autoload]
 
-ProjectManager="*res://IO/project_manager.gd"
+ProjectManager="*res://Core/project_manager.gd"
+CameraManager="*res://Core/Camera/camera_manager.gd"
+
+[debug]
+
+gdscript/warnings/unused_parameter=0
+gdscript/warnings/narrowing_conversion=0
+gdscript/warnings/unused_signal=0
 
 [display]
 
@@ -47,10 +34,21 @@ window/size/viewport_width=2048
 window/size/viewport_height=1152
 window/subwindows/embed_subwindows=false
 
+[editor]
+
+run/main_run_args="-- -p"
+script/templates_search_path="res://Core/script_templates"
+
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/importer_levelfile/plugin.cfg", "res://addons/importer_worldfile/plugin.cfg")
+enabled=PackedStringArray("res://addons/flashviper_worldfile/plugin.cfg")
+
+[gui]
+
+theme/default_theme_scale=2.0
 
 [rendering]
 
 renderer/rendering_method="mobile"
+shader_compiler/shader_cache/enabled=false
+environment/defaults/default_clear_color=Color(0.223529, 0.223529, 0.223529, 1)

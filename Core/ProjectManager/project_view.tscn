@@ -1,0 +1,95 @@
+[gd_scene load_steps=5 format=3 uid="uid://burb3n617rf07"]
+
+[ext_resource type="Theme" uid="uid://ci874hda4ea6f" path="res://GUI/Theme/theme_project_manager.tres" id="1_cigpv"]
+[ext_resource type="Script" path="res://Core/ProjectManager/project_view.gd" id="2_dnh3d"]
+[ext_resource type="PackedScene" uid="uid://b767soygfkkid" path="res://main.tscn" id="3_5qrm0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w08ri"]
+
+[node name="ProjectView" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_cigpv")
+script = ExtResource("2_dnh3d")
+editor_scene = ExtResource("3_5qrm0")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ProjectName" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "[PROJECT_NAME]"
+horizontal_alignment = 1
+
+[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Settings"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Worlds" type="Tree" parent="MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_w08ri")
+hide_root = true
+scroll_horizontal_enabled = false
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "[WORLD NAME]"
+
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Description"
+theme_override_colors/font_color = Color(0.517647, 0.517647, 0.517647, 1)
+theme_override_font_sizes/font_size = 50
+text = "[WORLD NAME]"
+
+[node name="Data" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Description"
+theme_override_colors/font_color = Color(0.517647, 0.517647, 0.517647, 1)
+theme_override_font_sizes/font_size = 50
+text = "[WORLD DATA]"
+
+[node name="WorldPreview" type="Control" parent="MarginContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3

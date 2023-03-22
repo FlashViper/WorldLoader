@@ -4,7 +4,7 @@ extends ReferenceRect
 signal rect_changed(new: Rect2i, old: Rect2i)
 signal clicked
 
-const WorldEditor := preload("./WorldEditor.gd")
+const WorldEditor := preload("./world_editor.gd")
 enum {MOVE_RECT, CHANGE_SIZE, CURSOR}
 
 const HANDLES : Array[Dictionary] = [
@@ -23,8 +23,7 @@ const HANDLES : Array[Dictionary] = [
 	{MOVE_RECT:Vector2(0,1), CHANGE_SIZE: Vector2(1,-1), CURSOR: CURSOR_BDIAGSIZE},
 ]
 
-@export var anchorSize := 20
-@export var anchorPadding := 10
+@export var padding := 25
 @export var tile_size := Vector2i(7, 7)
 
 @export_group("Handles")
@@ -42,18 +41,14 @@ var dragMode : int
 var isDragging : bool
 var handleObjects : Array[Control]
 
-func _ready() -> void:
+func _ready() -> void:	
 	var exclude : Array[int] = []
-	
 	if !handle_drag_rect:
 		exclude.append(0)
-	
 	if !handles_single_axis:
 		exclude.append_array(range(1,5))
-	
 	if !handles_multi_axis:
 		exclude.append_array(range(5, 9))
-	
 	
 	handleObjects = []
 	
@@ -86,12 +81,10 @@ func _ready() -> void:
 			remap(sizeMod.y, -1, 1, 0, 1)
 		)
 		
-		const SPACING := 15
-		
-		handle.set_anchor_and_offset(SIDE_LEFT, max(sizeMod.x, 0), -SPACING, true)
-		handle.set_anchor_and_offset(SIDE_TOP, max(sizeMod.y, 0), -SPACING, true)
-		handle.set_anchor_and_offset(SIDE_RIGHT, min(1 + sizeMod.x, 1), SPACING)
-		handle.set_anchor_and_offset(SIDE_BOTTOM, min(1 + sizeMod.y, 1), SPACING)
+		handle.set_anchor_and_offset(SIDE_LEFT, max(sizeMod.x, 0), -padding, true)
+		handle.set_anchor_and_offset(SIDE_TOP, max(sizeMod.y, 0), -padding, true)
+		handle.set_anchor_and_offset(SIDE_RIGHT, min(1 + sizeMod.x, 1), padding)
+		handle.set_anchor_and_offset(SIDE_BOTTOM, min(1 + sizeMod.y, 1), padding)
 		
 		handle.gui_input.connect(onHandleInput.bind(i))
 		handleObjects.append(handle)
@@ -112,6 +105,8 @@ func onHandleInput(event: InputEvent, index: int) -> void:
 			
 			if event.is_pressed():
 				clicked.emit()
+			else:
+				editedRect = snapRect(rect)
 			
 			handleObjects[index].accept_event()
 	
@@ -148,3 +143,6 @@ func submitRect(edited: Rect2) -> void:
 	rect.size = Vector2i(edited.size) / tile_size
 	
 	rect_changed.emit(rect, old)
+
+func _process(delta: float) -> void:
+	border_width = 5.0 / get_canvas_transform().get_scale().x
