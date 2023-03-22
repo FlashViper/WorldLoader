@@ -3,36 +3,52 @@ extends Node
 @onready var save_dialogue := $SaveLevel
 @onready var canvas : ConfigurableCanvas = $GUI
 
-var shortcuts := []
+var shortcuts : Array[Dictionary] = []
 
 var current_level : LevelFile
 var current_filepath := ""
 var tools : Array
-var currentTool : int
+var current_tool : int
 
 var toolbar : Control
+var is_standalone := true
 #var level_inspector [TODO]
 
 func _ready() -> void:
-#	CameraManager.activate()
-#	current_level = LevelFile.new()
+	if is_standalone:
+		CameraManager.activate()
+#		CameraManager.register_target($Camera)
+		current_level = LevelFile.new()
+	
 	var save_input := InputEventKey.new()
 	save_input.keycode = KEY_S
 	save_input.ctrl_pressed = true
 	add_shortcut(save_input, save_current_level)
 	
+	var open_input := InputEventKey.new()
+	open_input.keycode = KEY_O
+	open_input.ctrl_pressed = true
+	add_shortcut(open_input, on_load_pressed)
+	
 	tools.append($Tools/Tilemap)
 	tools.append($Tools/Decoration)
+	
+	init_tools()
 	create_toolbar()
 	create_new_level()
 	select_tool(0)
 	show_gui()
 
 
+func init_tools() -> void:
+	for t in tools:
+		t.level = current_level
+
+
 func enable() -> void:
 	canvas.visible = true
-	if currentTool >= 0 and currentTool < tools.size():
-		tools[currentTool].enable_tool()
+	if current_tool >= 0 and current_tool < tools.size():
+		tools[current_tool].enable_tool()
 	
 	create_tween().tween_property(
 		%BackgroundColor, "modulate:a", 0, 0.15
@@ -41,8 +57,8 @@ func enable() -> void:
 
 func disable() -> void:
 	canvas.visible = false
-	if currentTool >= 0 and currentTool < tools.size():
-		tools[currentTool].disable_tool()
+	if current_tool >= 0 and current_tool < tools.size():
+		tools[current_tool].disable_tool()
 	
 	create_tween().tween_property(
 		%BackgroundColor, "modulate:a", 0, 0.15
@@ -86,15 +102,23 @@ func _shortcut_input(event: InputEvent) -> void:
 			get_tree().root.set_input_as_handled()
 
 func select_tool(index: int) -> void:
-	if index == currentTool:
+	if index == current_tool:
 		return
 	
 	if index >= 0:
 		tools[index].enable_tool()
-	if currentTool >= 0:
-		tools[currentTool].disable_tool()
+	if current_tool >= 0:
+		tools[current_tool].disable_tool()
 	
-	currentTool = index
+	current_tool = index
+
+
+func on_load_pressed() -> void:
+	save_dialogue.request_file()
+	var filepath = await save_dialogue.file_submitted
+	if filepath != "" and filepath != null:
+		load_from_disk(filepath)
+
 
 func save_current_level() -> void:
 	if current_filepath != "":
@@ -118,5 +142,5 @@ func load_from_disk(path: StringName) -> void:
 
 func save_to_disk(path: StringName) -> void:
 	for t in tools:
-		t.save_data(current_level)
+		t.save_data()#current_level)
 	current_level.saveToFile(path)

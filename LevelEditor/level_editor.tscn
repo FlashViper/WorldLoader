@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://be6p2b4dpcsqv"]
+[gd_scene load_steps=10 format=3 uid="uid://b1lqit10myvas"]
 
 [ext_resource type="Script" path="res://LevelEditor/level_editor.gd" id="1_rftmc"]
 [ext_resource type="Script" path="res://LevelEditor/bitmap_display.gd" id="2_rn0j1"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" path="res://Core/Utility/quick_save.tscn" id="3_kpfif"]
 [ext_resource type="Script" path="res://LevelEditor/Tools/tool_decoration.gd" id="4_jexmw"]
 [ext_resource type="Script" path="res://LevelEditor/Tools/tool_tilemap.gd" id="4_sw583"]
+[ext_resource type="Script" path="res://Core/Camera/drag_camera.gd" id="7_ac806"]
 
 [sub_resource type="Gradient" id="Gradient_6ke3r"]
 colors = PackedColorArray(1, 1, 1, 0.419608, 1, 1, 1, 1)
@@ -76,3 +77,8 @@ color = Color(0.423529, 0.423529, 0.423529, 1)
 [node name="GUI" type="CanvasLayer" parent="."]
 layer = 10
 script = ExtResource("3_1mnsm")
+
+[node name="Camera" type="Node2D" parent="."]
+process_priority = -1
+script = ExtResource("7_ac806")
+currentZoom = 2.0
