@@ -141,21 +141,27 @@ func collideRect(target: Rect2i, collision: Rect2i, original : Rect2i) -> Rect2i
 	
 	return final
 
+
 func _process(delta: float) -> void:
 	preview.border_width = 5.0 / preview.get_canvas_transform().get_scale().x
+
 
 func are_level_rects_touching(a: Rect2i, b: Rect2i, margin := 1) -> bool:
 	var expanded := a.grow(margin)
 	return expanded.intersects(b)
 
+
 func world_to_grid(world: Vector2) -> Vector2i:
 	return Vector2i(world) / tile_size
+
 
 func world_to_grid_rect(world: Rect2) -> Rect2i:
 	return Rect2i(world_to_grid(world.position), world_to_grid(world.size))
 
+
 func grid_to_world(grid: Vector2i) -> Vector2:
 	return Vector2(grid * tile_size)
+
 
 func grid_to_world_rect(grid: Rect2i) -> Rect2:
 	return Rect2(grid_to_world(grid.position), grid_to_world(grid.size))
