@@ -3,11 +3,14 @@ extends Tool
 @export var levelScene : PackedScene
 @onready var preview : Control = $Preview
 
+
 func _ready() -> void:
 	preview.hide()
 
+
 func initialize() -> void:
 	pass
+
 
 func _shortcut_input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -19,10 +22,12 @@ func _shortcut_input(event: InputEvent) -> void:
 					if FileAccess.file_exists(filename):
 						load_file(filename)
 
+
 func load_file(filename: String) -> void:
 	var level := LevelFile.loadFromFile(filename)
 	preview.size = level.size * ProjectManager.tile_size
 	preview.show()
+
 
 func _process(delta: float) -> void:
 	var targetPos := preview.get_global_mouse_position()
