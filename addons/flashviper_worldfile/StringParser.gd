@@ -14,7 +14,7 @@ var regexes := {
 	REGEX_STRING: parse_string,
 }
 
-func attemptParse(value: String) -> Variant:
+func attempt_parse(value: String) -> Variant:
 	for pattern in regexes:
 		var r := RegEx.create_from_string(pattern)
 		var m := r.search(value)

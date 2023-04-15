@@ -51,7 +51,7 @@ static func loadFromFile(path: StringName) -> WorldFile:
 				var potentialValue = str_to_var(strValue)
 				
 				if potentialValue == null:
-					potentialValue = parser.attemptParse(strValue)
+					potentialValue = parser.attempt_parse(strValue)
 				
 				currentLevel.set(propertyValue, potentialValue)
 		else:
