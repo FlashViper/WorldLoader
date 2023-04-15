@@ -8,7 +8,7 @@ var shortcuts : Array[Dictionary] = []
 var current_level : LevelFile
 var current_filepath := ""
 var tools : Array
-var current_tool : int
+var current_tool := -1
 
 var toolbar : Control
 var is_standalone := true
@@ -16,9 +16,10 @@ var is_standalone := true
 
 func _ready() -> void:
 	if is_standalone:
-		CameraManager.activate()
-#		CameraManager.register_target($Camera)
 		current_level = LevelFile.new()
+		
+		CameraManager.activate()
+		CameraManager.position = $Camera.position
 	
 	var save_input := InputEventKey.new()
 	save_input.keycode = KEY_S
@@ -32,6 +33,7 @@ func _ready() -> void:
 	
 	tools.append($Tools/Tilemap)
 	tools.append($Tools/Decoration)
+	tools.append($Tools/Respawn)
 	
 	init_tools()
 	create_toolbar()
@@ -43,6 +45,7 @@ func _ready() -> void:
 func init_tools() -> void:
 	for t in tools:
 		t.level = current_level
+		t.set_active(false)
 
 
 func enable() -> void:
@@ -136,9 +139,9 @@ func load_from_disk(path: StringName) -> void:
 	
 	current_filepath = path
 	
-	var level := LevelFile.loadFromFile(path)
+	current_level = LevelFile.loadFromFile(path)
 	for t in tools:
-		t.load_data(level)
+		t.load_data(current_level)
 
 func save_to_disk(path: StringName) -> void:
 	for t in tools:
