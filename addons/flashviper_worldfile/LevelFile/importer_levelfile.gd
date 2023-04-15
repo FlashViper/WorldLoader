@@ -34,7 +34,7 @@ func _get_preset_name(i) -> String:
 func _get_import_options(path: String, preset_index: int) -> Array[Dictionary]:
 	return [{"name": "my_option", "default_value": false}]
 
-func _import(source_file, save_path, options, platform_variants, gen_files) -> int:
+func _import(source_file: String, save_path: String, options: Dictionary, platform_variants: Array, gen_files: Array) -> Error:
 	if !FileAccess.file_exists(source_file):
 		return FAILED
 		
