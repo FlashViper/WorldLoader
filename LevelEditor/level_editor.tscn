@@ -1,12 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://b1lqit10myvas"]
+[gd_scene load_steps=15 format=3 uid="uid://b1lqit10myvas"]
 
 [ext_resource type="Script" path="res://LevelEditor/level_editor.gd" id="1_rftmc"]
 [ext_resource type="Script" path="res://LevelEditor/bitmap_display.gd" id="2_rn0j1"]
 [ext_resource type="Script" path="res://Core/Utility/configurable_canvas.gd" id="3_1mnsm"]
-[ext_resource type="PackedScene" path="res://Core/Utility/quick_save.tscn" id="3_kpfif"]
+[ext_resource type="PackedScene" uid="uid://cyj7h7k16br31" path="res://Core/Utility/quick_save.tscn" id="3_kpfif"]
 [ext_resource type="Script" path="res://LevelEditor/Tools/tool_decoration.gd" id="4_jexmw"]
 [ext_resource type="Script" path="res://LevelEditor/Tools/tool_tilemap.gd" id="4_sw583"]
+[ext_resource type="Script" path="res://LevelEditor/Depth/depth_scene_2d.gd" id="5_hktx4"]
+[ext_resource type="Script" path="res://LevelEditor/Depth/depth_2d.gd" id="6_goy7b"]
 [ext_resource type="Script" path="res://Core/Camera/drag_camera.gd" id="7_ac806"]
+[ext_resource type="Script" path="res://LevelEditor/Tool_Respawn.gd" id="7_nd5b6"]
+[ext_resource type="PackedScene" uid="uid://cs7plhqf6crau" path="res://LevelEditor/GUI/inspector_respawn.tscn" id="10_efknq"]
 
 [sub_resource type="Gradient" id="Gradient_6ke3r"]
 colors = PackedColorArray(1, 1, 1, 0.419608, 1, 1, 1, 1)
@@ -17,6 +21,9 @@ width = 16
 height = 16
 fill_from = Vector2(0, 0.926829)
 
+[sub_resource type="Resource" id="Resource_d2wvb"]
+script = ExtResource("6_goy7b")
+
 [node name="LevelEditor" type="Node"]
 script = ExtResource("1_rftmc")
 
@@ -24,6 +31,26 @@ script = ExtResource("1_rftmc")
 
 [node name="Tilemap" type="Node" parent="Tools"]
 script = ExtResource("4_sw583")
+
+[node name="LevelSize" type="ReferenceRect" parent="Tools/Tilemap"]
+visible = false
+offset_right = 500.0
+offset_bottom = 351.0
+mouse_filter = 2
+border_color = Color(1, 1, 1, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="TextureRect" type="TextureRect" parent="Tools/Tilemap/LevelSize"]
+modulate = Color(1, 1, 1, 0.211765)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_us502")
 
 [node name="Display" type="Node2D" parent="Tools/Tilemap"]
 script = ExtResource("2_rn0j1")
@@ -34,26 +61,17 @@ border_color = Color(0.780392, 0.780392, 0.780392, 1)
 border_width = 5.0
 editor_only = false
 
-[node name="LevelSize" type="ReferenceRect" parent="Tools/Tilemap"]
-visible = false
-offset_right = 500.0
-offset_bottom = 351.0
-border_color = Color(1, 1, 1, 1)
-border_width = 5.0
-editor_only = false
-
-[node name="TextureRect" type="TextureRect" parent="Tools/Tilemap/LevelSize"]
-modulate = Color(1, 1, 1, 0.596078)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_us502")
-
 [node name="Decoration" type="Node" parent="Tools"]
 script = ExtResource("4_jexmw")
+
+[node name="Root" type="Node2D" parent="Tools/Decoration"]
+script = ExtResource("5_hktx4")
+projection = SubResource("Resource_d2wvb")
+
+[node name="Respawn" type="Node" parent="Tools"]
+script = ExtResource("7_nd5b6")
+
+[node name="Root" type="Node2D" parent="Tools/Respawn"]
 
 [node name="SaveLevel" parent="." instance=ExtResource("3_kpfif")]
 visible = false
@@ -78,7 +96,15 @@ color = Color(0.423529, 0.423529, 0.423529, 1)
 layer = 10
 script = ExtResource("3_1mnsm")
 
+[node name="PointInspector" parent="GUI" instance=ExtResource("10_efknq")]
+unique_name_in_owner = true
+offset_left = 129.0
+offset_top = 717.0
+offset_right = 467.0
+offset_bottom = 1141.0
+
 [node name="Camera" type="Node2D" parent="."]
 process_priority = -1
+position = Vector2(935, 595)
 script = ExtResource("7_ac806")
 currentZoom = 2.0
