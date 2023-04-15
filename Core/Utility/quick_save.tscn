@@ -1,19 +1,22 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://cyj7h7k16br31"]
 
 [ext_resource type="Script" path="res://Core/Utility/quick_file_dialogue.gd" id="1_vgqv4"]
 
 [node name="QuickSave" type="Popup"]
 title = "hello"
 position = Vector2i(250, 250)
-size = Vector2i(800, 500)
+size = Vector2i(775, 175)
 visible = true
 wrap_controls = false
 borderless = false
 script = ExtResource("1_vgqv4")
 
 [node name="Panel" type="PanelContainer" parent="."]
-offset_right = 771.0
-offset_bottom = 163.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 2
@@ -40,7 +43,7 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
-placeholder_text = "File Name"
+placeholder_text = "res://Worlds/<FILE_NAME>.wrld"
 select_all_on_focus = true
 
 [node name="Input_Submit" type="Button" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]

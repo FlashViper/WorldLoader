@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://bnn0a6pc46bj6"]
 
 [ext_resource type="Script" path="res://addons/flashviper_worldfile/LevelFile/Inspector/display_levelfile.gd" id="1_5117f"]
 
@@ -35,7 +35,6 @@ layout_mode = 2
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[XX] [color=darkgray]by[/color] [YY] [color=darkgray]tiles"
-fit_content_height = true
 scroll_active = false
 autowrap_mode = 0
 

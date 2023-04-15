@@ -4,9 +4,5 @@
 
 [resource]
 texture = ExtResource("1_ijl7i")
-margin_left = 12.0
-margin_top = 12.0
-margin_right = 12.0
-margin_bottom = 12.0
 region_rect = Rect2(0, 0, 128, 128)
 modulate_color = Color(0.168627, 0.0901961, 0.156863, 1)
