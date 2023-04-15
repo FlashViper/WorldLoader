@@ -1,12 +1,12 @@
 class_name Tool 
 extends Node
 
-func set_active(enabled: bool) -> void:
-	set_process(enabled)
-	set_physics_process(enabled)
-	set_process_shortcut_input(enabled)
-	set_process_unhandled_input(enabled)
-	set_process_unhandled_key_input(enabled)
+func set_active(new: bool) -> void:
+	set_process(new)
+	set_physics_process(new)
+	set_process_shortcut_input(new)
+	set_process_unhandled_input(new)
+	set_process_unhandled_key_input(new)
 
 func enable_tool() -> void:
 	set_active(true)
