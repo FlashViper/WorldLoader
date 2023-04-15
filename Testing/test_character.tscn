@@ -15,6 +15,12 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.move_toward(Vector2.ZERO, SPEED * 6 * delta)
 
 	move_and_slide()
+
+
+func snap_to_ground(max_dist := 100) -> void:
+	var data := move_and_collide(Vector2.DOWN * max_dist, true)
+	if data:
+		position += data.get_travel()
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vy031"]
@@ -30,5 +36,4 @@ texture = ExtResource("1_53ba4")
 shape = SubResource("CircleShape2D_vy031")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-current = true
 position_smoothing_enabled = true
