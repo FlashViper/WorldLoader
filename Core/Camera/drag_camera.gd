@@ -38,12 +38,12 @@ func _input(event: InputEvent) -> void:
 			else:
 #				cameraScale += dir.y * get_process_delta_time()
 #				camera.zoom * Math.pow(2, e.deltaY * -0.01)
-				var new_zoom := zoom * (2 ** (-dir.y * 0.01))
+				var new_zoom := zoom * (2 ** (-dir.y * 0.05))
 				new_zoom = clampf(new_zoom, min_zoom, max_zoom)
 				
 #				var deltaPos := get_local_mouse_position()
 #				position += deltaPos / zoom - deltaPos / new_zoom
-#				zoom = new_zoom
+				zoom = new_zoom
 		else:
 			if event.button_index == MOUSE_BUTTON_LEFT and Input.is_key_pressed(KEY_SPACE):
 				get_tree().root.set_input_as_handled()
