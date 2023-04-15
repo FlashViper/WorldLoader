@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmbvyx45up4ih"]
+
+[ext_resource type="Theme" uid="uid://c55ghvb4khtdh" path="res://GUI/Theme/theme_default.tres" id="1_rmf2h"]
+[ext_resource type="Script" path="res://LevelEditor/GUI/point_inspector.gd" id="2_dmlav"]
+[ext_resource type="Texture2D" uid="uid://c3jggn4e1x3yo" path="res://GUI/Icons/Main/icon_main_draghandle.tres" id="3_1gp3n"]
+
+[node name="PointInspector" type="PanelContainer"]
+offset_top = 3.0
+offset_right = 338.0
+offset_bottom = 427.0
+theme = ExtResource("1_rmf2h")
+script = ExtResource("2_dmlav")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="DragHandle" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+modulate = Color(0.882353, 0.588235, 1, 1)
+layout_mode = 2
+texture = ExtResource("3_1gp3n")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Inspect Point"
+horizontal_alignment = 1
+
+[node name="NameEdit" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Jeremy_Jellyfish"
+alignment = 1
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PosX" type="SpinBox" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+allow_greater = true
+allow_lesser = true
+alignment = 1
+prefix = "x:"
+suffix = "px"
+
+[node name="PosY" type="SpinBox" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+allow_greater = true
+allow_lesser = true
+alignment = 1
+prefix = "y:"
+suffix = "px"
