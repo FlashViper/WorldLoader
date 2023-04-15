@@ -32,12 +32,13 @@ func initialize() -> void:
 
 func enabled() -> void:
 	$LevelSize.show()
+	$LevelSize.size = level.size * ProjectManager.tile_size
 	cursor.show()
 
 
 func disabled() -> void:
 	cursor.hide()
-	$LevelSize.hide()
+#	$LevelSize.hide()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -82,6 +83,7 @@ func load_data(p_level: LevelFile) -> void:
 		level = p_level
 	
 	level_size = level.size
+	tilemap.clear()
 	tilemap.set_data_in_rect(Rect2i(Vector2i(), level_size), level.tileData)
 
 
