@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://2hlopmp8u5mf"]
 
 [ext_resource type="Script" path="res://WorldEditor/world_editor.gd" id="1_6wi7m"]
-[ext_resource type="PackedScene" uid="uid://daykvwcmpcyvw" path="res://LevelEditor/GUI/tool_selector.tscn" id="2_cvst2"]
+[ext_resource type="PackedScene" path="res://LevelEditor/GUI/tool_selector.tscn" id="2_cvst2"]
 [ext_resource type="Script" path="res://WorldEditor/Tools/Tool_LevelArranger.gd" id="3_65jfo"]
 [ext_resource type="Script" path="res://WorldEditor/Tools/Tool_LevelStamper.gd" id="3_dxg5v"]
 [ext_resource type="PackedScene" uid="uid://cyj7h7k16br31" path="res://Core/Utility/quick_save.tscn" id="3_ganl3"]

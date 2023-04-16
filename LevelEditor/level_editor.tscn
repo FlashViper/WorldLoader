@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://LevelEditor/Depth/depth_2d.gd" id="6_goy7b"]
 [ext_resource type="Script" path="res://Core/Camera/drag_camera.gd" id="7_ac806"]
 [ext_resource type="Script" path="res://LevelEditor/Tool_Respawn.gd" id="7_nd5b6"]
-[ext_resource type="PackedScene" uid="uid://cs7plhqf6crau" path="res://LevelEditor/GUI/inspector_respawn.tscn" id="10_efknq"]
+[ext_resource type="PackedScene" uid="uid://cmbvyx45up4ih" path="res://LevelEditor/GUI/inspector_respawn.tscn" id="10_efknq"]
 
 [sub_resource type="Gradient" id="Gradient_6ke3r"]
 colors = PackedColorArray(1, 1, 1, 0.419608, 1, 1, 1, 1)
