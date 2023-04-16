@@ -30,6 +30,7 @@ enum {
 @export var entities : Dictionary
 @export var deco_textures : Array[String]
 @export var decoration : Array[Dictionary]
+@export var world_settings : WorldSettings
 
 
 func _init() -> void:

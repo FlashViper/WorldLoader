@@ -18,6 +18,7 @@ var tile_size := 64
 
 @onready var minimum_screen_size : Vector2i = screen_size_px / tile_size
 
+
 func initialize() -> void:
 	project_path = ""
 	
@@ -26,6 +27,7 @@ func initialize() -> void:
 	tile_size = 64
 	world_files = []
 
+
 func load_from_file(path: String) -> void:
 	var f := FileAccess.open(path, FileAccess.READ)
 	var text := f.get_as_text()
@@ -33,8 +35,10 @@ func load_from_file(path: String) -> void:
 	for j in json_data:
 		set(j, json_data[j])
 
+
 func convert_path(path_i: String) -> String:
 	return path_i.replace("proj:/", project_directory)
+
 
 func save_to_file() -> void:
 	var data := inst_to_dict(self)
@@ -44,11 +48,14 @@ func save_to_file() -> void:
 	var f := FileAccess.open(project_path, FileAccess.WRITE)
 	f.store_string(JSON.stringify(data, "\t"))
 
+
 func get_current_project_path() -> String:
 	return project_path.get_base_dir()
 
+
 func has_world(path: String) -> bool:
 	return world_files.has(path)
+
 
 func add_world_path(path: String) -> void:
 	world_files.append(path)
