@@ -18,7 +18,7 @@ func _ready() -> void:
 	
 	name_edit.text_submitted.connect(
 		func():
-			name_edit.deselect()
+			name_edit.release_focus()
 	)
 	
 	pos_x.value_changed.connect(
@@ -41,4 +41,4 @@ func initialize(p_name: String, p_position: Vector2) -> void:
 
 
 func deselect() -> void:
-	name_edit.deselect()
+	name_edit.release_focus()
