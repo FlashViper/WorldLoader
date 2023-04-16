@@ -76,4 +76,4 @@ func save_to_disk(path: StringName) -> void:
 	for t in tools:
 		if t.has_method("save_data"):
 			world.save_data(world)
-	world.saveToFile(ProjectManager.convert_path(path))
+	world.save_to_file(ProjectManager.convert_path(path))

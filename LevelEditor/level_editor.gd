@@ -146,4 +146,4 @@ func load_from_disk(path: StringName) -> void:
 func save_to_disk(path: StringName) -> void:
 	for t in tools:
 		t.save_data()#current_level)
-	current_level.saveToFile(path)
+	current_level.save_to_file(path)

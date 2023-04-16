@@ -95,7 +95,6 @@ static func loadFromFile(path: StringName) -> LevelFile:
 						prints(m.get_string(2), position)
 						if position is Vector2:
 							l.respawn_points[m.get_string(1)] = position
-				print(l.respawn_points)
 				
 	while f.get_position() < f.get_length():
 		var id := f.get_8() # pull one byte from the file to tell us what to parse next
@@ -116,7 +115,8 @@ static func loadFromFile(path: StringName) -> LevelFile:
 	
 	return l
 
-func saveToFile(path: StringName) -> void:
+
+func save_to_file(path: StringName) -> void:
 	const HEADER := &"FlashViper WorldFile\nVersion %s\n"
 	const PROPERTY_TAG := &"%s: %s"
 	

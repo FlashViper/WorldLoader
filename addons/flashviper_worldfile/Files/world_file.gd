@@ -64,7 +64,7 @@ static func loadFromFile(path: StringName) -> WorldFile:
 	
 	return w
 
-func saveToFile(path: StringName) -> void:
+func save_to_file(path: StringName) -> void:
 	const VERSION_TAG := &"FlashViper WorldFile\nVersion %s"
 	const PROPERTY_TAG := &"%s: %s"
 	const LEVEL_TAG := &"Level %02d:"
