@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WorldSettings" load_steps=2 format=3 uid="uid://b0o8mus5i10g3"]
+
+[ext_resource type="Script" path="res://addons/flashviper_worldfile/world_project.gd" id="1_hjako"]
+
+[resource]
+script = ExtResource("1_hjako")
+project_name = &"Epic Project"
+description = ""
+world_files = Array[String]([])
+tile_size = 64
+screen_size_px = Vector2i(1920, 1080)
