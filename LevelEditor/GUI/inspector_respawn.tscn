@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmbvyx45up4ih"]
+[gd_scene load_steps=5 format=3 uid="uid://cmbvyx45up4ih"]
 
 [ext_resource type="Theme" uid="uid://c55ghvb4khtdh" path="res://GUI/Theme/theme_default.tres" id="1_rmf2h"]
 [ext_resource type="Script" path="res://LevelEditor/GUI/point_inspector.gd" id="2_dmlav"]
 [ext_resource type="Texture2D" uid="uid://c3jggn4e1x3yo" path="res://GUI/Icons/Main/icon_main_draghandle.tres" id="3_1gp3n"]
+[ext_resource type="Script" path="res://LevelEditor/GUI/drag_handle.gd" id="4_ctn4a"]
 
 [node name="PointInspector" type="PanelContainer"]
 offset_top = 3.0
@@ -22,10 +23,12 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 
 [node name="DragHandle" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 modulate = Color(0.882353, 0.588235, 1, 1)
 layout_mode = 2
 texture = ExtResource("3_1gp3n")
 stretch_mode = 5
+script = ExtResource("4_ctn4a")
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
