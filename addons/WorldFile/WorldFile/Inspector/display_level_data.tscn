@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3]
 
-[ext_resource type="Script" path="res://addons/flashviper_worldfile/WorldFile/Inspector/display_level_data.gd" id="1_u1qg0"]
+[ext_resource type="Script" path="res://addons/WorldFile/WorldFile/Inspector/display_level_data.gd" id="1_u1qg0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0epj8"]
 bg_color = Color(0.262745, 0.262745, 0.262745, 1)

@@ -41,7 +41,7 @@ script/templates_search_path="res://Core/script_templates"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/flashviper_worldfile/plugin.cfg")
+enabled=PackedStringArray("res://addons/WorldFile/plugin.cfg")
 
 [gui]
 

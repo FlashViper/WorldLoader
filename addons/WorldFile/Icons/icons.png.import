@@ -3,22 +3,22 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cyydunghgsuh1"
-path="res://.godot/imported/icons.png-dba40fa924c765f50b3f8cd729bf7950.ctex"
+path="res://.godot/imported/icons.png-84422fd36fd64f621f7805843d47a315.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/flashviper_worldfile/Icons/icons.png"
-dest_files=["res://.godot/imported/icons.png-dba40fa924c765f50b3f8cd729bf7950.ctex"]
+source_file="res://addons/WorldFile/Icons/icons.png"
+dest_files=["res://.godot/imported/icons.png-84422fd36fd64f621f7805843d47a315.ctex"]
 
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false
