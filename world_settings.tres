@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WorldSettings" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="WorldSettings" load_steps=2 format=3 uid="uid://c4j26xip8y4bj"]
 
 [ext_resource type="Script" path="res://addons/WorldFile/world_project.gd" id="1_hjako"]
 
