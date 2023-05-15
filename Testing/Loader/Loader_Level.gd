@@ -1,12 +1,13 @@
 extends Node
 
+@export_file("*.lvl") var level_path : String
 @onready var collision_map := $CollisionMap
 var current_levels : Dictionary
 
 
 func _ready() -> void:
-	collision_map.tileSize = Vector2i.ONE * ProjectManager.tile_size
-	var l := preload("res://Testing/Levels/respawn.lvl")
+	collision_map.tile_size = Vector2i.ONE * ProjectManager.current_project.tile_size
+	var l := load(level_path) as LevelFile
 	
 	print(inst_to_dict(l))
 	loadLevel(l)

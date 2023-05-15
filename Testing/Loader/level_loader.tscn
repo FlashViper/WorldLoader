@@ -1,14 +1,135 @@
-[gd_scene load_steps=4 format=3 uid="uid://borrin3ouod0m"]
+[gd_scene load_steps=5 format=3 uid="uid://borrin3ouod0m"]
 
 [ext_resource type="Script" path="res://Testing/Loader/Loader_Level.gd" id="1_g67o1"]
+[ext_resource type="Texture2D" uid="uid://bi4ru6ub2kn8v" path="res://Testing/images/deco_concept.png" id="2_dika3"]
 [ext_resource type="Script" path="res://Testing/Loader/CollisionMap.gd" id="2_vvefv"]
 [ext_resource type="PackedScene" uid="uid://uw2kxkq75lgn" path="res://Testing/test_character.tscn" id="3_38hi4"]
 
 [node name="LevelLoader" type="Node"]
 script = ExtResource("1_g67o1")
+level_path = "res://Testing/Levels/camp_test.lvl"
+
+[node name="Decoration" type="Node" parent="."]
+
+[node name="Crystal2" type="Sprite2D" parent="Decoration"]
+modulate = Color(0.152941, 0.152941, 0.152941, 1)
+position = Vector2(590, 78)
+rotation = 0.261799
+scale = Vector2(0.780899, 0.695918)
+texture = ExtResource("2_dika3")
+region_enabled = true
+region_rect = Rect2(340, 21, 356, 490)
+
+[node name="Crystal3" type="Sprite2D" parent="Decoration"]
+modulate = Color(0.152941, 0.152941, 0.152941, 1)
+position = Vector2(300, 117)
+rotation = -0.261799
+scale = Vector2(0.660387, 0.528469)
+texture = ExtResource("2_dika3")
+region_enabled = true
+region_rect = Rect2(340, 21, 356, 490)
+
+[node name="Mine" type="Sprite2D" parent="Decoration"]
+modulate = Color(0.466667, 0.466667, 0.466667, 1)
+position = Vector2(312, 231)
+texture = ExtResource("2_dika3")
+region_enabled = true
+region_rect = Rect2(8, 515, 332, 263)
+
+[node name="Mine2" type="Sprite2D" parent="Decoration"]
+modulate = Color(0.466667, 0.466667, 0.466667, 1)
+position = Vector2(521, 209)
+rotation = 0.261799
+texture = ExtResource("2_dika3")
+region_enabled = true
+region_rect = Rect2(8, 515, 332, 263)
+
+[node name="Rock" type="Sprite2D" parent="Decoration"]
+modulate = Color(0.670588, 0.670588, 0.670588, 1)
+position = Vector2(668, 272)
+rotation = 0.261799
+texture = ExtResource("2_dika3")
+region_enabled = true
+region_rect = Rect2(62, 323, 222, 201)
+
+[node name="Rock2" type="Sprite2D" parent="Decoration"]
+modulate = Color(0.670588, 0.670588, 0.670588, 1)
+position = Vector2(684, 188)
+rotation = -0.261799
+texture = ExtResource("2_dika3")
+region_enabled = true
+region_rect = Rect2(62, 323, 222, 201)
+
+[node name="Rock3" type="Sprite2D" parent="Decoration"]
+position = Vector2(285, 345)
+rotation = -0.261799
+texture = ExtResource("2_dika3")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(62, 323, 222, 201)
+
+[node name="Rock4" type="Sprite2D" parent="Decoration"]
+modulate = Color(0.47451, 0.47451, 0.47451, 1)
+position = Vector2(285, 345)
+rotation = -0.261799
+texture = ExtResource("2_dika3")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(62, 323, 222, 201)
+
+[node name="Crystal" type="Sprite2D" parent="Decoration"]
+position = Vector2(390, 220)
+texture = ExtResource("2_dika3")
+region_enabled = true
+region_rect = Rect2(340, 21, 356, 490)
+
+[node name="Thingy2" type="Sprite2D" parent="Decoration"]
+modulate = Color(0.764706, 0.764706, 0.764706, 1)
+position = Vector2(962, 384)
+rotation = 0.523598
+scale = Vector2(1.32391, 1.57524)
+texture = ExtResource("2_dika3")
+region_enabled = true
+region_rect = Rect2(3, 781, 257, 296)
+
+[node name="Thingy" type="Sprite2D" parent="Decoration"]
+modulate = Color(0.764706, 0.764706, 0.764706, 1)
+position = Vector2(767, 478)
+texture = ExtResource("2_dika3")
+region_enabled = true
+region_rect = Rect2(3, 781, 257, 296)
+
+[node name="Rock5" type="Sprite2D" parent="Decoration"]
+position = Vector2(854, 453)
+rotation = -0.261799
+texture = ExtResource("2_dika3")
+region_enabled = true
+region_rect = Rect2(62, 323, 222, 201)
+
+[node name="Crystal4" type="Sprite2D" parent="Decoration"]
+position = Vector2(937, 416)
+scale = Vector2(0.780899, 0.695918)
+texture = ExtResource("2_dika3")
+region_enabled = true
+region_rect = Rect2(340, 21, 356, 490)
+
+[node name="Rock6" type="Sprite2D" parent="Decoration"]
+position = Vector2(1034, 508)
+rotation = -1.309
+scale = Vector2(1.21768, 1.21768)
+texture = ExtResource("2_dika3")
+region_enabled = true
+region_rect = Rect2(62, 323, 222, 201)
+
+[node name="Thingy3" type="Sprite2D" parent="Decoration"]
+position = Vector2(957, 598)
+rotation = 1.309
+texture = ExtResource("2_dika3")
+region_enabled = true
+region_rect = Rect2(3, 781, 257, 296)
 
 [node name="CollisionMap" type="Node2D" parent="."]
 script = ExtResource("2_vvefv")
 
 [node name="TestCharacter" parent="." instance=ExtResource("3_38hi4")]
-position = Vector2(535, 354)
+position = Vector2(305, 682)
