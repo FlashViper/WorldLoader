@@ -3,7 +3,7 @@ extends Node2D
 
 const ID_INVALID := 0
 
-@export var tileSize := Vector2(64, 64)
+@export var tile_size := Vector2(64, 64)
 @export var color := Color8(0,0,0)
 #@export var chunkSize := Vector2i(16, 16)
 
@@ -16,11 +16,11 @@ func _ready() -> void:
 	body = StaticBody2D.new()
 	add_child(body)
 	shape = RectangleShape2D.new()
-	shape.size = tileSize
+	shape.size = tile_size
 
 func _draw() -> void:
 	for t in tiles:
-		draw_rect(Rect2(Vector2(t) * tileSize, tileSize), color)
+		draw_rect(Rect2(Vector2(t) * tile_size, tile_size), color)
 
 func load_collision_at_position(level: LevelFile, pos: Vector2i) -> void:
 	var index := 0
@@ -49,7 +49,7 @@ func add_tile(x: int, y: int, id: int) -> void:
 		Transform2D(
 			Vector2(1, 0),
 			Vector2(0, 1),
-			(Vector2(pos) + Vector2(0.5, 0.5)) * tileSize
+			(Vector2(pos) + Vector2(0.5, 0.5)) * tile_size
 		)
 	)
 	
