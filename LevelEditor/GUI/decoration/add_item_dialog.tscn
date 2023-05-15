@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://nhikg4e7ohta"]
+
+[ext_resource type="Script" path="res://LevelEditor/GUI/decoration/add_item_dialog.gd" id="1_atqyh"]
+[ext_resource type="PackedScene" uid="uid://cck7meappbsvt" path="res://LevelEditor/GUI/decoration/add_image.tscn" id="2_bfaba"]
+[ext_resource type="PackedScene" uid="uid://dvl5exy52fhok" path="res://LevelEditor/GUI/decoration/add_region.tscn" id="3_ge3yc"]
+
+[node name="AddItemDialog" type="VBoxContainer"]
+script = ExtResource("1_atqyh")
+
+[node name="Type" type="OptionButton" parent="."]
+layout_mode = 2
+item_count = 3
+selected = 0
+popup/item_0/text = "Image"
+popup/item_0/id = 0
+popup/item_1/text = "Image from Atlas"
+popup/item_1/id = 1
+popup/item_2/text = "Scene"
+popup/item_2/id = 2
+
+[node name="AddDialogRoot" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="AddImage" parent="AddDialogRoot" instance=ExtResource("2_bfaba")]
+layout_mode = 2
+
+[node name="AddRegion" parent="AddDialogRoot" instance=ExtResource("3_ge3yc")]
+visible = false
+layout_mode = 2
