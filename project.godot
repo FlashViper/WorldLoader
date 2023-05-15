@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="World Loader"
-run/main_scene="res://Core/Initializer.tscn"
+run/main_scene="res://Core/ProjectManager/project_selector.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="FlashViper/WorldEditor"
 config/features=PackedStringArray("4.0", "Mobile")

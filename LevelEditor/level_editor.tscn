@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://b1lqit10myvas"]
+[gd_scene load_steps=17 format=3 uid="uid://g33lj4q3tgo2"]
 
 [ext_resource type="Script" path="res://LevelEditor/level_editor.gd" id="1_rftmc"]
 [ext_resource type="Script" path="res://LevelEditor/bitmap_display.gd" id="2_rn0j1"]
 [ext_resource type="Script" path="res://Core/Utility/configurable_canvas.gd" id="3_1mnsm"]
+[ext_resource type="Script" path="res://WorldEditor/level_placeholder.gd" id="3_feqsu"]
 [ext_resource type="PackedScene" uid="uid://cyj7h7k16br31" path="res://Core/Utility/quick_save.tscn" id="3_kpfif"]
 [ext_resource type="Script" path="res://LevelEditor/Tools/tool_decoration.gd" id="4_jexmw"]
 [ext_resource type="Script" path="res://LevelEditor/Tools/tool_tilemap.gd" id="4_sw583"]
@@ -10,7 +11,8 @@
 [ext_resource type="Script" path="res://LevelEditor/Depth/depth_2d.gd" id="6_goy7b"]
 [ext_resource type="Script" path="res://Core/Camera/drag_camera.gd" id="7_ac806"]
 [ext_resource type="Script" path="res://LevelEditor/Tool_Respawn.gd" id="7_nd5b6"]
-[ext_resource type="PackedScene" uid="uid://cmbvyx45up4ih" path="res://LevelEditor/GUI/inspector_respawn.tscn" id="10_efknq"]
+[ext_resource type="PackedScene" path="res://LevelEditor/GUI/inspector_respawn.tscn" id="10_efknq"]
+[ext_resource type="PackedScene" uid="uid://cmmwvd3558inp" path="res://LevelEditor/GUI/decoration/palate_inspector.tscn" id="11_xrui6"]
 
 [sub_resource type="Gradient" id="Gradient_6ke3r"]
 colors = PackedColorArray(1, 1, 1, 0.419608, 1, 1, 1, 1)
@@ -33,13 +35,15 @@ script = ExtResource("1_rftmc")
 script = ExtResource("4_sw583")
 
 [node name="LevelSize" type="ReferenceRect" parent="Tools/Tilemap"]
-visible = false
 offset_right = 500.0
 offset_bottom = 351.0
 mouse_filter = 2
 border_color = Color(1, 1, 1, 1)
 border_width = 5.0
 editor_only = false
+script = ExtResource("3_feqsu")
+padding = 10
+handle_drag_rect = false
 
 [node name="TextureRect" type="TextureRect" parent="Tools/Tilemap/LevelSize"]
 modulate = Color(1, 1, 1, 0.211765)
@@ -75,7 +79,7 @@ script = ExtResource("7_nd5b6")
 
 [node name="SaveLevel" parent="." instance=ExtResource("3_kpfif")]
 visible = false
-base_dir = &"res://Testing/Levels/%s.lvl"
+base_dir = &"proj://Levels/%s.lvl"
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -100
@@ -98,10 +102,14 @@ script = ExtResource("3_1mnsm")
 
 [node name="PointInspector" parent="GUI" instance=ExtResource("10_efknq")]
 unique_name_in_owner = true
-offset_left = 129.0
-offset_top = 717.0
-offset_right = 467.0
-offset_bottom = 1141.0
+visible = false
+offset_left = 57.0
+offset_top = 682.0
+offset_right = 395.0
+offset_bottom = 1106.0
+
+[node name="PalateInspector" parent="GUI" instance=ExtResource("11_xrui6")]
+visible = false
 
 [node name="Camera" type="Node2D" parent="."]
 process_priority = -1

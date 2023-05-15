@@ -3,6 +3,7 @@ extends Tool
 @onready var root: Node2D = $Root
 
 var level : LevelFile
+var decoration : Array[DecoObject]
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -15,14 +16,19 @@ func _unhandled_input(event: InputEvent) -> void:
 				var transform := Transform2D(
 					angle, scale, 0.0, mouse_pos
 				)
-				place_image(preload("res://icon.svg"), transform, randf_range(-300, 300))
+				
+				var obj := DecoImage.create_from_texture(
+					preload("res://icon.svg")
+				)
+				
+				obj.transform = transform
+				obj.depth = randf_range(-300, 300)
+				place_object(obj)
 
 
-func place_image(img: Texture2D, transform: Transform2D, depth := 0.0) -> void:
-	var sprite := Sprite2D.new()
-	sprite.texture = img
-	sprite.transform = transform
-	place_scene(sprite, depth)
+func place_object(obj: DecoObject) -> void:
+	var node := obj._place()
+	place_scene(node, obj.depth)
 
 
 func place_scene(scene: Node2D, depth := 0.0) -> void:
@@ -31,24 +37,25 @@ func place_scene(scene: Node2D, depth := 0.0) -> void:
 
 func save_data() -> void:
 	level.deco_textures = ["res://icon.svg"]
-	var decoration : Array[Dictionary] = []
+	var decoration_data : Array[Dictionary] = []
 	for c in root.get_children():
-		decoration.append({
+		decoration_data.append({
 			"path_index": 0,
 			"transform": c.transform,
 		})
-	level.decoration = decoration
+	level.decoration = decoration_data
 
 
 func load_data(p_level: LevelFile) -> void:
 	if p_level != null:
 		level = p_level
 	
-	for d in level.decoration:
-		var tex := load(level.deco_textures[d["path_index"]]) as Texture2D
-		var transform := d["transform"] as Transform2D
-		
-		place_image(tex, transform)
+	printerr("load_data is not implimented (tool_decoration.gd)")
+#
+#	for d in level.decoration:
+#		var tex := load(level.deco_textures[d["path_index"]]) as Texture2D
+#		var transform := d["transform"] as Transform2D
+#		place_image(tex, transform)
 
 
 func get_icon() -> Texture2D:
