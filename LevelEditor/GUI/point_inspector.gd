@@ -11,10 +11,7 @@ var current_pos: Vector2
 
 
 func _ready() -> void:
-	%DragHandle.dragged.connect(
-		func(delta: Vector2):
-			position += delta
-	)
+	%DragHandle.add_object(self)
 	
 	name_edit.text_changed.connect(
 		func(new: String):
