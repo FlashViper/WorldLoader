@@ -1,10 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cia71w1crsalg"]
 
+[ext_resource type="StyleBox" uid="uid://dmw8x0iff3wkl" path="res://GUI/Theme/stylebox_scroll_container.tres" id="1_1g4wa"]
 [ext_resource type="Texture2D" uid="uid://btr7bub1f28v4" path="res://GUI/Icons/ProjectManager/icon_projectmanager_open.tres" id="1_jko44"]
 [ext_resource type="Script" path="res://Core/ProjectManager/new_project_dialogue.gd" id="1_o5u7t"]
 [ext_resource type="Script" path="res://GUI/button_texture.gd" id="2_oj0ua"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_18d8i"]
 
 [node name="NewProjectDialogue" type="PanelContainer"]
 anchors_preset = 15
@@ -12,71 +11,55 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_18d8i")
+theme_override_styles/panel = ExtResource("1_1g4wa")
 script = ExtResource("1_o5u7t")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 2048.0
-offset_bottom = 1152.0
+layout_mode = 2
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-offset_left = 25.0
-offset_top = 25.0
-offset_right = 2023.0
-offset_bottom = 1127.0
+layout_mode = 2
 
 [node name="Header" type="Label" parent="MarginContainer/VBoxContainer"]
-offset_right = 1998.0
-offset_bottom = 89.0
+layout_mode = 2
 theme_override_font_sizes/font_size = 60
 text = "Create New Project"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-offset_top = 97.0
-offset_right = 1998.0
-offset_bottom = 176.0
+layout_mode = 2
 alignment = 1
 
 [node name="Name" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
 unique_name_in_owner = true
-offset_right = 1683.0
-offset_bottom = 79.0
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 45
 placeholder_text = "Project Name"
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
-offset_left = 1691.0
-offset_top = 14.0
-offset_right = 1822.0
-offset_bottom = 65.0
+layout_mode = 2
 text = "Tile Size:"
 
 [node name="TileSize" type="SpinBox" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
 unique_name_in_owner = true
-offset_left = 1830.0
-offset_right = 1998.0
-offset_bottom = 79.0
+layout_mode = 2
 min_value = 1.0
 max_value = 1024.0
 value = 64.0
 suffix = "px"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-offset_top = 184.0
-offset_right = 1998.0
-offset_bottom = 255.0
+layout_mode = 2
 
 [node name="Path" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
-offset_right = 1926.0
-offset_bottom = 71.0
+layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 40
 placeholder_text = "Project Filepath"
@@ -84,40 +67,30 @@ placeholder_text = "Project Filepath"
 [node name="PathDialogue" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(64, 64)
-offset_left = 1934.0
-offset_right = 1998.0
-offset_bottom = 71.0
+layout_mode = 2
 texture = ExtResource("1_jko44")
-ignore_texture_size = true
+expand_mode = 1
 stretch_mode = 5
 script = ExtResource("2_oj0ua")
 
 [node name="Description" type="TextEdit" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 300)
-offset_top = 263.0
-offset_right = 1998.0
-offset_bottom = 1033.0
+layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 35
 placeholder_text = "Project Description"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-offset_top = 1041.0
-offset_right = 1998.0
-offset_bottom = 1102.0
+layout_mode = 2
 alignment = 1
 
 [node name="Cancel" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
-offset_left = 877.0
-offset_right = 995.0
-offset_bottom = 61.0
+layout_mode = 2
 text = "Cancel"
 
 [node name="Create" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
-offset_left = 1003.0
-offset_right = 1121.0
-offset_bottom = 61.0
+layout_mode = 2
 text = "Create"

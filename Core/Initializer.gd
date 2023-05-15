@@ -10,9 +10,9 @@ func _ready() -> void:
 			get_tree().change_scene_to_packed(project_selector)
 		["-o", var path, ..]:
 			if !(path is String):
-				continue
+				return
 			if !FileAccess.file_exists(path):
-				continue
+				return
 			
 			ProjectManager.load_from_file(path)
 			get_tree().change_scene_to_packed(project_overview)

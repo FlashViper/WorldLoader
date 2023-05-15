@@ -2,60 +2,50 @@ extends Node
 
 const PROJECT_LIST := "user://project_list.txt"
 
-var project_path : StringName
+var current_project : WorldSettings
+var project_path : String
 var project_directory : String : 
 	get: return get_current_project_path()
 
-var project_name : StringName
-var description : String
-var world_files : Array[String]
-var tile_size := 64
 
-@onready var screen_size_px := Vector2i(
-	ProjectSettings.get_setting("display/window/size/viewport_width"),
-	ProjectSettings.get_setting("display/window/size/viewport_height")
-)
-
-@onready var minimum_screen_size : Vector2i = screen_size_px / tile_size
+func _get(property: StringName):
+	if current_project:
+		if property in current_project:
+			return current_project.get(property)
 
 
-func initialize() -> void:
-	project_path = ""
+func _get_property_list() -> Array:
+	if current_project:
+		return current_project.get_property_list()
 	
-	project_name = "Untitled Project"
-	description = ""
-	tile_size = 64
-	world_files = []
+	return []
+
+
+func _enter_tree() -> void:
+	create_new("")
+	current_project.screen_size_px = Vector2i(1920, 1080)
+
+
+func create_new(path: String) -> void:
+	project_path = path
+	
+	current_project = WorldSettings.new()
+	current_project.project_name = "Untitled Project"
+	
 
 
 func load_from_file(path: String) -> void:
-	var f := FileAccess.open(path, FileAccess.READ)
-	var text := f.get_as_text()
-	var json_data = JSON.parse_string(text)
-	for j in json_data:
-		set(j, json_data[j])
-
-
-func convert_path(path_i: String) -> String:
-	return path_i.replace("proj:/", project_directory)
+	project_path = path
+	current_project = ResourceLoader.load(project_path)
 
 
 func save_to_file() -> void:
-	var data := inst_to_dict(self)
-	for s in ["@path", "@subpath"]:
-		data.erase(s)
-	
-	var f := FileAccess.open(project_path, FileAccess.WRITE)
-	f.store_string(JSON.stringify(data, "\t"))
+	ResourceSaver.save(current_project, convert_path(project_path))
+
+
+func convert_path(path_in: String) -> String:
+	return path_in.replace("proj:/", project_directory)
 
 
 func get_current_project_path() -> String:
 	return project_path.get_base_dir()
-
-
-func has_world(path: String) -> bool:
-	return world_files.has(path)
-
-
-func add_world_path(path: String) -> void:
-	world_files.append(path)

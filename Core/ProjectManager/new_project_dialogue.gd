@@ -30,18 +30,19 @@ func open_file_dialogue() -> void:
 	var file_dialogue := FileDialog.new()
 	file_dialogue.access = FileDialog.ACCESS_FILESYSTEM
 	file_dialogue.show_hidden_files = false
+	
 	if OS.has_environment("USERNAME"):
 		var current_path := "C:/Users/" + OS.get_environment("USERNAME")
 		if DirAccess.dir_exists_absolute(current_path + "/Documents"):
 			file_dialogue.current_dir = current_path + "/Documents"
 		else:
 			file_dialogue.current_dir = current_path
-	file_dialogue.add_filter("*.project, *.prj", "Project File")
-	file_dialogue.file_mode = FileDialog.FILE_MODE_OPEN_FILE
+	file_dialogue.add_filter("*.tres, *.res", "Project File")
+	file_dialogue.file_mode = FileDialog.FILE_MODE_SAVE_FILE
 	
 	file_dialogue.file_selected.connect(on_file_recieved)
 	file_dialogue.file_selected.connect(file_dialogue.queue_free)
-	file_dialogue.cancelled.connect(file_dialogue.queue_free)
+	file_dialogue.canceled.connect(file_dialogue.queue_free)
 	
 	get_tree().root.add_child(file_dialogue)
 	file_dialogue.popup_centered(Vector2i(1920, 1080))

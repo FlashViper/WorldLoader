@@ -35,6 +35,7 @@ signal file_submitted(filename: String)
 
 var just_submitted : bool
 
+
 func _ready() -> void:
 	input_text.text = input_default_line
 	input_text.placeholder_text = base_dir % "<FILE_NAME>"
@@ -48,6 +49,7 @@ func _ready() -> void:
 	input_text.text_submitted.connect(self.submit)
 	popup_hide.connect(self.rejected)
 
+
 func request_file() -> void:
 	if Engine.is_editor_hint():
 		return
@@ -55,16 +57,19 @@ func request_file() -> void:
 	popup_centered()
 	input_text.grab_focus()
 
+
 func submit(text: String) -> void:
 	if Engine.is_editor_hint():
 		return
 	
 	if input_create_folders.button_pressed:
-		DirAccess.make_dir_recursive_absolute(base_dir.get_base_dir())
+		var dir_full := ProjectManager.convert_path(base_dir.get_base_dir())
+		DirAccess.make_dir_recursive_absolute(dir_full)
 	
 	file_submitted.emit(base_dir % text)
 	just_submitted = true
 	hide()
+
 
 func rejected() -> void:
 	if Engine.is_editor_hint():
