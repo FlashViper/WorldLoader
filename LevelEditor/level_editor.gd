@@ -1,5 +1,7 @@
 extends Node
 
+@export var is_standalone := true
+
 @onready var save_dialogue := $SaveLevel
 @onready var canvas : ConfigurableCanvas = $GUI
 
@@ -11,7 +13,6 @@ var tools : Array
 var current_tool := -1
 
 var toolbar : Control
-var is_standalone := true
 #var level_inspector [TODO]
 
 func _enter_tree() -> void:
@@ -24,6 +25,7 @@ func _enter_tree() -> void:
 		
 		CameraManager.activate()
 		CameraManager.position = $Camera.position
+
 
 func _ready() -> void:
 	var save_input := InputEventKey.new()
