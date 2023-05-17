@@ -18,28 +18,29 @@ var map_id := {
 	MOUSE_BUTTON_RIGHT: 0,
 }
 
+func _ready() -> void:
+	level_size.rect_changed.connect(update_level_bounds)
+	level_size.rect_edit_finished.connect(on_bounds_submitted)
+
 
 func initialize() -> void:
 	editor.tilemap = tilemap
 	editor.root_pos = Vector2i()
 	
+	cursor.size = Vector2.ONE * level.world_settings.tile_size
 	root_pos = Vector2i()
 	tilemap.tile_size = level.world_settings.tile_size
-	cursor.size = Vector2.ONE * level.world_settings.tile_size
 	tilemap.clear()
 	
-	level_size.rect_changed.connect(update_level_bounds)
 	init_bounds()
 
 
 func enabled() -> void:
-	level_size.show()
 	cursor.show()
 
 
 func disabled() -> void:
 	cursor.hide()
-#	level_size.hide()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -94,6 +95,10 @@ func update_level_bounds(new_bounds: Rect2i, old_bounds: Rect2i) -> void:
 	level_size.update_transform()
 	
 	editor.root_pos = new_bounds.position
+
+
+func on_bounds_submitted() -> void:
+	tilemap.crop_to_rect(level_size.rect)
 
 
 func _process(delta: float) -> void:

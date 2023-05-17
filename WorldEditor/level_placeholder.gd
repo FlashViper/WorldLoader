@@ -3,6 +3,7 @@ extends ReferenceRect
 
 signal rect_changed(new: Rect2i, old: Rect2i)
 signal clicked
+signal rect_edit_finished
 
 const WorldEditor := preload("./world_editor.gd")
 enum {MOVE_RECT, CHANGE_SIZE, CURSOR}
@@ -37,7 +38,6 @@ const HANDLES : Array[Dictionary] = [
 var rect : Rect2i :
 	set(new):
 		rect = new
-#		edited_rect = Rect2(new.position * tile_size, new.size * tile_size)
 var edited_rect : Rect2
 
 var drag_mode : int
@@ -115,6 +115,7 @@ func on_handle_input(event: InputEvent, index: int) -> void:
 				clicked.emit()
 			else:
 				edited_rect = snap_rect(rect)
+				rect_edit_finished.emit()
 			
 			handle_objects[index].accept_event()
 	

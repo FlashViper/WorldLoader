@@ -78,6 +78,19 @@ func set_data_in_rect(rect: Rect2i, data: PackedByteArray) -> void:
 	
 	queue_redraw()
 
+
+func crop_to_rect(rect: Rect2i) -> void:
+	var to_erase : Array[Vector2i] = []
+	for t in tile_data:
+		if !rect.has_point(t):
+			to_erase.append(t)
+	
+	for t in to_erase:
+		tile_data.erase(t)
+	
+	queue_redraw()
+
+
 func snap_to_grid(world: Vector2) -> Vector2:
 	return tile_to_world(world_to_tile(world))
 
