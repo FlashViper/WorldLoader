@@ -22,8 +22,10 @@ func _get_property_list() -> Array:
 
 
 func _enter_tree() -> void:
-	create_new("")
-	current_project.screen_size_px = Vector2i(1920, 1080)
+#	create_new("")
+	project_path = "C:/Users/ellio/Godot/Projects/Prototypes/metroidvania/assets/project_test.tres"
+	current_project = load(project_path)
+#	current_project.screen_size_px = Vector2i(1920, 1080)
 
 
 func create_new(path: String) -> void:
