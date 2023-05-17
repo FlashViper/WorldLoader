@@ -4,6 +4,7 @@ const TileMapSimple := preload("../bitmap_display.gd")
 
 @onready var tilemap : TileMapSimple = $Display
 @onready var cursor : Control = $Cursor
+@onready var level_size: ReferenceRect = $LevelSize
 
 var root_pos : Vector2i
 var canvas : ConfigurableCanvas
@@ -23,21 +24,17 @@ func initialize() -> void:
 	cursor.size = Vector2.ONE * level.world_settings.tile_size
 	tilemap.clear()
 	
-	$LevelSize.rect_changed.connect(update_level_bounds)
+	level_size.rect_changed.connect(update_level_bounds)
 
 
 func enabled() -> void:
-	$LevelSize.show()
-	$LevelSize.tile_size = Vector2i.ONE * level.world_settings.tile_size
-	$LevelSize.rect.size = level.size
-	$LevelSize.edited_rect.size = Vector2(level.size * level.world_settings.tile_size)
-	$LevelSize.update_transform()
+	level_size.show()
 	cursor.show()
 
 
 func disabled() -> void:
 	cursor.hide()
-#	$LevelSize.hide()
+#	level_size.hide()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -89,7 +86,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func update_level_bounds(new_bounds: Rect2i, old_bounds: Rect2i) -> void:
 	root_pos = new_bounds.position
 	level.size = new_bounds.size
-	$LevelSize.update_transform()
+	level_size.update_transform()
 
 
 func _process(delta: float) -> void:
@@ -113,6 +110,11 @@ func load_data(p_level: LevelFile) -> void:
 	
 	tilemap.clear()
 	tilemap.set_data_in_rect(Rect2i(root_pos, level.size), level.tileData)
+	
+	level_size.tile_size = Vector2i.ONE * level.world_settings.tile_size
+	level_size.rect.size = level.size
+	level_size.edited_rect.size = Vector2(level.size * level.world_settings.tile_size)
+	level_size.update_transform()
 
 
 func get_icon() -> Texture2D:
