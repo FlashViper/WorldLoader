@@ -32,14 +32,18 @@ const HANDLES : Array[Dictionary] = [
 @export var handle_drag_rect := true
 
 @export_group("")
-@export var debugShapes := false
+@export var debug_shapes := false
 
-var rect : Rect2i
-var editedRect : Rect2
+var rect : Rect2i :
+	set(new):
+		rect = new
+#		edited_rect = Rect2(new.position * tile_size, new.size * tile_size)
+var edited_rect : Rect2
 
-var dragMode : int
-var isDragging : bool
-var handleObjects : Array[Control]
+var drag_mode : int
+var is_dragging : bool
+var handle_objects : Array[Control]
+var drag_index := -1
 
 func _ready() -> void:	
 	var exclude : Array[int] = []
@@ -50,7 +54,7 @@ func _ready() -> void:
 	if !handles_multi_axis:
 		exclude.append_array(range(5, 9))
 	
-	handleObjects = []
+	handle_objects = []
 	
 	for i in HANDLES.size():
 		if exclude.has(i):
@@ -62,13 +66,13 @@ func _ready() -> void:
 		handle.mouse_filter = Control.MOUSE_FILTER_PASS
 		add_child(handle)
 		
-		var posMod := HANDLES[i][MOVE_RECT] as Vector2
-		var sizeMod := HANDLES[i][CHANGE_SIZE] as Vector2
+		var pos_mod := HANDLES[i][MOVE_RECT] as Vector2
+		var size_mod := HANDLES[i][CHANGE_SIZE] as Vector2
 		
-		if debugShapes:
+		if debug_shapes:
 			handle.color = Color.BLACK
-			handle.color.r = abs(sizeMod.x * sizeMod.y)
-			handle.color.g = 0.5 * (abs(sizeMod.x) + abs(sizeMod.y))
+			handle.color.r = abs(size_mod.x * size_mod.y)
+			handle.color.g = 0.5 * (abs(size_mod.x) + abs(size_mod.y))
 			handle.color.b = 1 - handle.color.r
 			handle.z_index = handle.color.r
 		else:
@@ -77,55 +81,61 @@ func _ready() -> void:
 		handle.mouse_default_cursor_shape = HANDLES[i][CURSOR]
 		
 		var anchorBase := Vector2(
-			remap(sizeMod.x, -1, 1, 0, 1),
-			remap(sizeMod.y, -1, 1, 0, 1)
+			remap(size_mod.x, -1, 1, 0, 1),
+			remap(size_mod.y, -1, 1, 0, 1)
 		)
 		
-		handle.set_anchor_and_offset(SIDE_LEFT, max(sizeMod.x, 0), -padding, true)
-		handle.set_anchor_and_offset(SIDE_TOP, max(sizeMod.y, 0), -padding, true)
-		handle.set_anchor_and_offset(SIDE_RIGHT, min(1 + sizeMod.x, 1), padding)
-		handle.set_anchor_and_offset(SIDE_BOTTOM, min(1 + sizeMod.y, 1), padding)
+		handle.set_anchor_and_offset(SIDE_LEFT, max(size_mod.x, 0), -padding, true)
+		handle.set_anchor_and_offset(SIDE_TOP, max(size_mod.y, 0), -padding, true)
+		handle.set_anchor_and_offset(SIDE_RIGHT, min(1 + size_mod.x, 1), padding)
+		handle.set_anchor_and_offset(SIDE_BOTTOM, min(1 + size_mod.y, 1), padding)
 		
-		handle.gui_input.connect(onHandleInput.bind(i))
-		handleObjects.append(handle)
+		handle.gui_input.connect(on_handle_input.bind(i))
+		handle_objects.append(handle)
 
-func initialize(newSize: Rect2i, uncorrectedSize: Rect2i) -> void:
-	rect = newSize
-	editedRect = snapRect(rect)
+
+func initialize(new_size: Rect2i, uncorrected_size := Rect2i()) -> void:
+	rect = new_size
+	edited_rect = snap_rect(rect)
 	
-	position = uncorrectedSize.position * tile_size
-	size = uncorrectedSize.size * tile_size
-	updateTransform(true)
+	if !uncorrected_size.has_area():
+		uncorrected_size = new_size
+	
+	position = uncorrected_size.position * tile_size
+	size = uncorrected_size.size * tile_size
+	update_transform(true)
 
-var dragIndex := -1
-func onHandleInput(event: InputEvent, index: int) -> void:
+
+func on_handle_input(event: InputEvent, index: int) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
-			dragIndex = (index if event.is_pressed() else -1)
+			drag_index = (index if event.is_pressed() else -1)
 			
 			if event.is_pressed():
 				clicked.emit()
 			else:
-				editedRect = snapRect(rect)
+				edited_rect = snap_rect(rect)
 			
-			handleObjects[index].accept_event()
+			handle_objects[index].accept_event()
 	
 	if event is InputEventMouseMotion:
-		if dragIndex == index:
-			var posMod := HANDLES[index][MOVE_RECT] as Vector2
-			var sizeMod := HANDLES[index][CHANGE_SIZE] as Vector2
+		if drag_index == index:
+			var pos_mod := HANDLES[index][MOVE_RECT] as Vector2
+			var size_mod := HANDLES[index][CHANGE_SIZE] as Vector2
 			
-			editedRect.position += event.relative * posMod
-			editedRect.size += event.relative * sizeMod
-			editedRect = editedRect.abs()
+			edited_rect.position += event.relative * pos_mod
+			edited_rect.size += event.relative * size_mod
+			edited_rect = edited_rect.abs()
 			
-			submitRect(editedRect)
-			handleObjects[index].accept_event()
+			submit_rect(edited_rect)
+			handle_objects[index].accept_event()
 
-func snapRect(to: Rect2i) -> Rect2:
+
+func snap_rect(to: Rect2i) -> Rect2:
 	return Rect2(to.position * tile_size, to.size * tile_size)
 
-func updateTransform(interpolate := false) -> void:
+
+func update_transform(interpolate := false) -> void:
 	var new := Rect2(rect.position * tile_size, rect.size * tile_size)
 	
 	if interpolate:
@@ -136,7 +146,8 @@ func updateTransform(interpolate := false) -> void:
 		position = new.position
 		size = new.size
 
-func submitRect(edited: Rect2) -> void:
+
+func submit_rect(edited: Rect2) -> void:
 	var old := rect
 	
 	rect.position = Vector2i(edited.position) / tile_size
@@ -144,5 +155,12 @@ func submitRect(edited: Rect2) -> void:
 	
 	rect_changed.emit(rect, old)
 
+
 func _process(delta: float) -> void:
 	border_width = 5.0 / get_canvas_transform().get_scale().x
+
+
+func set_level(new: LevelFile) -> void:
+#	level = new
+	$Preview.level = new
+	$Preview.update_texture()
