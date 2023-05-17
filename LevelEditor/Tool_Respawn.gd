@@ -82,9 +82,11 @@ func inspect_point(index: int) -> void:
 
 
 func save_data() -> void:
+	var root_pos := Vector2(editor.root_pos * ProjectManager.tile_size)
 	level.respawn_points = {}
+	
 	for p in points:
-		level.respawn_points[p.name] = p.position
+		level.respawn_points[p.name] = p.position - root_pos
 
 
 func load_data(p_level: LevelFile) -> void:
