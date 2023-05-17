@@ -4,6 +4,7 @@ extends Tool
 @onready var inspector: PanelContainer = %PointInspector
 
 var level : LevelFile
+var editor : LevelEditorData
 var points : Array[Point] = []
 
 var selected: int

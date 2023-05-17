@@ -10,6 +10,7 @@ var root_pos : Vector2i
 var canvas : ConfigurableCanvas
 
 var level : LevelFile
+var editor : LevelEditorData
 
 
 var map_id := {
@@ -19,6 +20,9 @@ var map_id := {
 
 
 func initialize() -> void:
+	editor.tilemap = tilemap
+	editor.root_pos = Vector2i()
+	
 	root_pos = Vector2i()
 	tilemap.tile_size = level.world_settings.tile_size
 	cursor.size = Vector2.ONE * level.world_settings.tile_size

@@ -3,6 +3,7 @@ extends Tool
 @onready var root: Node2D = $Root
 
 var level : LevelFile
+var editor : LevelEditorData
 var decoration : Array[DecoObject]
 
 

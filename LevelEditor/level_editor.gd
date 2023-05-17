@@ -8,6 +8,7 @@ extends Node
 var shortcuts : Array[Dictionary] = []
 
 var current_level : LevelFile
+var editor : LevelEditorData
 var current_filepath := ""
 var tools : Array
 var current_tool := -1
@@ -28,6 +29,8 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
+	editor = LevelEditorData.new()
+	
 	var save_input := InputEventKey.new()
 	save_input.keycode = KEY_S
 	save_input.ctrl_pressed = true
@@ -53,6 +56,7 @@ func _ready() -> void:
 func init_tools() -> void:
 	for t in tools:
 		t.level = current_level
+		t.editor = editor
 		t.set_active(false)
 
 
