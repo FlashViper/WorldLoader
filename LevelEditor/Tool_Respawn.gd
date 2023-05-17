@@ -6,6 +6,9 @@ extends Tool
 var level : LevelFile
 var points : Array[Point] = []
 
+var selected: int
+var drag_index := -1
+
 
 func _ready() -> void:
 	root.draw.connect(draw_targets)
@@ -58,11 +61,18 @@ func _unhandled_input(event: InputEvent) -> void:
 					MOUSE_BUTTON_RIGHT:
 						points.remove_at(selected_index)
 						root.queue_redraw()
+		else:
+			drag_index = -1
+	
+	if event is InputEventMouseMotion:
+		if drag_index >= 0:
+			points[drag_index].position += event.relative
+			root.queue_redraw()
 
 
-var selected: int
 func inspect_point(index: int) -> void:
 	selected = index
+	drag_index = index
 	root.queue_redraw()
 	%PointInspector.initialize(
 		points[index].name,
