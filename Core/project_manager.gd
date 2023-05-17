@@ -31,7 +31,6 @@ func create_new(path: String) -> void:
 	
 	current_project = WorldSettings.new()
 	current_project.project_name = "Untitled Project"
-	
 
 
 func load_from_file(path: String) -> void:
@@ -49,3 +48,32 @@ func convert_path(path_in: String) -> String:
 
 func get_current_project_path() -> String:
 	return project_path.get_base_dir()
+
+
+func get_previous_projects() -> Array[String]:
+	if FileAccess.file_exists(PROJECT_LIST):
+		var f := FileAccess.open(PROJECT_LIST, FileAccess.READ)
+		var result : Array[String] = []
+		
+		while f.get_position() < f.get_length():
+			var line := f.get_line()
+			if FileAccess.file_exists(line):
+				if !result.has(line):
+					result.append(line)
+		
+		return result
+	
+	return []
+
+
+func has_world() -> bool:
+	
+	return false
+
+
+func add_world_path(path: String) -> void:
+	pass
+
+
+func update_recent_projects() -> void:
+	pass

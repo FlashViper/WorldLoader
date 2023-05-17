@@ -13,14 +13,7 @@ func _ready() -> void:
 	%Create.pressed.connect(open_create_dialogue)
 	%Load.pressed.connect(open_load_dialogue)
 	
-	if FileAccess.file_exists(ProjectManager.PROJECT_LIST):
-		var f := FileAccess.open(ProjectManager.PROJECT_LIST, FileAccess.READ)
-		
-		while f.get_position() < f.get_length():
-			var line := f.get_line()
-			if FileAccess.file_exists(line):
-				if !project_list.has(line):
-					project_list.append(line)
+	project_list = ProjectManager.get_previous_projects()
 	
 	for p in project_list:
 		create_thumbnail(p)
@@ -66,6 +59,7 @@ func on_thumbnail_input(event: InputEvent, path: String) -> void:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.double_click:
 				on_file_recieved(path)
+				accept_event()
 
 
 func open_create_dialogue() -> void:
@@ -118,4 +112,5 @@ func on_file_recieved(path: String) -> void:
 		
 		ProjectManager.load_from_file(path)
 #		get_tree().change_scene_to_packed(project_viewer)
-		get_tree().change_scene_to_packed(preload("res://LevelEditor/level_editor.tscn"))
+#		get_tree().change_scene_to_packed(preload("res://LevelEditor/level_editor.tscn"))
+		get_tree().change_scene_to_packed(preload("res://WorldEditor/world_editor.tscn"))
