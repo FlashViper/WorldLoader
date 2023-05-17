@@ -44,6 +44,8 @@ func _input(event: InputEvent) -> void:
 		if filepath != "":
 			if filepath != "":
 				level_arranger.add_level_from_file(filepath, Vector2())
+	if event.is_action("save"):
+		save_current_world()
 
 
 func enable() -> void:
