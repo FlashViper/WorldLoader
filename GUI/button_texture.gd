@@ -18,6 +18,7 @@ signal button_up
 
 func _init() -> void:
 	stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	mouse_filter = MOUSE_FILTER_STOP
 
 func _ready() -> void:
 	mouse_entered.connect(mouse_state_changed.bind(true))
