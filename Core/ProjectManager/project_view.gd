@@ -4,13 +4,13 @@ extends PanelContainer
 @onready var world_tree : Tree = %Worlds
 
 func _ready() -> void:
-	%ProjectName.text = ProjectManager.project_name
+	%ProjectName.text = ProjectManager.current_project.project_name
 	setup_tree()
 
 func setup_tree() -> void:
 	var root := world_tree.create_item()
 	
-	for filepath in ProjectManager.world_files:
+	for filepath in ProjectManager.current_project.recent_worlds:
 		var w := world_tree.create_item(root)
 		w.set_text(0, filepath)
 	
@@ -20,15 +20,16 @@ func setup_tree() -> void:
 	
 	
 	world_tree.item_activated.connect(on_double_click)
-	world_tree.item_double_clicked.connect(on_double_click)
+	world_tree.item_icon_double_clicked.connect(on_double_click)
 
 
 func on_double_click() -> void:
 	var selected := world_tree.get_selected()
 	world_tree.accept_event()
-	if selected.get_index() == ProjectManager.world_files.size():
+	if selected.get_index() == ProjectManager.current_project.recent_worlds.size():
 		create_world()
 
+
 func create_world() -> void:
-	DisplayServer.window_set_size(ProjectManager.screen_size_px)
+	DisplayServer.window_set_size(ProjectManager.current_project.screen_size_px)
 	get_tree().change_scene_to_packed(editor_scene)

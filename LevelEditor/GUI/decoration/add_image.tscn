@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://cck7meappbsvt"]
+
+[ext_resource type="Script" path="res://LevelEditor/GUI/decoration/add_image.gd" id="1_c8hd7"]
+[ext_resource type="PackedScene" uid="uid://cyj7h7k16br31" path="res://Core/Utility/quick_save.tscn" id="2_j3m0u"]
+
+[node name="AddImage" type="VBoxContainer"]
+offset_right = 512.0
+offset_bottom = 130.0
+script = ExtResource("1_c8hd7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Filepath" type="LineEdit" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ChooseFile" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "choose file"
+
+[node name="Add" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add to Palette"
+
+[node name="FileDialog" parent="." instance=ExtResource("2_j3m0u")]
+visible = false
+base_dir = &"proj://%s "
+allow_option_create_folders = false
+default_value_create_folders = false

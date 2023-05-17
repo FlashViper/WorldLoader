@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dvl5exy52fhok"]
+
+[node name="AddRegion" type="VBoxContainer"]
+offset_right = 493.0
+offset_bottom = 199.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Filepath" type="LineEdit" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ChooseFile" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "choose file"
+
+[node name="Region" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Select Region"
+
+[node name="Add" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add to Palette"

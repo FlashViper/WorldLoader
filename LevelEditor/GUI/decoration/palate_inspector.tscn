@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmmwvd3558inp"]
+
+[ext_resource type="Theme" uid="uid://c55ghvb4khtdh" path="res://GUI/Theme/theme_default.tres" id="1_wubxe"]
+[ext_resource type="Script" path="res://LevelEditor/GUI/decoration/palette_inspector.gd" id="2_ynwdk"]
+[ext_resource type="PackedScene" uid="uid://8lf2gx0tnyat" path="res://LevelEditor/GUI/decoration/palette_item.tscn" id="3_f88bj"]
+[ext_resource type="Texture2D" uid="uid://c3jggn4e1x3yo" path="res://GUI/Icons/Main/icon_main_draghandle.tres" id="4_pso37"]
+[ext_resource type="Script" path="res://LevelEditor/GUI/drag_handle.gd" id="5_al3rm"]
+[ext_resource type="PackedScene" uid="uid://nhikg4e7ohta" path="res://LevelEditor/GUI/decoration/add_item_dialog.tscn" id="6_iimye"]
+
+[node name="PalateInspector" type="PanelContainer"]
+offset_left = 1413.0
+offset_top = 22.0
+offset_right = 2016.0
+offset_bottom = 925.0
+mouse_force_pass_scroll_events = false
+theme = ExtResource("1_wubxe")
+script = ExtResource("2_ynwdk")
+palette_item_scene = ExtResource("3_f88bj")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="DragHandle" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_pso37")
+stretch_mode = 5
+script = ExtResource("5_al3rm")
+
+[node name="Header" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Decoration Palate"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_force_pass_scroll_events = false
+horizontal_scroll_mode = 0
+
+[node name="PalateRoot" type="HFlowContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="AddItemButton" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add New Item"
+
+[node name="AddItemDialog" parent="MarginContainer/VBoxContainer" instance=ExtResource("6_iimye")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2

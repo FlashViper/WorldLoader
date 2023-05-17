@@ -1,5 +1,7 @@
 extends Node
 
+@export var is_standalone := true
+
 @onready var save_dialogue := $SaveLevel
 @onready var canvas : ConfigurableCanvas = $GUI
 
@@ -11,16 +13,21 @@ var tools : Array
 var current_tool := -1
 
 var toolbar : Control
-var is_standalone := true
 #var level_inspector [TODO]
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	if is_standalone:
 		current_level = LevelFile.new()
+		current_level.world_settings = ProjectManager.current_project
+		current_level.size = ProjectManager.current_project.minimum_screen_size
+		
+		DisplayServer.window_set_size(Vector2i(1920, 1080))
 		
 		CameraManager.activate()
 		CameraManager.position = $Camera.position
-	
+
+
+func _ready() -> void:
 	var save_input := InputEventKey.new()
 	save_input.keycode = KEY_S
 	save_input.ctrl_pressed = true
@@ -35,6 +42,7 @@ func _ready() -> void:
 	tools.append($Tools/Decoration)
 	tools.append($Tools/Respawn)
 	
+	print(current_level.size)
 	init_tools()
 	create_toolbar()
 	create_new_level()
@@ -90,6 +98,7 @@ func create_new_level() -> void:
 	for t in tools:
 		t.initialize()
 
+
 func add_shortcut(input: InputEvent, event: Callable) -> void:
 	var s := Shortcut.new()
 	s.events.append(input)
@@ -132,18 +141,22 @@ func save_current_level() -> void:
 		if filepath != "" and filepath != null:
 			save_to_disk(filepath)
 
-func load_from_disk(path: StringName) -> void:
+func load_from_disk(path_raw: String) -> void:
+	var path := ProjectManager.convert_path(path_raw)
+	
 	if !FileAccess.file_exists(path):
 		printerr("Nonexistant level at path %s" % path)
 		return
 	
 	current_filepath = path
+	current_level = LevelFile.load_from_file(ProjectManager.convert_path(current_filepath))
 	
-	current_level = LevelFile.loadFromFile(path)
 	for t in tools:
 		t.load_data(current_level)
 
-func save_to_disk(path: StringName) -> void:
+	
+func save_to_disk(path: String) -> void:
 	for t in tools:
 		t.save_data()#current_level)
-	current_level.save_to_file(path)
+	
+	current_level.save_to_file(ProjectManager.convert_path(path))

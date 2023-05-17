@@ -31,8 +31,8 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 
 [node name="Header" type="Label" parent="MarginContainer/VBoxContainer"]
+editor_description = "Choose wisely :) "
 layout_mode = 2
-tooltip_text = "Choose wisely :)"
 text = "Choose a Project"
 horizontal_alignment = 1
 vertical_alignment = 1

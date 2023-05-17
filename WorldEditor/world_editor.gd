@@ -6,34 +6,55 @@ extends Node
 
 signal level_edited(path: String, position: Vector2i)
 
+@export var standalone : bool
 @export var toolbar_scene : PackedScene
-@onready var save_dialogue := $Dialogue_World
+
+@onready var save_dialog : Node = $SaveDialog
+@onready var open_dialog : Node = $OpenDialog
 @onready var canvas : ConfigurableCanvas = $Canvas
 
-var tools : Array[Tool] = []
+@onready var level_arranger = $LevelArranger
+
 var current_filepath := ""
+var world : WorldFile
 
 var toolbar
 var settings_popup : Control
 
+
+func _enter_tree() -> void:
+	if standalone:
+		world = WorldFile.new()
+		world.settings = ProjectManager.current_project
+		DisplayServer.window_set_size(Vector2i(1920, 1080))
+
 func _ready() -> void:
 	CameraManager.activate()
-	tools.append($Tools/LevelArranger)
-	
-	for t in tools:
-		t.initialize()
-	tools[0].enable_tool()
 	
 	toolbar = toolbar_scene.instantiate()
-	canvas.add_control(toolbar, Control.PRESET_LEFT_WIDE)
 	toolbar.save_pressed.connect(save_current_world)
 	toolbar.settings_pressed.connect(toggle_settings_menu)
+	canvas.add_control(toolbar, Control.PRESET_LEFT_WIDE)
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action("open"):
+		open_dialog.request_file()
+		var filepath = await open_dialog.file_submitted
+		if filepath != "":
+			if filepath != "":
+				level_arranger.add_level_from_file(filepath, Vector2())
+	if event.is_action("save"):
+		save_current_world()
+
 
 func enable() -> void:
 	pass
 
+
 func disable() -> void:
 	pass
+
 
 func toggle_settings_menu() -> void:
 	if settings_popup:
@@ -43,37 +64,31 @@ func toggle_settings_menu() -> void:
 		settings_popup = preload("./Panels/world_properties.tscn").instantiate()
 		canvas.add_control(settings_popup)
 
+
 func save_current_world() -> void:
 	if current_filepath == "":
-		save_dialogue.request_file()
-		var filepath = await save_dialogue.file_submitted
+		save_dialog.request_file()
+		var filepath = await save_dialog.file_submitted
 		if filepath != "" and filepath != null:
 			current_filepath = filepath
 		else:
 			return
-		
+	
 	save_to_disk(current_filepath)
 
 
-func load_from_disk(path: StringName) -> void:
+func load_from_disk(path: String) -> void:
 	if !FileAccess.file_exists(path):
 		printerr("Nonexistant world at path %s" % path)
 		return
 	
-	current_filepath = path
-	
-	var world := WorldFile.loadFromFile(path)
-	for t in tools:
-		t.load_data(world)
+	world = WorldFile.load_from_file(path)
 
 
-func save_to_disk(path: StringName) -> void:
-	if !ProjectManager.has_world(path):
-		ProjectManager.add_world_path(path)
-		ProjectManager.save_to_file()
+func save_to_disk(path: String) -> void:
+#	if !ProjectManager.has_world(path):
+#		ProjectManager.add_world_path(path)
+#		ProjectManager.update_recent_worlds()
 	
-	var world := WorldFile.new()
-	for t in tools:
-		if t.has_method("save_data"):
-			world.save_data(world)
+	level_arranger.save_levels(world)
 	world.save_to_file(ProjectManager.convert_path(path))

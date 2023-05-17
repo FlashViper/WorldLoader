@@ -29,7 +29,7 @@ const DIR_TABLE := {
 #		cameraScale = clampf(new, min_zoom, max_zoom)
 #		zoom = 1 / cameraScale
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		var dir := DIR_TABLE.get(event.button_index, Vector2()) as Vector2
 		if dir.length_squared() > 0:
