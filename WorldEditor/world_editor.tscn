@@ -1,23 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://2hlopmp8u5mf"]
+[gd_scene load_steps=7 format=3 uid="uid://2hlopmp8u5mf"]
 
 [ext_resource type="Script" path="res://WorldEditor/world_editor.gd" id="1_6wi7m"]
-[ext_resource type="PackedScene" path="res://LevelEditor/GUI/tool_selector.tscn" id="2_cvst2"]
+[ext_resource type="PackedScene" uid="uid://dvv6vxb8fkmyh" path="res://LevelEditor/GUI/tool_selector.tscn" id="2_cvst2"]
 [ext_resource type="Script" path="res://WorldEditor/Tools/Tool_LevelArranger.gd" id="3_65jfo"]
-[ext_resource type="Script" path="res://WorldEditor/Tools/Tool_LevelStamper.gd" id="3_dxg5v"]
 [ext_resource type="PackedScene" uid="uid://cyj7h7k16br31" path="res://Core/Utility/quick_save.tscn" id="3_ganl3"]
 [ext_resource type="Script" path="res://Core/Utility/configurable_canvas.gd" id="6_odpr0"]
 [ext_resource type="Script" path="res://Core/Camera/drag_camera.gd" id="7_gcq6n"]
 
 [node name="WorldEditor" type="Node"]
 script = ExtResource("1_6wi7m")
+standalone = true
 toolbar_scene = ExtResource("2_cvst2")
 
-[node name="Tools" type="Node" parent="."]
-
-[node name="LevelArranger" type="Node" parent="Tools"]
+[node name="LevelArranger" type="Node" parent="."]
 script = ExtResource("3_65jfo")
 
-[node name="LevelSizePreview" type="ReferenceRect" parent="Tools/LevelArranger"]
+[node name="LevelSizePreview" type="ReferenceRect" parent="LevelArranger"]
 visible = false
 offset_right = 40.0
 offset_bottom = 40.0
@@ -26,25 +24,15 @@ border_color = Color(0.588235, 0.588235, 0.588235, 1)
 border_width = 5.0
 editor_only = false
 
-[node name="LevelStamper" type="Node" parent="Tools"]
-script = ExtResource("3_dxg5v")
-
-[node name="OpenLevel" parent="Tools/LevelStamper" instance=ExtResource("3_ganl3")]
+[node name="SaveDialog" parent="." instance=ExtResource("3_ganl3")]
 visible = false
-base_dir = &"res://Testing/Levels/%s.lvl"
+base_dir = &"proj://%s.wrld"
 
-[node name="Preview" type="ReferenceRect" parent="Tools/LevelStamper"]
+[node name="OpenDialog" parent="." instance=ExtResource("3_ganl3")]
 visible = false
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-border_color = Color(0.556863, 0.556863, 0.556863, 1)
-border_width = 5.0
-editor_only = false
-
-[node name="Dialogue_World" parent="." instance=ExtResource("3_ganl3")]
-visible = false
-base_dir = &"res://Testing/Worlds/%s.wrld"
+base_dir = &"proj://Levels/%s.lvl"
+allow_option_create_folders = false
+default_value_create_folders = false
 
 [node name="Canvas" type="CanvasLayer" parent="."]
 script = ExtResource("6_odpr0")
@@ -53,3 +41,5 @@ script = ExtResource("6_odpr0")
 process_priority = -1
 script = ExtResource("7_gcq6n")
 currentZoom = 2.0
+
+[node name="Levels" type="Node" parent="."]
