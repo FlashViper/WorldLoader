@@ -29,6 +29,7 @@ func initialize() -> void:
 	tilemap.clear()
 	
 	level_size.rect_changed.connect(update_level_bounds)
+	init_bounds()
 
 
 func enabled() -> void:
@@ -91,6 +92,8 @@ func update_level_bounds(new_bounds: Rect2i, old_bounds: Rect2i) -> void:
 	root_pos = new_bounds.position
 	level.size = new_bounds.size
 	level_size.update_transform()
+	
+	editor.root_pos = new_bounds.position
 
 
 func _process(delta: float) -> void:
@@ -114,7 +117,10 @@ func load_data(p_level: LevelFile) -> void:
 	
 	tilemap.clear()
 	tilemap.set_data_in_rect(Rect2i(root_pos, level.size), level.tileData)
-	
+	init_bounds()
+
+
+func init_bounds() -> void:
 	level_size.tile_size = Vector2i.ONE * level.world_settings.tile_size
 	level_size.rect.size = level.size
 	level_size.edited_rect.size = Vector2(level.size * level.world_settings.tile_size)
