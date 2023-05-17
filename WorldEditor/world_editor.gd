@@ -25,6 +25,7 @@ var settings_popup : Control
 func _enter_tree() -> void:
 	if standalone:
 		world = WorldFile.new()
+		world.settings = ProjectManager.current_project
 		DisplayServer.window_set_size(Vector2i(1920, 1080))
 
 func _ready() -> void:
@@ -88,5 +89,4 @@ func save_to_disk(path: String) -> void:
 #		ProjectManager.update_recent_worlds()
 	
 	level_arranger.save_levels(world)
-	print(ProjectManager.convert_path(path) )
 	world.save_to_file(ProjectManager.convert_path(path))
